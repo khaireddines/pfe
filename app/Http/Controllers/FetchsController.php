@@ -384,7 +384,7 @@ class FetchsController extends Controller
         $affcted=Affectedto::where('idMat',request('idMat'))->get();
         foreach ($affcted as $data)
         {
-            $result.='<div class="notsortable" value="'.$data->MatProf.'"><p>'.$data->nomProf.'</p></div>';
+            $result.='<div class="notsortable affected" value="'.$data->MatProf.'"><p>'.$data->nomProf.'</p></div>';
         }
         return $result;
     }

@@ -121,6 +121,7 @@
 @section('custemScript')
 
     <script>
+        var $tab=[];
         $(".newproff").hide();
         $(".addproff").hide();
         $.ajaxSetup({
@@ -138,7 +139,7 @@
             },
             items: "div:not(.notsortable)"});
         $(".Class").change(function () {
-            var $tab=[];
+
             var idClasse=this.value;
             $(".affect").html("");
             $(".ensDem").html("");
@@ -158,6 +159,7 @@
         });
         $(".Mat").on('change',function () {
             var idMat=this.value;
+            $tab=[];
 
             $(".newproff").show();
             $.ajax({
@@ -166,7 +168,7 @@
                 data:{idMat:idMat},
                 dataType:"text",
                 success:function(data)
-                {$(".ensDem").html(data);
+                {$("#ensDem").html(data);
                 $(".ens").css("cursor","pointer");
                 }
                 });
@@ -177,6 +179,8 @@
                 dataType:"text",
                 success:function (data) {
                     $("#affect").html(data);
+                    $tab.push($(".affected").attr('value'));
+                    console.log($tab);
                     $tab.forEach(function(element) {
                         $(".ens value='"+element+"'").remove();
                     });
