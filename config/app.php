@@ -162,7 +162,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         //pdf
         Barryvdh\DomPDF\ServiceProvider::class,
-        niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
         //sweet-alert2
         RealRashid\SweetAlert\SweetAlertServiceProvider::class
     ],
@@ -213,8 +212,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        //'PDF'=> Barryvdh\DomPDF\Facade::class,
-        'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
+        'PDF'=> Barryvdh\DomPDF\Facade::class,
+
         //sweet-alert2
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
 

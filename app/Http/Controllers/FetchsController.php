@@ -426,7 +426,7 @@ class FetchsController extends Controller
                  <div class="fc-bg">
                     <table class="text-left" id="table">
                     <tbody >
-                     <tr style="font-family: Arial, serif;font-size:xx-small;overflow: hidden">
+                     <tr style="font-family: Arial, serif;font-size:xx-small;overflow: hidden;text-align: left !important;" >
                      ';
                     if (count($classe)!=0)
                       foreach ($matiere as $data)
@@ -574,14 +574,14 @@ class FetchsController extends Controller
     public function salle_vide()
     {$result='';
         $salle=emp_salle::where(request('jour'),'')->get();
-     for ($i=0;$i<6;$i++)
+     foreach ($salle as $data)
      {$result.='<div class="fc-row" style="">
                   <div class="fc-bg">
                       <table >
                           <tbody>
                           <tr style="font-size: large;font-family: Arial, serif">
-                              <td>'.@$salle[$i]->idSalle.'</td>
-                              <td>'.@$salle[$i]->Lession.'</td>
+                              <td>'.@$data->idSalle.'</td>
+                              <td>'.@$data->Lession.'</td>
                           </tr>
                           </tbody>
                       </table>

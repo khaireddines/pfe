@@ -15,6 +15,7 @@
 
 
     <link rel="stylesheet" href="{{asset('css/sweetalert2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/perfect-scrollbar.css')}}">
     <link rel="stylesheet" href="{{asset('css/material-dashboard.min790f.css')}}">
     @yield('important')
 
@@ -86,9 +87,9 @@
     <script src="{{asset('js/sweetalert2.js')}}"></script>
     @include('sweetalert::alert')
     <script src="{{asset('js/demo.js')}}"></script>
-    <script src="{{ asset('js/perfect-scrollbar.jquery.min.js') }}"></script>
+    <script src="{{asset('js/perfect-scrollbar.min.js')}}"></script>
     <script src="{{asset('js/jquery-ui.min.js')}}"></script>
-    <script src="{{asset('js/material-dashboard790f.js')}}"></script>
+
     <script src="{{asset('js/bootstrap-material-design.min.js')}}"></script>
     <script src="{{asset('js/arrive.min.js')}}"></script>
 @yield('custemScript')
