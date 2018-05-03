@@ -271,6 +271,7 @@
                                             <td class="fc-widget-content">
                                                 <div class="fc-scroller fc-day-grid-container" style="overflow: hidden;">
                                                     <div class="fc-day-grid fc-unselectable">
+                                                        <div class="emp_prof">
                                                     <?php $j=1; ?>
                                                     @for($i=0;$i<6;$i++)
                                                             <div class="fc-row" style="">
@@ -291,6 +292,7 @@
                                                             </div>
 
                                                     @endfor
+                                                        </div>
                                                 </div>
                                                 </div>
                                             </td>
@@ -305,7 +307,7 @@
 
             </div>
 
-            <div class="col-md-2 ">
+            <div class="col-md-2">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">
@@ -451,9 +453,9 @@
 @section('custemScript')
 
     <script>
-
+        var selector=$(":submit");
         const ps = new PerfectScrollbar('.scroll');
-
+        $(":submit").hide();
 $(".affect").hide();
         var $table = $('table.scroll'),
             $bodyCells = $table.find('tbody tr:first').children(),
@@ -490,6 +492,7 @@ $(".affect").hide();
 
             receive: function (e, t) {
                 $(".affect").hide();
+
                 if ($(this).attr("id")=='mats')
                 {$(this).find(".matiere").prop("name","");
                 }
@@ -512,18 +515,19 @@ $(".affect").hide();
                         {$(".list_salle").html("");
                             $(".list_salle").html(data);
 
+
                         }
                     });
                     $('.list_salle').change(function () {
                        $(".affect").show();
                         salle=$(".list_salle option:selected").val();
-                        console.log(salle);
+
 
 
                     });
                     $('.affect').click(function () {
 
-                        console.log(val);
+
                         var list=val.split('_');
                         var newval=list[0]+'_'+list[1]+'_'+salle;
 
@@ -535,6 +539,7 @@ $(".affect").hide();
                 }
             },
             stop: function (e, t) {
+
                 if ($(this).children().length == 0) {
                     $(this).addClass('test');
                     $(this).removeClass('table-active');
@@ -576,7 +581,7 @@ $(".affect").hide();
 
         $("#prof").change(function () {
            var idprof=this.value;
-
+            $("#mytable").find('')
             $.ajax({
                 url:"/fetch_affectedtotab",
                 method:"POST",
@@ -585,6 +590,91 @@ $(".affect").hide();
                 success:function(data)
                 {   $(".mat").remove();
                     $(".mats").html(data);
+                }
+            });
+            $.ajax({
+                url:"/fetch_prof_emp",
+                method:"POST",
+                data:{MatProf:idprof},
+                dataType:"text",
+                success:function(data)
+                {$(".emp_prof").html('');
+                    $(".emp_prof").html(data);
+                    $(".sortable").sortable({
+                        connectWith: ".sortable",
+                        hoverClass: "ui-state-active",
+                        placeholder: "ui-state-highlight",
+                        cursor:"pointer",
+
+
+                        receive: function (e, t) {
+                            $(".affect").hide();
+                            if ($(this).attr("id")=='mats')
+                            {$(this).find(".matiere").prop("name","");
+                            }
+                            else {
+                                var num=$(this).closest("tr").attr("id");
+                                var tabname=$(this).attr("id");
+                                var salle='';
+                                var elem=$(this);
+                                var val=elem.find('.matiere').prop("value");
+                                $(this).find(".matiere").prop("name",tabname+'['+num+']');
+                                $(this).addClass('table-active');
+                                $(this).removeClass('sortable');
+                                ///sallet fargin//
+                                $.ajax({
+                                    url:"/fetch_salle_vide2",
+                                    method:"POST",
+                                    data:{jour:tabname,seance:num},
+                                    dataType:"text",
+                                    success:function(data)
+                                    {$(".list_salle").html("");
+                                        $(".list_salle").html(data);
+
+                                    }
+                                });
+                                $('.list_salle').change(function () {
+                                    $(".affect").show();
+                                    salle=$(".list_salle option:selected").val();
+
+
+
+                                });
+                                $('.affect').click(function () {
+
+
+                                    var list=val.split('_');
+                                    var newval=list[0]+'_'+list[1]+'_'+salle;
+
+                                    elem.find(".matiere").prop("value",newval);
+                                });
+
+                                $('#noticeModal').modal({backdrop: 'static',
+                                    keyboard: false});
+                            }
+                        },
+                        stop: function (e, t) {
+                            if ($(this).children().length == 0) {
+                                $(this).addClass('test');
+                                $(this).removeClass('table-active');
+                                $(this).addClass('sortable');
+                            }
+                            if($(t.item).closest('tr').children().length >0){
+                                $(t.item).closest('tr').removeClass('test');
+                            }
+                        },
+                        helper: function (e, tr) {
+                            var $originals = tr.children();
+                            var $helper = tr.clone();
+                            $helper.children().each(function (index) {
+                                // Set helper cell sizes to match the original sizes
+                                $(this).width($originals.eq(index).width());
+                            });
+                            $helper.css("background-color", "rgb(223, 240, 249)");
+                            return $helper;
+                        }
+                    });
+
                 }
             });
 
@@ -596,6 +686,7 @@ $(".affect").hide();
            var value=$(this).find('.classe').val();
            var data=value.split('_');
            var classe=data['1'];
+            selector.show();
            /////farag_table
             $tab=[];
             //// re_insilize_the sortable
@@ -626,7 +717,8 @@ $(".affect").hide();
 
                          $('.mytable .sortable').each(function (ele) {
                              var num=$(this).attr('num');
-                             if(num==elemen)
+
+                             if(num==elemen&&$(this).is(':empty'))
                              {$(this).removeClass('sortable');
                               $(this).addClass('table-warning');
 

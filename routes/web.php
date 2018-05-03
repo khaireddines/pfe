@@ -74,6 +74,7 @@ Route::POST('/fetch_classeEmp','FetchsController@classeEmp');
 Route::POST('/fetch_emp_salle','FetchsController@Emp_Salle');
 Route::POST('/fetch_salle_vide','FetchsController@salle_vide');
 Route::POST('/fetch_salle_vide2','FetchsController@salle_vide2');
+Route::POST('/fetch_prof_emp','FetchsController@profEmp');
 /////////////////PDFS/////////////////////////
 //Route::POST('/Pdf_emp_salle','PdfsController@emp_salle');
 /////////////////FV///////////////////////////
