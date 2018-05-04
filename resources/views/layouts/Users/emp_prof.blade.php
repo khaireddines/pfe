@@ -132,8 +132,20 @@
                             Salle
                             <small class="description">-disponible</small>
                             <div class="" style="float: right">
+                                <select name="jour" id="lession" class="form-control" style="font-family:Roboto, Helvetica, Arial, sans-serif;font-style:oblique">
+                                    <option value="0" selected="selected" disabled="disabled">Pick A Lesson</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+
+                                </select>
+                            </div>
+                            <div class="" style="float: right">
                                 <select name="jour" id="jour" class="form-control" style="font-family:Roboto, Helvetica, Arial, sans-serif;font-style:oblique">
-                                    <option value="" selected="selected" disabled="disabled">pick someone</option>
+                                    <option value="0" selected="selected" disabled="disabled">Pick A Day</option>
                                     <option value="Lundi">Lundi</option>
                                     <option value="Mardi">Mardi</option>
                                     <option value="Mercredi">Mercredi</option>
@@ -143,6 +155,7 @@
 
                                 </select>
                             </div>
+
                         </h4>
 
                     </div>
@@ -160,12 +173,10 @@
                                                         <thead>
                                                         <tr>
 
-                                                            <th class="fc-day-header fc-widget-header">
+                                                            <th class="fc-day-header fc-widget-header" style="text-align: center!important;">
                                                                 <span>Salle</span>
                                                             </th>
-                                                            <th class="fc-day-header fc-widget-header ">
-                                                                <span>Séance</span>
-                                                            </th>
+
 
                                                         </tr>
                                                         </thead>
@@ -187,7 +198,7 @@
                                                                         <tbody >
                                                                         <tr >
                                                                             <td></td>
-                                                                            <td></td>
+
 
                                                                         </tr>
                                                                         </tbody>
@@ -215,6 +226,7 @@
                 </div>
 
             </div>
+
             <div class="col-md-8 ">
                 <div class="card card-calendar">
                     <div class="card-body">
@@ -321,11 +333,12 @@
 
                     </div>
                 </div>
-                <button type="submit" class="btn btn-success btn-link btn-round insert" style="font-size: small;">
+                <button type="submit" class="btn btn-success btn-link btn-round"  style="font-size: small;">
                     <i class="material-icons" >done_all</i>
                     Confirm
                 </button>
             </div>
+
             <div class="col-md-8 " style="margin-bottom:-40px">
                 <div class="card card-calendar">
                     <div class="card-body">
@@ -453,10 +466,12 @@
 @section('custemScript')
 
     <script>
+        $("#lession").hide();
+        $(":submit").hide();
+        $(".affect").hide();
         var selector=$(":submit");
         const ps = new PerfectScrollbar('.scroll');
-        $(":submit").hide();
-$(".affect").hide();
+
         var $table = $('table.scroll'),
             $bodyCells = $table.find('tbody tr:first').children(),
             colWidth;
@@ -527,7 +542,7 @@ $(".affect").hide();
                     });
                     $('.affect').click(function () {
 
-
+                        $("#insert").show();
                         var list=val.split('_');
                         var newval=list[0]+'_'+list[1]+'_'+salle;
 
@@ -752,13 +767,31 @@ $(".affect").hide();
               }
             });
         });
-
         $("#jour").change(function () {
-           var jour=$(this).val();
+           $("#lession").show();
+
+           if($("#lession").val()!=null)
+           {var jour=$(this).val();
+               var lession=$("#lession").val();
+               $.ajax({
+               url:"/fetch_salle_vide",
+               method:"POST",
+               data:{jour:jour,Lession:lession},
+               dataType:"text",
+               success:function(data)
+               {$(".sallerhere").html("");
+                   $(".sallerhere").html(data);
+
+               }
+           });}
+           });
+        $("#lession").change(function () {
+           var jour=$("#jour").val();
+            var lession=$(this).val();
             $.ajax({
                 url:"/fetch_salle_vide",
                 method:"POST",
-                data:{jour:jour},
+                data:{jour:jour,Lession:lession},
                 dataType:"text",
                 success:function(data)
                 {$(".sallerhere").html("");

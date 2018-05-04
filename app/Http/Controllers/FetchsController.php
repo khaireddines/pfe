@@ -714,7 +714,7 @@ class FetchsController extends Controller
 
     public function salle_vide()
     {$result='';
-        $salle=emp_salle::where(request('jour'),'')->get();
+        $salle=emp_salle::where(request('jour'),'')->where('Lession',\request('Lession'))->get();
      foreach ($salle as $data)
      {$result.='<div class="fc-row" style="">
                   <div class="fc-bg">
@@ -722,7 +722,7 @@ class FetchsController extends Controller
                           <tbody>
                           <tr style="font-size: large;font-family: Arial, serif">
                               <td>'.@$data->idSalle.'</td>
-                              <td>'.@$data->Lession.'</td>
+                              
                           </tr>
                           </tbody>
                       </table>
