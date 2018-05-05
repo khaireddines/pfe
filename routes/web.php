@@ -15,16 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/test', function () {
-    return view('login');
+    return view('layouts.admin.adminDashbord');
 });
 
 //////////////////////DepartementController////////////////////////
 Route::get('/departement','DepartementController@show');
-Route::get('/create','DepartementController@create');
-Route::get('/create/{id}','DepartementController@create');
-Route::post('/create','DepartementController@store');
-Route::post('/modify/{id}','DepartementController@edit');
-Route::get('/supp/{id}','DepartementController@destroy');
+Route::get('/create_dep','DepartementController@create');
+Route::get('/create_dep/{id}','DepartementController@create');
+Route::post('/create_dep','DepartementController@store');
+Route::post('/modify_dep/{id}','DepartementController@edit');
+Route::get('/supp_dep/{id}','DepartementController@destroy');
 //////////////////////FormationController////////////////////////
 Route::get('/formation','FormationController@show');
 Route::get('/create_form','FormationController@create');

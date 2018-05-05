@@ -68,7 +68,7 @@ var seq2 = 0,
 
 $(document).ready(function() {
 
-   $('body').bootstrapMaterialDesign();
+    $('body').bootstrapMaterialDesign();
 
     $sidebar = $('.sidebar');
 
@@ -97,11 +97,11 @@ $(document).ready(function() {
     // we style the badges with our colors
     var tagClass = $('.tagsinput').data('color');
 
-   if($(".tagsinput").length != 0){
-     $('.tagsinput').tagsinput();
-   }
+    if($(".tagsinput").length != 0){
+        $('.tagsinput').tagsinput();
+    }
 
-   $('.bootstrap-tagsinput').addClass(''+ tagClass +'-badge');
+    $('.bootstrap-tagsinput').addClass(''+ tagClass +'-badge');
 
     //    Activate bootstrap-select
     $(".select").dropdown({
@@ -248,9 +248,9 @@ md = {
                 clear: 'fa fa-trash',
                 close: 'fa fa-remove'
             }
-         });
+        });
 
-         $('.datepicker').datetimepicker({
+        $('.datepicker').datetimepicker({
             format: 'MM/DD/YYYY',
             icons: {
                 time: "fa fa-clock-o",
@@ -263,9 +263,9 @@ md = {
                 clear: 'fa fa-trash',
                 close: 'fa fa-remove'
             }
-         });
+        });
 
-         $('.timepicker').datetimepicker({
+        $('.timepicker').datetimepicker({
 //          format: 'H:mm',    // use this format if you want the 24hours timepicker
             format: 'h:mm A',    //use this format if you want the 12hours timpiecker with AM/PM toggle
             icons: {
@@ -280,7 +280,7 @@ md = {
                 close: 'fa fa-remove'
 
             }
-         });
+        });
     },
 
 
