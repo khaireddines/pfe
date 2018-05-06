@@ -99,6 +99,7 @@
         });
         $(".CRUD").addClass('active');
         $(".E").addClass('active');
+        $(".pages").addClass('active');
         $(".CRUD").addClass('show');
     </script>
 @endsection

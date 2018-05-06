@@ -88,6 +88,7 @@
       });
       $(".CRUD").addClass('active');
       $(".D").addClass('active');
+      $(".pages").addClass('active');
       $(".CRUD").addClass('show');
   </script>
 @endsection

@@ -92,7 +92,7 @@ Route::POST('/emp_insert','EmploiController@store');
 
 
 
-
+//////////////repartition//////////////////
 Route::get('/repartition',function () {
   return view('layouts.Users.repartition');
 });

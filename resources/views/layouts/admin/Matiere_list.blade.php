@@ -107,6 +107,7 @@
         });
         $(".CRUD").addClass('active');
         $(".M").addClass('active');
+        $(".pages").addClass('active');
         $(".CRUD").addClass('show');
 
     </script>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin.adminDashbord')
 
 @section('custemImp')
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,17 +24,19 @@
         }
 
 
-        .a
-        {
-            border:0px;
-        }
+
+        .scroll{display:block;
+            overflow:hidden;
+            position:relative;
+            scrollbar-y:left;
+            max-height: fit-content}
 
 
     </style>
 @endsection
 
 @section('content')
-
+    <div class="container-fluid">
         <div class="col-6 mx-auto mb-6">
 
                 <div class="search input-group mb-5" style="float: left;width: 75%;margin-top: 0.75%; ">
@@ -57,8 +59,8 @@
         <div class="hide col-11 mx-auto mt-5">
             <div class="card">
                 <div class="card-header"></div>
-                <div class="card-body" style=" min-height: 600px;">
-                    <div class="contents">
+                <div class="card-body" style="height: 500px">
+                    <div class="contents scroll" style="max-height: 100%">
 
                     </div>
                 </div>
@@ -71,7 +73,7 @@
 @section('custemScript')
     <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
     <script>
-
+        const ps = new PerfectScrollbar('.scroll');
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -122,7 +124,7 @@
             $(".filter").change(function () {
                $(".contents").html("");
             });
-
+$(".RE").addClass('active');
 
 
     </script>

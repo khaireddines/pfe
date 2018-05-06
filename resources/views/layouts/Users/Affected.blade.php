@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin.adminDashbord')
 @section('custemImp')
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -19,7 +19,8 @@
 @endsection
 
 @section('content')
-   <div class="content">
+    <div class="container-fluid">
+    <div class="content">
        <form id="form" action="/insert" method="post">
        <div class="container mt-lg-5">
         <div class="input-group mb-3 col-md-6 row" style="width: 30%;">
@@ -115,12 +116,13 @@
        </div>
        </form>
    </div>
-
+    </div>
 @endsection
 
 @section('custemScript')
 
     <script>
+        $(".AF").addClass('active');
         var $tab=[];
         $(".newproff").hide();
         $(".addproff").hide();

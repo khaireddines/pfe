@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin.adminDashbord')
 
 @section('custemImp')
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -33,6 +33,7 @@
 @endsection
 
 @section('content')
+    <div class="container-fluid">
     <form action="/emp_insert" method="POST">
         {{csrf_field()}}
         <div class="row "style="width: 100%;">
@@ -333,7 +334,7 @@
 
                     </div>
                 </div>
-                <button type="submit" class="btn btn-success btn-link btn-round"  style="font-size: small;">
+                <button type="submit" class="btn btn-success btn-link btn-round validate"  style="font-size: small;">
                     <i class="material-icons" >done_all</i>
                     Confirm
                 </button>
@@ -432,6 +433,7 @@
 
         </div>
     </form>
+    </div>
     <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-notice">
             <div class="modal-content">
@@ -461,15 +463,16 @@
             </div>
         </div>
     </div>
-@endsection
+
+        @endsection
 
 @section('custemScript')
 
     <script>
         $("#lession").hide();
-        $(":submit").hide();
+        $(".validate").hide();
         $(".affect").hide();
-        var selector=$(":submit");
+        var selector=$(".validate");
         const ps = new PerfectScrollbar('.scroll');
 
         var $table = $('table.scroll'),
@@ -800,7 +803,7 @@
                 }
             });
         });
-
+$('.EM').addClass('active');
 
 
 

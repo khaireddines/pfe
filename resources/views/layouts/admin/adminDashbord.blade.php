@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Favicons -->
     <link rel="apple-touch-icon" href="">
     <link rel="icon" href="">
@@ -29,7 +30,7 @@
 <body class="">
 
 <div class="wrapper">
-    <div class="sidebar " data-color="azure" data-background-color="black" data-image="{{asset("img/sidebar-1.jpg")}}">
+    <div class="sidebar " data-color="azure" data-background-color="black" data-image="{{asset("img/sidebar-2.jpg")}}">
         <!--
             Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -37,11 +38,11 @@
         -->
 
         <div class="logo">
-            <a href="http://www.creative-tim.com/" class="simple-text logo-mini">
+            <a href="#AceVel" class="simple-text logo-mini">
                 AV
             </a>
 
-            <a href="http://www.creative-tim.com/" class="simple-text logo-normal">
+            <a href="#AceVel" class="simple-text logo-normal">
                 AceVel
             </a>
 
@@ -143,182 +144,26 @@
                     </div>
                 </li>
 
-                <li class="nav-item ">
-                    <a class="nav-link" data-toggle="collapse" href="#componentsExamples">
-                        <i class="material-icons">apps</i>
-                        <p> Components
-                            <b class="caret"></b>
-                        </p>
-                    </a>
 
-                    <div class="collapse" id="componentsExamples">
-                        <ul class="nav">
-                            <li class="nav-item ">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-mini"> B </span>
-                                    <span class="sidebar-normal"> Buttons </span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-mini"> GS </span>
-                                    <span class="sidebar-normal"> Grid System </span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-mini"> P </span>
-                                    <span class="sidebar-normal"> Panels </span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-mini"> SA </span>
-                                    <span class="sidebar-normal"> Sweet Alert </span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-mini"> N </span>
-                                    <span class="sidebar-normal"> Notifications </span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-mini"> I </span>
-                                    <span class="sidebar-normal"> Icons </span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-mini"> T </span>
-                                    <span class="sidebar-normal"> Typography </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
 
-                <li class="nav-item ">
-                    <a class="nav-link" data-toggle="collapse" href="#formsExamples">
+                <li class="nav-item AF">
+                    <a class="nav-link" href="/affectMat">
                         <i class="material-icons">content_paste</i>
-                        <p> Forms
-                            <b class="caret"></b>
-                        </p>
+                        <p> Affectation </p>
                     </a>
-
-                    <div class="collapse" id="formsExamples">
-                        <ul class="nav">
-                            <li class="nav-item ">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-mini"> RF </span>
-                                    <span class="sidebar-normal"> Regular Forms </span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-mini"> EF </span>
-                                    <span class="sidebar-normal"> Extended Forms </span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-mini"> VF </span>
-                                    <span class="sidebar-normal"> Validation Forms </span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-mini"> W </span>
-                                    <span class="sidebar-normal"> Wizard </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
 
-                <li class="nav-item ">
-                    <a class="nav-link" data-toggle="collapse" href="#tablesExamples">
+                <li class="nav-item RE">
+                    <a class="nav-link" href="/repartition">
                         <i class="material-icons">grid_on</i>
-                        <p> Tables
-                            <b class="caret"></b>
-                        </p>
-                    </a>
-
-                    <div class="collapse" id="tablesExamples">
-                        <ul class="nav">
-                            <li class="nav-item ">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-mini"> RT </span>
-                                    <span class="sidebar-normal"> Regular Tables </span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-mini"> ET </span>
-                                    <span class="sidebar-normal"> Extended Tables </span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-mini"> DT </span>
-                                    <span class="sidebar-normal"> DataTables.net </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li class="nav-item ">
-                    <a class="nav-link" data-toggle="collapse" href="#mapsExamples">
-                        <i class="material-icons">place</i>
-                        <p> Maps
-                            <b class="caret"></b>
-                        </p>
-                    </a>
-
-                    <div class="collapse" id="mapsExamples">
-                        <ul class="nav">
-                            <li class="nav-item ">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-mini"> GM </span>
-                                    <span class="sidebar-normal"> Google Maps </span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-mini"> FSM </span>
-                                    <span class="sidebar-normal"> Full Screen Map </span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-mini"> VM </span>
-                                    <span class="sidebar-normal"> Vector Map </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li class="nav-item ">
-                    <a class="nav-link" href="">
-                        <i class="material-icons">widgets</i>
-                        <p> Widgets </p>
+                        <p> Repartition </p>
                     </a>
                 </li>
 
-                <li class="nav-item ">
-                    <a class="nav-link" href="">
-                        <i class="material-icons">timeline</i>
-                        <p> Charts </p>
-                    </a>
-                </li>
-
-                <li class="nav-item ">
-                    <a class="nav-link" href="">
+                <li class="nav-item EM">
+                    <a class="nav-link" href="/emploi">
                         <i class="material-icons">date_range</i>
-                        <p> Calendar </p>
+                        <p> Schedule </p>
                     </a>
                 </li>
 
@@ -403,7 +248,7 @@
 
 
         <div class="content">
-            <div class="container-fluid here">
+            <div class="container-fluid">
                @yield('content')
 
             </div>
@@ -415,29 +260,29 @@
                 <nav class="pull-left">
                     <ul>
                         <li>
-                            <a href="https://www.creative-tim.com/">
-                                Creative Tim
+                            <a href="#AceVel">
+                                AceVel Team
                             </a>
                         </li>
                         <li>
-                            <a href="http://presentation.creative-tim.com/">
+                            <a href="#AceVel">
                                 About Us
                             </a>
                         </li>
                         <li>
-                            <a href="http://blog.creative-tim.com/">
+                            <a href="#AceVel">
                                 Blog
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.creative-tim.com/license">
+                            <a href="#AceVel">
                                 Licenses
                             </a>
                         </li>
                     </ul>
                 </nav>
                 <div class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="material-icons">favorite</i> by <a href="https://www.creative-tim.com/" target="_blank">Creative Tim</a> for a better web.
+                    &copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="material-icons">favorite</i> by <a href="#AceVel" target="_blank">AceVel Team</a> for a better web.
                 </div>
             </div>
 
@@ -548,6 +393,7 @@
 <script src="{{asset('js/bootstrap-material-design.min.js')}}"></script>
 
 
+
 <script src="{{asset('js/perfect-scrollbar.jquery.min.js')}}"></script>
 <!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
 <script src="{{asset('js/moment.min.js')}}"></script>
@@ -578,6 +424,17 @@
 <!-- demo init -->
 <script src="{{asset('js/demo.js')}}"></script>
 <script src="{{asset('js/jquery.datatables.js')}}"></script>
+
+
+<script src="{{asset('js/perfect-scrollbar.min.js')}}"></script>
+<script src="{{asset('js/sweetalert2.js')}}"></script>
+
+
+
+<script src="{{asset('js/jquery-ui.min.js')}}"></script>
+
+
+<script src="{{asset('js/arrive.min.js')}}"></script>
 @yield('custemScript')
 <script>
 
