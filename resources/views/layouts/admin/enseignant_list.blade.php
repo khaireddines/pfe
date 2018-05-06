@@ -18,14 +18,14 @@
 
                     <div class="card-header card-header-success card-header-icon">
                         <div class="card-icon">
-                            <i class="material-icons">account_box</i>
+                            <i class="material-icons">supervisor_account</i>
 
                         </div>
                         <button onclick="location.href='/create_Enseignant';" type="button" class="float-md-right btn btn-warning  btn-round" data-original-title="" title="" style="font-size: small;">
                         <i class="material-icons">note_add</i>
                         Add
                         </button>
-                        <h4 class="card-title">Global Sales by Top Locations</h4>
+                        <h4 class="card-title">Teachers</h4>
                         <
                     </div>
 
