@@ -34,7 +34,7 @@
 
 
 
-<table class="table">
+<table class="table display table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%" id="mytable"  >
     <thead>
     <tr class="text-center">
         <th>Matricule</th>
@@ -80,4 +80,25 @@
                     </div></div></div></div></div>
 @endsection
 @section('custemScript')
+    <script src="{{asset('js/jquery.datatables.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#mytable').DataTable({
+                "pagingType": "full_numbers",
+                "lengthMenu": [
+                    [5, 10, 25, -1],
+                    [5, 10, 25, "All"]
+                ],
+                responsive: true,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search records"
+                }
+
+            });
+        });
+        $(".CRUD").addClass('active');
+        $(".E").addClass('active');
+        $(".CRUD").addClass('show');
+    </script>
 @endsection

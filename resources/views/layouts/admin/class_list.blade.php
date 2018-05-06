@@ -1,17 +1,37 @@
-@extends('layouts.app')
+@extends('layouts.admin.adminDashbord')
 @section('custemImp')
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
 @endsection
 @section('content')
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
 
 
-<button onclick="location.href='/create_Class';" type="button" class="float-md-right btn btn-warning  btn-round" data-original-title="" title="" style="font-size: small;">
-    <i class="material-icons">note_add</i>
-    Add
-</button>
-<table class="table">
+
+
+
+                <div class="card ">
+
+                    <div class="card-header card-header-success card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">account_box</i>
+
+                        </div>
+                        <button onclick="location.href='/create_Class';" type="button" class="float-md-right btn btn-warning  btn-round" data-original-title="" title="" style="font-size: small;">
+                            <i class="material-icons">note_add</i>
+                            Add
+                        </button>
+                        <h4 class="card-title">Global Sales by Top Locations</h4>
+                        <
+                    </div>
+
+                    <div class="card-body ">
+
+
+<table class="table display table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%" id="mytable"  >
     <thead>
     <tr class="text-center">
 
@@ -51,6 +71,29 @@
     @endforeach
 
 </table>
+                    </div></div></div></div></div>
 @endsection
 @section('custemScript')
+    <script src="{{asset('js/jquery.datatables.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#mytable').DataTable({
+                "pagingType": "full_numbers",
+                "lengthMenu": [
+                    [5, 10, 25, -1],
+                    [5, 10, 25, "All"]
+                ],
+                responsive: true,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search records"
+                }
+
+            });
+        });
+        $(".CRUD").addClass('active');
+        $(".C").addClass('active');
+        $(".CRUD").addClass('show');
+
+    </script>
 @endsection

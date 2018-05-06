@@ -3,10 +3,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
-
-
-
 @endsection
+
+
+
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -81,10 +81,13 @@
     @endforeach
 @endif
 </table>
-                    </div></div></div></div></div>
 
+                    </div></div></div></div></div>
 @endsection
 @section('custemScript')
+
+
+
     <script src="{{asset('js/jquery.datatables.js')}}"></script>
     <script>
         $(document).ready(function() {
@@ -102,9 +105,9 @@
 
             });
         });
-        $(".matiere").addClass('active');
-        $(".pages").addClass('active');
-        $(".mat").addClass('show');
+        $(".CRUD").addClass('active');
+        $(".M").addClass('active');
+        $(".CRUD").addClass('show');
 
     </script>
 @endsection

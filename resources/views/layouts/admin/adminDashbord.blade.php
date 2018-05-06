@@ -29,7 +29,7 @@
 <body class="">
 
 <div class="wrapper">
-    <div class="sidebar" data-color="azure" data-background-color="black" data-image="{{asset("img/sidebar-1.jpg")}}">
+    <div class="sidebar " data-color="azure" data-background-color="black" data-image="{{asset("img/sidebar-1.jpg")}}">
         <!--
             Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -38,7 +38,7 @@
 
         <div class="logo">
             <a href="http://www.creative-tim.com/" class="simple-text logo-mini">
-                ERP
+                AV
             </a>
 
             <a href="http://www.creative-tim.com/" class="simple-text logo-normal">
@@ -50,12 +50,12 @@
         <div class="sidebar-wrapper">
             <div class="user">
                 <div class="photo">
-                    <img src="" />
+                    <img src="{{asset('img/profile_img/khaireddine.jpg')}}" />
                 </div>
                 <div class="user-info">
                     <a data-toggle="collapse" href="#collapseExample" class="username">
                     <span>
-                       Tania Andrew
+                      {{ Auth::user()->name }}
                       <b class="caret"></b>
                     </span>
                     </a>
@@ -94,56 +94,51 @@
 
                 <li class="nav-item pages">
                     <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
-                        <i class="material-icons">image</i>
-                        <p> Pages
+                        <i class="material-icons">widgets</i>
+                        <p> CRUD
                             <b class="caret"></b>
                         </p>
                     </a>
 
-                    <div class="collapse mat" id="pagesExamples">
+                    <div class="collapse CRUD" id="pagesExamples">
                         <ul class="nav">
-                            <li class="nav-item matiere">
+                            <li class="nav-item D">
+                                <a class="nav-link dep" href="/departement">
+                                    <span class="sidebar-mini"> D </span>
+                                    <span class="sidebar-normal"> Department </span>
+                                </a>
+                            </li>
+                            <li class="nav-item F">
+                                <a class="nav-link" href="/formation">
+                                    <span class="sidebar-mini"> F </span>
+                                    <span class="sidebar-normal"> Formation </span>
+                                </a>
+                            </li>
+                            <li class="nav-item U">
+                                <a class="nav-link" href="/Unite_ens">
+                                    <span class="sidebar-mini"> U </span>
+                                    <span class="sidebar-normal"> unite d'enseignement </span>
+                                </a>
+                            </li>
+                            <li class="nav-item C">
+                                <a class="nav-link" href="/Class">
+                                    <span class="sidebar-mini"> C </span>
+                                    <span class="sidebar-normal">  Class </span>
+                                </a>
+                            </li>
+                            <li class="nav-item E">
+                                <a class="nav-link" href="/Enseignant">
+                                    <span class="sidebar-mini"> E </span>
+                                    <span class="sidebar-normal"> Enseignant </span>
+                                </a>
+                            </li>
+                            <li class="nav-item M">
                                 <a class="nav-link" href="/Matiere">
-                                    <span class="sidebar-mini"> P </span>
+                                    <span class="sidebar-mini"> M </span>
                                     <span class="sidebar-normal"> Matiere </span>
                                 </a>
                             </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-mini"> RS </span>
-                                    <span class="sidebar-normal"> RTL Support </span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-mini"> T </span>
-                                    <span class="sidebar-normal"> Timeline </span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-mini"> LP </span>
-                                    <span class="sidebar-normal"> Login Page </span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-mini"> RP </span>
-                                    <span class="sidebar-normal"> Register Page </span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-mini"> LSP </span>
-                                    <span class="sidebar-normal"> Lock Screen Page </span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-mini"> UP </span>
-                                    <span class="sidebar-normal"> User Profile </span>
-                                </a>
-                            </li>
+
                         </ul>
                     </div>
                 </li>
@@ -408,7 +403,7 @@
 
 
         <div class="content">
-            <div class="container-fluid">
+            <div class="container-fluid here">
                @yield('content')
 
             </div>
@@ -582,7 +577,9 @@
 <script src="{{asset('js/fullcalendar.min.js')}}"></script>
 <!-- demo init -->
 <script src="{{asset('js/demo.js')}}"></script>
-
+<script src="{{asset('js/jquery.datatables.js')}}"></script>
 @yield('custemScript')
+<script>
 
+</script>
 </html>
