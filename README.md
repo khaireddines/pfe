@@ -10,6 +10,7 @@ happening while refreshing the page.
 
 # Need to do
 + The loging and the session control 
-+ The wiserds of the creation in the CRUD section
++ The wiserds of the creation in the CRUD section 60% done
 + The implementation and the upload of a User Picture 
+
 

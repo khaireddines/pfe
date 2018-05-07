@@ -70,12 +70,6 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
-                                    <span class="sidebar-mini"> EP </span>
-                                    <span class="sidebar-normal"> Edit Profile </span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
                                     <span class="sidebar-mini"> S </span>
                                     <span class="sidebar-normal"> Settings </span>
                                 </a>
@@ -194,15 +188,15 @@
                 </button>
 
                 <div class="collapse navbar-collapse justify-content-end">
-                    <form class="navbar-form">
-                        <div class="input-group no-border">
-                            <input type="text" value="" class="form-control" placeholder="Search...">
-                            <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                <i class="material-icons">search</i>
-                                <div class="ripple-container"></div>
-                            </button>
-                        </div>
-                    </form>
+                    {{--<form class="navbar-form">--}}
+                        {{--<div class="input-group no-border">--}}
+                            {{--<input type="text" value="" class="form-control" placeholder="Search...">--}}
+                            {{--<button type="submit" class="btn btn-white btn-round btn-just-icon">--}}
+                                {{--<i class="material-icons">search</i>--}}
+                                {{--<div class="ripple-container"></div>--}}
+                            {{--</button>--}}
+                        {{--</div>--}}
+                    {{--</form>--}}
 
                     <ul class="navbar-nav">
                         <li class="nav-item">
@@ -387,6 +381,7 @@
 
 </body>
 <!--   Core JS Files   -->
+<script src="{{asset('js/sweetalert2.js')}}"></script>
 
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <script src="{{asset('js/popper.min.js')}}"></script>
@@ -428,6 +423,7 @@
 
 <script src="{{asset('js/perfect-scrollbar.min.js')}}"></script>
 <script src="{{asset('js/sweetalert2.js')}}"></script>
+
 
 
 
