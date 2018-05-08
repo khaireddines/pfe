@@ -7,7 +7,7 @@
                 <!--      Wizard container        -->
                 <div class="wizard-container">
                     <div class="card card-wizard" data-color="rose" id="wizardProfile">
-                        @if (!empty($ens['0']->matProf))--}}
+                        @if (!empty($ens['0']->matProf))
                     <form class="" action="/modify_Enseignant/{{$ens['0']->matProf}}" method="post">
                     @else
                     <form class="" action="/create_Enseignant" method="post">
@@ -61,8 +61,16 @@
                           </span>
                                                     </div>
                                                     <div style="width: 25%" class="form-group">
-                                                        <label for="exampleInput1" class="bmd-label-floating">matricule (required)</label>
-                                                        <input type="text" class="form-control" id="exampleInput1" name="firstname" required>
+                                                        <label for="mat" class="bmd-label-floating">matricule (required)</label>
+                                                        @if (!empty($ens['0']->matProf))
+
+                                                            <input type="text" name="matProf" class="form-control" style="cursor: not-allowed" value="{{@$ens['0']->matProf}}" disabled>
+                                                            <input type="text" name="matProf" class="form-control" value="{{@$ens['0']->matProf}}" hidden>
+
+                                                        @else
+                                                            <input type="text" name="matProf" class="form-control" id="mat" value="{{@$ens['0']->matProf}}" required>
+                                                        @endif
+
                                                     </div>
                                                     <div class="input-group-prepend">
                           <span class="input-group-text">
@@ -70,8 +78,8 @@
                           </span>
                                                     </div>
                                                     <div style="width: 25%" class="form-group">
-                                                        <label for="exampleInput1" class="bmd-label-floating">First Name (required)</label>
-                                                        <input type="text" class="form-control" id="exampleInput1" name="firstname" required>
+                                                        <label for="pre" class="bmd-label-floating">First Name (required)</label>
+                                                        <input type="text" class="form-control" id="pre" name="prenom" value="{{@$ens['0']->prenom}}" required>
                                                     </div>
                                                     <div class="input-group-prepend">
                           <span class="input-group-text">
@@ -79,8 +87,9 @@
                           </span>
                                                     </div>
                                                     <div style="width: 25%" class="form-group">
-                                                        <label for="exampleInput11" class="bmd-label-floating">Second Name</label>
-                                                        <input type="text" class="form-control" id="exampleInput11" name="lastname" required>
+                                                        <label for="nom" class="bmd-label-floating">Second Name</label>
+
+                                                        <input type="text" class="form-control" id="nom" name="nom" style="text-transform:uppercase" value="{{@$ens['0']->nom}}" required>
                                                     </div>
                                                 </div>
                                                 <div class="input-group form-control-lg">
@@ -90,8 +99,9 @@
                           </span>
                                                     </div>
                                                     <div style="width: 15%" class="form-group">
-                                                        <label for="exampleInput1" class="bmd-label-floating">CIN (required)</label>
-                                                        <input type="text" class="form-control" id="exampleInput1" name="firstname" required>
+                                                        <label for="cin" class="bmd-label-floating">CIN (required)</label>
+
+                                                        <input type="number" class="form-control" maxlength="8" min="0" minlength="8" id="cin" name="cin" value="{{@$ens['0']->cin}}" required>
                                                     </div>
                                                     <div class="input-group-prepend">
                           <span class="input-group-text">
@@ -99,8 +109,9 @@
                           </span>
                                                     </div>
                                                     <div style="width: 15%" class="form-group">
-                                                        <label for="exampleInput1" class="bmd-label-floating">CNRPS</label>
-                                                        <input type="text" class="form-control" id="exampleInput1" name="firstname" required>
+                                                        <label for="cnrps" class="bmd-label-floating">CNRPS</label>
+
+                                                        <input type="number" name="cnrps" min="0" maxlength="10" minlength="10" class="form-control" id="cnrps" value="{{@$ens['0']->cnrps}}" required>
                                                     </div>
                                                     <div class="input-group-prepend">
                           <span class="input-group-text">
@@ -108,8 +119,8 @@
                           </span>
                                                     </div>
                                                     <div style="width: 15%" class="form-group">
-                                                        <label for="exampleInput11" class="bmd-label-floating">Birth Date </label>
-                                                        <input type="date" class="form-control" id="exampleInput11" name="lastname" required>
+                                                        <label for="datenai" class="bmd-label-floating">Birth Date </label>
+                                                        <input type="date" class="form-control" id="datenai" name="date_nai" value="{{@$ens['0']->date_nai}}" required>
                                                     </div>
                                                     <div class="input-group-prepend">
                           <span class="input-group-text">
@@ -117,8 +128,9 @@
                           </span>
                                                     </div>
                                                     <div style="width: 24%" class="form-group">
-                                                        <label for="exampleInput11" class="bmd-label-floating">Birth Place </label>
-                                                        <input type="text" class="form-control" id="exampleInput11" name="lastname" required>
+                                                        <label for="LN" class="bmd-label-floating">Birth Place </label>
+
+                                                        <input type="text" class="form-control" id="LN" name="lieu_nai" value="{{@$ens['0']->lieu_nai}}">
                                                     </div>
                                                 </div>
                                                 <div class="input-group form-control-lg">
@@ -128,18 +140,19 @@
                           </span>
                                                     </div>
                                                     <div style="width: 24%" class="form-group">
-                                                        <label for="exampleInput11" class="bmd-label-floating">Nationality</label>
-                                                        <input type="text" class="form-control" id="exampleInput11" name="lastname" required>
+                                                        <label for="nationalite" class="bmd-label-floating">Nationality</label>
+
+                                                        <input type="text" class="form-control" id="nationalite"  name="nationalite" value="{{@$ens['0']->nationalite}}">
                                                     </div>
                                                     <div class="input-group-prepend">
                           <span class="input-group-text">
                             <i class="material-icons">supervisor_account</i>
                           </span>
                                                     </div>
-                                                    <div style="width: 24%" class="form-group">
+                                                    <div style="width: 24%;" class="form-group">
 
 
-                                                        <select class="form-control" name="situation" id="exampleInput11" required>
+                                                        <select class="form-control" name="situation" required>
                                                             <option value="0" disabled selected>Situation</option>
                                                             <option value="Celibartaire">Celibartaire</option>
                                                             <option value="Marié">Marié</option>
@@ -168,8 +181,9 @@
                           </span>
                                                     </div>
                                                     <div class="form-group" style="width: 60%">
-                                                        <label for="exampleInput1" class="bmd-label-floating">Email (required)</label>
-                                                        <input type="email" class="form-control" id="exampleemalil" name="email" required>
+                                                        <label for="email" class="bmd-label-floating">Email (required)</label>
+
+                                                        <input type="email" class="form-control" id="email" name="email" value="{{@$ens['0']->email}}" required>
                                                     </div>
                                                     <div class="input-group-prepend">
                           <span class="input-group-text">
@@ -177,8 +191,8 @@
                           </span>
                                                     </div>
                                                     <div class="form-group" style="width: 25%">
-                                                        <label for="exampleInput1" class="bmd-label-floating">Phone Number</label>
-                                                        <input type="number" class="form-control" id="exampleemalil" name="email" required>
+                                                        <label for="NT" class="bmd-label-floating">Phone Number</label>
+                                                        <input type="number" class="form-control" id="NT" name="n_tele" value="{{@$ens['0']->n_tele}}">
                                                     </div>
 
                                                 </div>
@@ -186,43 +200,160 @@
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="account">
-                                        <h5 class="info-text"> What are you doing? (checkboxes) </h5>
+                                        <h5 class="info-text"> Let's Jump to Professional Life </h5>
                                         <div class="row justify-content-center">
-                                            <div class="col-lg-10">
+                                            <div class="col-sm-10 ">
                                                 <div class="row">
-                                                    <div class="col-sm-4">
-                                                        <div class="choice" data-toggle="wizard-checkbox">
-                                                            <input type="checkbox" name="jobb" value="Design">
-                                                            <div class="icon">
-                                                                <i class="fa fa-pencil"></i>
-                                                            </div>
-                                                            <h6>Design</h6>
-                                                        </div>
+
+                                                    <div class="input-group-prepend ">
+                          <span class="input-group-text">
+                            <i class="material-icons">card_membership</i>
+                          </span>
+                                                </div>
+                                                    <div style="width: 25%" class="form-group ">
+                                                    <label for="diplome" class="bmd-label-floating">Diplome</label>
+
+                                                    <input type="text" name="diplome" class="form-control" id="diplome" value="{{@$ens['0']->diplome}}"required>
+                                                </div>
+
+                                                    <div class="input-group-prepend ">
+                          <span class="input-group-text">
+                            <i class="material-icons">grade</i>
+                          </span>
                                                     </div>
-                                                    <div class="col-sm-4">
-                                                        <div class="choice" data-toggle="wizard-checkbox">
-                                                            <input type="checkbox" name="jobb" value="Code">
-                                                            <div class="icon">
-                                                                <i class="fa fa-terminal"></i>
-                                                            </div>
-                                                            <h6>Code</h6>
-                                                        </div>
+                                                    <div style="width: 25%" class="form-group ">
+                                                        <label for="grade" class="bmd-label-floating">Grade</label>
+                                                        <input type="text" class="form-control" id="grade" name="grade" value="{{@$ens['0']->grade}}">
                                                     </div>
-                                                    <div class="col-sm-4">
-                                                        <div class="choice" data-toggle="wizard-checkbox">
-                                                            <input type="checkbox" name="jobb" value="Develop">
-                                                            <div class="icon">
-                                                                <i class="fa fa-laptop"></i>
-                                                            </div>
-                                                            <h6>Develop</h6>
-                                                        </div>
-                                                        <select class="selectpicker" data-style="btn btn-primary btn-round" title="Single Select" data-size="7">
-                                                            <option disabled selected>Choose city</option>
-                                                            <option value="2">Foobar</option>
-                                                            <option value="3">Is great</option>
+
+                                                    <div class="input-group-prepend ">
+                          <span class="input-group-text">
+                            <i class="material-icons">local_activity</i>
+                          </span>
+                                                    </div>
+                                                    <div style="width: 25%" class="form-group ">
+                                                        <label for="spec" class="bmd-label-floating">Speciality</label>
+                                                        <input type="text" class="form-control" id="spec" name="specialite" value="{{@$ens['0']->specialite}}">
+                                                    </div>
+
+
+                                                    <div class="input-group-prepend mt-4">
+                          <span class="input-group-text">
+                            <i class="material-icons">business</i>
+                          </span>
+                                                    </div>
+                                                    <div style="width: 15%" class="form-group mt-4">
+
+                                                        <select class="form-control" name="idDept" id="">
+                                                            <option value="" disabled selected style="cursor: not-allowed">Department</option>
+                                                            @foreach($dep as $dep_data)
+                                                                <option value="{{$dep_data->idDept}}"
+                                                                        @if(!empty(@$ens['0']->idProf) && $dep_data->idDept==@$ens['0']->idDept)
+                                                                        selected="selected"
+                                                                        @endif
+                                                                >{{$dep_data->libDept}}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
+
+                                                    <div class="input-group-prepend mt-4">
+                          <span class="input-group-text">
+                            <i class="material-icons">featured_play_list </i>
+                          </span>
+                                                    </div>
+                                                    <div style="width: 15%" class="form-group mt-4">
+                                                        <label for="npost" class="bmd-label-floating">N°Post</label>
+                                                        <input type="number" class="form-control" id="npost" name="n_post" value="{{@$ens['0']->n_post}}">
+                                                    </div>
+
+                                                    <div class="input-group-prepend mt-4">
+                          <span class="input-group-text">
+                            <i class="material-icons">home</i>
+                          </span>
+                                                    </div>
+                                                    <div style="width: 15%" class="form-group mt-4">
+                                                        <label for="office" class="bmd-label-floating">N°Office</label>
+                                                        <input type="number" min="0" class="form-control" id="office" name="n_bureau" value="{{@$ens['0']->n_bureau}}">
+                                                    </div>
+
+
+
+                                                    <div class="input-group-prepend mt-4">
+                          <span class="input-group-text">
+                            <i class="material-icons">account_balance_wallet</i>
+                          </span>
+                                                    </div>
+                                                    <div style="width: 25%" class="form-group mt-4">
+                                                        <label for="npost" class="bmd-label-floating">Bank Card Number</label>
+                                                        <input type="number" minlength="16" maxlength="16" min="0" class="form-control" name="n_compte_banque" value="{{@$ens['0']->n_compte_banque}}">
+                                                    </div>
+
+                                                    <div class="input-group-prepend mt-4">
+                          <span class="input-group-text">
+                            <i class="material-icons">business_center</i>
+                          </span>
+                                                    </div>
+                                                    <div style="width: 25%" class="form-group mt-4">
+                                                        <label for="dateA" class="bmd-label-floating">Administration Entry Date</label>
+                                                        <input type="date" id="datenA" class="form-control" name="date_adm" value="{{@$ens['0']->date_adm}}">
+                                                    </div>
+
+                                                    <div class="input-group-prepend mt-4">
+                          <span class="input-group-text">
+                            <i class="material-icons">card_travel</i>
+                          </span>
+                                                    </div>
+                                                    <div style="width: 25%" class="form-group mt-4">
+                                                        <label for="dateE" class="bmd-label-floating">Establishment Entry Date</label>
+                                                        <input type="date" id="dateE" class="form-control" name="date_etbs" value="{{@$ens['0']->date_etbs}}">
+
+                                                    </div>
+
+                                                    <div class="input-group-prepend mt-4">
+                          <span class="input-group-text">
+                            <i class="material-icons">date_range</i>
+                          </span>
+                                                    </div>
+                                                    <div style="width: 25%" class="form-group mt-4">
+                                                        <label for="nomi" class="bmd-label-floating">Nomination Date</label>
+                                                        <input type="date" id="nomi" class="form-control" name="date_nai" value="{{@$ens['0']->date_nai}}">
+
+                                                    </div>
+
+                                                    <div class="input-group-prepend mt-4">
+                          <span class="input-group-text">
+                            <i class="material-icons">date_range</i>
+                          </span>
+                                                    </div>
+                                                    <div style="width: 25%" class="form-group mt-4">
+                                                        <label for="PED" class="bmd-label-floating">Person Entitled Date</label>
+                                                        <input type="date" id="PED" class="form-control" name="date_titulir" value="{{@$ens['0']->date_titulir}}">
+                                                    </div>
+
+                                                    <div class="input-group-prepend mt-4">
+                          <span class="input-group-text">
+                            <i class="material-icons">date_range</i>
+                          </span>
+                                                    </div>
+                                                    <div style="width: 25%" class="form-group mt-4">
+                                                        <label for="CSD" class="bmd-label-floating">Contract Start Date</label>
+                                                        <input type="date" id="CSD" class="form-control" name="debut_con" value="{{@$ens['0']->debut_con}}">
+
+                                                    </div>
+
+                                                    <div class="input-group-prepend mt-4">
+                          <span class="input-group-text">
+                            <i class="material-icons">date_range</i>
+                          </span>
+                                                    </div>
+                                                    <div style="width: 25%" class="form-group mt-4">
+                                                        <label for="CED" class="bmd-label-floating">Contract End Date</label>
+                                                        <input type="date" id="CED" class="form-control" name="fin_con" value="{{@$ens['0']->fin_con}}">
+                                                    </div>
+
+
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -233,35 +364,44 @@
                                             </div>
                                             <div class="col-sm-7">
                                                 <div class="form-group">
-                                                    <label>Street Name</label>
-                                                    <input type="text" class="form-control" name="streetName" required>
+
+                                                    <label for="streetname" class="bmd-label-floating">Street Name</label>
+                                                    <input type="text" id="streetname" class="form-control" name="adresse" value="{{@$ens['0']->adresse}}" required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label>Street No.</label>
-                                                    <input type="number" class="form-control" name="streetNo" required>
+                                                    <label for="codepost" class="bmd-label-floating">Postal code.</label>
+                                                    <input type="number" id="codepost" class="form-control" min="0" maxlength="4" minlength="4" name="code_postal" value="{{@$ens['0']->code_postal}}" required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-5">
                                                 <div class="form-group">
-                                                    <label>City</label>
-                                                    <input type="text" class="form-control" name="city" required>
+                                                    <label for="city" class="bmd-label-floating">City</label>
+                                                    <input type="text" id="city" class="form-control" name="ville" value="{{@$ens['0']->ville}}" required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-5">
+
+                                            </div>
+                                            <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label>Country</label>
-                                                    <select class="selectpicker" data-size="7" data-style="select-with-transition" title="Single Select">
-                                                        <option value="Afghanistan"> Afghanistan </option>
-                                                        <option value="Albania"> Albania </option>
-                                                        <option value="Algeria"> Algeria </option>
-                                                        <option value="American Samoa"> American Samoa </option>
-                                                        <option value="Andorra"> Andorra </option>
-                                                        <option value="Angola"> Angola </option>
-                                                        <option value="Anguilla"> Anguilla </option>
-                                                        <option value="Antarctica"> Antarctica </option>
-                                                    </select>
+                                                    <label for="agence" class="bmd-label-floating">Agency</label>
+                                                    <input type="text" class="form-control" id="agence" name="agence" value="{{@$ens['0']->agence}}">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+
+                                                    <label for="VSN" class="bmd-label-floating">Vacancy Street Name</label>
+                                                    <input type="text" id="VSN" class="form-control" name="ad_vacence" value="{{@$ens['0']->ad_vacence}}">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <div class="form-group">
+
+                                                    <label for="NTPV" class="bmd-label-floating">Vacancy Phone N°.</label>
+                                                    <input type="number" class="form-control" id="NTPV" min="0" minlength="8" maxlength="8" name="n_tel_vacence" value="{{@$ens['0']->n_tel_vacence}}">
                                                 </div>
                                             </div>
                                         </div>
@@ -274,7 +414,8 @@
                                 </div>
                                 <div class="ml-auto">
                                     <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next" value="Next">
-                                    <input type="button" class="btn btn-finish btn-fill btn-rose btn-wd" name="finish" value="Finish" style="display: none;">
+                                    <input type="submit" class="btn btn-finish btn-fill btn-rose btn-wd"  value="Finish" style="display: none;">
+
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -283,6 +424,7 @@
                 </div>
                 <!-- wizard container -->
             </div>
+
 
 
     {{--@if (!empty($ens['0']->matProf))--}}
