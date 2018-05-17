@@ -20,7 +20,7 @@
               <i class="material-icons">location_city</i>
 
             </div>
-            <button onclick="location.href='/create_dep';" type="button" class="float-md-right btn btn-warning  btn-round" data-original-title="" title="" style="font-size: small;">
+            <button type="button" class="float-md-right btn btn-warning  btn-round new" data-original-title="" title="" style="font-size: small;">
               <i class="material-icons">note_add</i>
               Add
             </button>
@@ -56,7 +56,7 @@
          {{--</td>--}}
             <td class="td-actions text-right">
 
-              <button onclick="location.href='/create_dep/{{$data->idDept}}';" type="button" rel="tooltip" class="btn btn-success btn-link" data-original-title="" title="">
+              <button  type="button" rel="tooltip" class="btn btn-success btn-link edit" value="{{$data->idDept}}" data-original-title="" title="">
                 <i class="material-icons">edit</i>
               </button>
               <button onclick="location.href='/supp_dep/{{$data->idDept}}';" type="button" rel="tooltip" class="btn btn-danger btn-link" data-original-title="" title="">
@@ -65,12 +65,41 @@
             </td>
          </tr>
          @endforeach
+      </tbody></table>
+          </div></div></div></div></div>
+  <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+      <div class="modal-dialog modal-notice">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="myModalLabel">New Department</h5>
 
-    </table>
+              </div>
+              <div class="modal-body">
+                  <div class="instruction">
+                      <div class="here">
+
+                    </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+
 @endsection
 @section('custemScript')
   <script src="{{asset('js/jquery.datatables.js')}}"></script>
   <script>
+    $(".new").click(function () {
+       $(".here").load('/create_dep') ;
+        $('#noticeModal').modal();
+    });
+    $(".edit").click(function () {
+        var num=this.value;
+       $(".here").load('/create_dep/'+num);
+        $('#noticeModal').modal();
+    });
+
+
       $(document).ready(function() {
           $('#mytable').DataTable({
               "pagingType": "full_numbers",
