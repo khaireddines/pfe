@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\departement;
 use App\enseignant;
 use Illuminate\Http\Request;
+use Spatie\Activitylog\Models\Activity;
 
 class EnseignantController extends Controller
 {
@@ -34,8 +35,12 @@ class EnseignantController extends Controller
 
     public function store()
     {
-        enseignant::create(request()->all());
+        //creating the newsItem will cause an activity being logged
 
+        $ens=enseignant::create(request()->all());
+//        activity()
+//            ->performedOn($ens)
+//            ->log('stored');
         return redirect('/Enseignant');
     }
 
@@ -44,16 +49,20 @@ class EnseignantController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function edit($id)
-    {
-        enseignant::where('matProf',$id)->update(request()->except(['_token','matProf']));
-
+    {//creating the newsItem will cause an activity being logged
+        $ens=new enseignant();
+        $ens->where('matProf',$id)->update(request()->except(['_token','matProf']));
+        activity()
+           ->performedOn($ens)
+           ->log('edited');
         return redirect('/Enseignant');
     }
 
     public function destroy($id)
-    {
-        enseignant::where('matProf',$id)->delete();
+    {//creating the newsItem will cause an activity being logged
 
+        $ens=enseignant::where('matProf',$id)->delete();
+        $activity = Activity::all()->last();
         return back();
     }
 }

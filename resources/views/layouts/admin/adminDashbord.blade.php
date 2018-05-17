@@ -300,11 +300,11 @@
                 <a href="javascript:void(0)" class="switch-trigger active-color">
                     <div class="ml-auto mr-auto">
                         <span class="badge filter badge-purple" data-color="purple"></span>
-                        <span class="badge filter badge-azure" data-color="azure"></span>
+                        <span class="badge filter badge-azure active" data-color="azure"></span>
                         <span class="badge filter badge-green" data-color="green"></span>
                         <span class="badge filter badge-orange" data-color="orange"></span>
                         <span class="badge filter badge-danger" data-color="danger"></span>
-                        <span class="badge filter badge-rose active" data-color="rose"></span>
+                        <span class="badge filter badge-rose " data-color="rose"></span>
                     </div>
                     <div class="clearfix"></div>
                 </a>
@@ -353,12 +353,12 @@
 
             <li class="header-title">Images</li>
 
-            <li class="active">
+            <li>
                 <a class="img-holder switch-trigger" href="javascript:void(0)">
                     <img src="{{asset('img/sidebar-1.jpg')}}" alt="" />
                 </a>
             </li>
-            <li>
+            <li class="active">
                 <a class="img-holder switch-trigger" href="javascript:void(0)">
                     <img src="{{asset('img/sidebar-2.jpg')}}" alt="" />
                 </a>

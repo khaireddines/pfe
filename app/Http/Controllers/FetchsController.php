@@ -348,9 +348,11 @@ class FetchsController extends Controller
             ->get();
 
         foreach ($profs as $data)
-        {   $affected=Affectedto::where('MatProf',$data->MatProf)->get();
-            if(count($affected)==0)
-            $result.='<div class="ens" value="'.$data->MatProf.'"><p>'.$data->nom.' '.$data->prenom.'</p><input id="prof" name="" value="'.$data->MatProf.'" hidden></div>';
+        {   $affected=Affectedto::where('MatProf',$data->MatProf)->count();
+            $mat=matiere::where('idMat',$data->idMat)->get();
+            $total=$mat[0]->nbhTp+$mat[0]->nbhTd+$mat[0]->nbhC;
+            if($affected==0)
+            $result.='<div class="ens" value="'.$data->MatProf.'"><p>'.$data->nom.' '.$data->prenom.'   &nbsp &nbsp M:  '.$affected .'&nbsp &nbsp T:'.$total.'</p><input id="prof" class="form-control" name="" value="'.$data->MatProf.'" hidden></div>';
         }
         return $result;
     }
@@ -362,17 +364,23 @@ class FetchsController extends Controller
 
         $profs=enseignant::where('idDept',$idDept['0']->idDept)->get();
         foreach ($profs as $prof)
-        {   if(count($mats)!=0)
+        {$affected=Affectedto::where('MatProf',$prof->matProf)->get();
+            $total=0;
+            foreach ($affected as $data)
+            {$mat=matiere::where('idMat',$data->idMat)->get();
+                $total+=$mat[0]->nbhTp+$mat[0]->nbhTd+$mat[0]->nbhC;}
+
+            if(count($mats)!=0)
             {
             foreach ($mats as $mat)
             {
                 if ($prof->matProf!=$mat->MatProf)
                 {
-                    $result.='<option value="'.$prof->matProf.'">'.$prof->nom.' '.$prof->prenom.'</option>';
+                    $result.='<option value="'.$prof->matProf.'_'.count($affected).'_'.$total.'">'.$prof->nom.' '.$prof->prenom.'</option>';
                 }
             }
             }else
-            $result.='<option value="'.$prof->matProf.'">'.$prof->nom.' '.$prof->prenom.'</option>';
+            $result.='<option value="'.$prof->matProf.'_'.count($affected).'_'.$total.'">'.$prof->nom.' '.$prof->prenom.'</option>';
 
         }
 
@@ -384,8 +392,12 @@ class FetchsController extends Controller
         $result='';
         $affcted=Affectedto::where('idMat',request('idMat'))->get();
         foreach ($affcted as $data)
-        {
-            $result.='<div class="notsortable affected" value="'.$data->MatProf.'"><p>'.$data->nomProf.'</p></div>';
+        {$affected=Affectedto::where('MatProf',$data->MatProf)->get();
+            $total=0;
+            foreach ($affected as $data)
+            {$mat=matiere::where('idMat',$data->idMat)->get();
+                $total+=$mat[0]->nbhTp+$mat[0]->nbhTd+$mat[0]->nbhC;}
+            $result.='<div class="notsortable affected" value="'.$data->MatProf.'"><p>'.$data->nomProf.' &nbsp  &nbsp &nbsp  &nbsp  M: '.count($affected) .' &nbsp  &nbsp &nbsp  &nbsp  T.H: '.$total .'</p></div>';
         }
         return $result;
     }
@@ -754,5 +766,21 @@ class FetchsController extends Controller
 
 
         return $result;
+    }
+
+    public function MatInfo()
+    {
+    $mat=matiere::where("idMat",\request('idMat'))->get();
+
+    $uni=uni_enseignement::where('idUnite',$mat[0]->idUnite)->get();
+
+    $result='<label > Unite: &nbsp &nbsp</label>'.$uni[0]->nomUnite.'.&nbsp &nbsp
+    <label > Matiere: &nbsp &nbsp</label>'.$mat[0]->libMat.'.<br>
+    <label > Coefficient: &nbsp &nbsp</label>'.$mat[0]->coef.'<br>
+    <label > C: &nbsp &nbsp</label>'.$mat[0]->nbhC.'&nbsp
+    <label > TD: &nbsp &nbsp</label>'.$mat[0]->nbhTd.'&nbsp
+    <label > TP: &nbsp &nbsp</label>'.$mat[0]->nbhTp;
+    return $result;
+
     }
 }

@@ -80,6 +80,7 @@
                     </div></div></div></div></div>
 @endsection
 @section('custemScript')
+    {{--get the datatable.js library--}}
     <script src="{{asset('js/jquery.datatables.js')}}"></script>
     <script>
         $(document).ready(function() {

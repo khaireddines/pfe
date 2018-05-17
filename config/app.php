@@ -163,7 +163,9 @@ return [
         //pdf
         Barryvdh\DomPDF\ServiceProvider::class,
         //sweet-alert2
-        RealRashid\SweetAlert\SweetAlertServiceProvider::class
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        // Log activity
+        Arcanedev\LogViewer\LogViewerServiceProvider::class
     ],
 
     /*

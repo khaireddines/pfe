@@ -11,7 +11,10 @@ use App\emp_salle;
 use App\enseignant;
 use App\formation;
 use App\lession;
+use App\session;
 use Illuminate\Http\Request;
+use Spatie\Activitylog\Models\Activity;
+
 
 class EmploiController extends Controller
 {
@@ -78,8 +81,15 @@ class EmploiController extends Controller
         {   if (isset($oldmon[$i]))
             {$list=explode('_',$oldmon[$i]);
                 $idMat=$list[0];$classe=$list[1];$salle=$list[2];
+                //creating the newsItem will cause an activity being logged
+
+
                 emp_prof::where('MatProf',$prof)->where('Lession',($i+1))->update(['Lundi'=>'']);
+
+
+
                 emp_class::where('idClass',$classe)->where('Lession',($i+1))->update(['Lundi'=>'']);
+
                 emp_salle::where('idSalle',$salle)->where('Lession',($i+1))->update(['Lundi'=>'']);
             }
             if (isset($oldtue[$i]))
@@ -322,7 +332,8 @@ class EmploiController extends Controller
 
             }
         }
-        alert()->success('Done!','Lessions Affected Successfuly');
-        return back();
+
+
+        return back()->with('alert', 'yes');
     }
 }

@@ -464,11 +464,26 @@
         </div>
     </div>
 
+
         @endsection
 
 @section('custemScript')
 
     <script>
+        @if (session('alert'))
+        swal({
+            position: 'top-end',
+            type: 'success',
+            title: 'Yay!!',
+            text: 'Affected Successfuly',
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('.swal2-input').addClass('form-control');
+        $('.swal2-textarea').addClass('form-control');
+
+        $(":input[type|='range']").addClass('form-control');
+        @endif
         $("#lession").hide();
         $(".validate").hide();
         $(".affect").hide();

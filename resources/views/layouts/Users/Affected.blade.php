@@ -28,7 +28,7 @@
                 <label class="input-group-text" for="inputGroupSelect01">Class</label>
             </div>
 
-                {{csrf_field()}}
+                @csrf
             <select name="classe" class="Class custom-select" id="Class inputGroupSelect01">
                 <option disabled="" selected value="">--Pick Class--</option>
                 @foreach($class as $c)
@@ -46,15 +46,18 @@
                 <option value="">--pick Class First--</option>
             </select>
         </div>
-        <div class="row col-md-3 ml-auto">
-            <button type="submit" class="btn btn-success btn-link btn-round insert" style="font-size: small;">
+
+<div class="row">
+    <div class="card col-md-3 ml-3 mb-0 mt-0 Matdiv" style="display: none"><div class="card-body MatInfo"></div></div>
+
+            <button type="submit" class="col-md-3 p-5 ml-auto btn btn-success btn-link btn-round insert" style="font-size: small;">
                 <i class="material-icons" >done_all</i>
                 Validate
-
-
             </button>
-        </div>
-        <div class="row">
+
+
+</div>
+        <div class="row ">
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header ">
@@ -122,6 +125,20 @@
 @section('custemScript')
 
     <script>
+        @if (session('alert2'))
+        swal({
+            position: 'top-end',
+            type: 'success',
+            title: 'YaY!!',
+            text: 'Affected Successfuly',
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('.swal2-input').addClass('form-control');
+        $('.swal2-textarea').addClass('form-control');
+
+        $(":input[type|='range']").addClass('form-control');
+        @endif
         $(".AF").addClass('active');
         var $tab=[];
         $(".newproff").hide();
@@ -141,7 +158,7 @@
             },
             items: "div:not(.notsortable)"});
         $(".Class").change(function () {
-
+            $(".Matdiv").hide();
             var idClasse=this.value;
             $(".affect").html("");
             $(".ensDem").html("");
@@ -181,12 +198,27 @@
                 dataType:"text",
                 success:function (data) {
                     $("#affect").html(data);
-                    $tab.push($(".affected").attr('value'));
-                    console.log($tab);
+
+                    $('.affected').each(function () {
+                        console.log($(this).attr('value'));
+                       $tab.push($(this).attr('value'));
+                    });
+
                     $tab.forEach(function(element) {
-                        $(".ens value='"+element+"'").remove();
+                         $(".ens value='"+element+"'").remove();
                     });
                 }});
+            $.ajax({
+                url:"/MatInfo",
+                method:"POST",
+                data:{idMat:idMat},
+                dataType:"text",
+                success:function(data)
+                {$('.MatInfo').html(data);
+                $('.Matdiv').show();
+
+                }
+            });
             });
         $(".newproff").click(function () {
             var idClasse=$(".Class option:selected").val();
@@ -201,7 +233,7 @@
                 {
                     $(".list_prof").html(data);
                     $tab.forEach(function(element) {
-                        $(".list_prof option[value="+element+"]").remove();
+                        $(".list_prof option[value^="+element+"]").hide();
                     });
                 }
             });
@@ -211,16 +243,20 @@
         })
         var count=0;
         $(".addproff").click(function () {
-            var matProf=$(".list_prof option:selected").val();
+            var val=$(".list_prof option:selected").val();
+            var list =val.split('_');
+            var matProf=list[0];
+            var matcount=list[1];
+            var totalhours=list[2];
             var nom=$(".list_prof option:selected").text();
             var id='div_'+count;
             $(".ensDem").append('<div class="ens" id="'+id+'" style="cursor:pointer;"><hr>'+
-                '<p style="float:left; ">'+nom+'</p>' +
-                '<button id="'+count+'" value="" class="X btn btn-danger" style="float: right;padding-top: 5px;\n' +
+                '<p style="float:left; ">'+nom+' &nbsp &nbsp &nbsp &nbsp   M:'+matcount+'&nbsp &nbsp &nbsp &nbsp   T.H:'+totalhours+'</p>' +
+                '<button id="'+count+'" value="" type="button" class="X btn btn-danger" style="float: right;padding-top: 5px;\n' +
                 'padding-right: 10px;\n' +
                 'padding-left: 10px;\n' +
                 'padding-bottom: 5px;">X</button>' +
-                '<input id="prof" name="" value="'+matProf+'" hidden>' +
+                '<input id="prof" class="form-control" name="" value="'+matProf+'" hidden>' +
                 '<br></div>');
             count++;
             $tab.push((matProf));
@@ -229,8 +265,14 @@
         });
         $(".ensDem").on('click','.X',function () {
             var $num=this.id;
-            $("#div_"+$num).remove();
+
+
+            var index = $tab.indexOf($("#div_"+$num).find('#prof').val());
+            if (index > -1) {
+                $tab.splice(index, 1);
+            };
             count--;
+            $("#div_"+$num).remove();
         });
         $(".affect").on('click','.X',function () {
             var $num=this.id;

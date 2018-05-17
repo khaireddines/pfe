@@ -17,24 +17,27 @@ class AffectMatController extends Controller
     }
     public function store(Request $request)
     {
-
-        foreach ($request->Prof as $key)
+        if (isset($request->Prof))
         {
-            $ens=enseignant::where('matProf',$key)->get();
-            $classname=classe::where('idClass',request('classe'))->get();
+            foreach ($request->Prof as $key)
+            {
+                $ens=enseignant::where('matProf',$key)->get();
+                $classname=classe::where('idClass',request('classe'))->get();
 
-            $nom=$ens['0']->nom.' '.$ens['0']->prenom;
-            Affectedto::create([
-                'idMat'=>$request->mat,
-                'MatProf'=>$key,
-                'nomProf'=>$nom,
-                'Class'=>$classname['0']->nomClass
-            ]);
+                $nom=$ens['0']->nom.' '.$ens['0']->prenom;
+                Affectedto::create([
+                    'idMat'=>$request->mat,
+                    'MatProf'=>$key,
+                    'nomProf'=>$nom,
+                    'Class'=>$classname['0']->nomClass
+                ]);
+            }
         }
 
-        alert()->success('Great!','Your Request has Been Saved');
 
 
-    return back();
+
+
+    return back()->with('alert2', 'yes');
     }
 }
