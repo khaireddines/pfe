@@ -67,36 +67,38 @@
          @endforeach
       </tbody></table>
           </div></div></div></div></div>
-  <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-      <div class="modal-dialog modal-notice">
+
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+      <div role="document" class="modal-dialog ">
           <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="myModalLabel">New Department</h5>
+              <div class="card card-signup ">
+                  <div class="modal-header">
+                      <div class="card-header card-header-primary text-center">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
+                          <h5 class="card-title tit" style="font-family: Century Gothic"></h5>
 
-              </div>
-              <div class="modal-body">
-                  <div class="instruction">
-                      <div class="here">
+                      </div>
+                  </div>
+                  <div class="modal-body here">
 
-                    </div>
+                  </div>
 
               </div>
           </div>
       </div>
   </div>
-
 @endsection
 @section('custemScript')
   <script src="{{asset('js/jquery.datatables.js')}}"></script>
   <script>
     $(".new").click(function () {
        $(".here").load('/create_dep') ;
-        $('#noticeModal').modal();
+        $('#loginModal').modal();
     });
     $(".edit").click(function () {
         var num=this.value;
        $(".here").load('/create_dep/'+num);
-        $('#noticeModal').modal();
+        $('#loginModal').modal();
     });
 
 

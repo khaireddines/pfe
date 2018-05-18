@@ -8,36 +8,88 @@
 
 
   @if (!empty($dep['0']->idDept))
-    <form class="" action="/modify_dep/{{$dep['0']->idDept}}" method="post">
+    <form class="form" action="/modify_dep/{{$dep['0']->idDept}}" method="post">
     @else
-    <form class="" action="/create_dep" method="post">
+    <form class="form" action="/create_dep" method="post">
     @endif
       {{ csrf_field() }}
-      Departement_ID:
+
       @if (!empty(@$dep['0']->idDept))
-        <input type="text" name="idDept" class="form-control" value="{{@$dep['0']->idDept}}" disabled><br>
+        <div class="form-group bmd-form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="material-icons">face</i>
+                                            </span>
+            </div>
+            <div class="form-group bmd-form-group">
+            <label for="idDept" class="bmd-label-floating">Departement_ID: *</label>
+            <input type="text" id="idDept" name="idDept" class="form-control" value="{{@$dep['0']->idDept}}" disabled>
+            </div>
+          </div>
+        </div>
         <input type="hidden" name="idDept" class="form-control" id="" value="{{@$dep['0']->idDept}}">
 
       @else
-        <input type="text" class="form-control" name="idDept" value=""><br>
+        <div class="form-group bmd-form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="material-icons">face</i>
+                                            </span>
+            </div>
+            <div class="form-group bmd-form-group">
+            <label for="idDept" class="bmd-label-floating">Departement_ID: *</label>
+            <input type="text" id="idDept" name="idDept" class="form-control" required>
+            </div>
+          </div>
+        </div>
       @endif
 
-      Departement_Name<input type="text" name="libDept" class="form-control" value="{{@$dep['0']->libDept}}"><br>
-      Departement_Description:<textarea name="descDept" class="form-control" rows="8" cols="80">{{@$dep['0']->descDept}}</textarea><br>
-      @if (!empty($dep['0']->idDept))
-        <input type="submit" class="form-control" name="" value="modify">
+      <div class="form-group bmd-form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="material-icons">mail</i>
+                                            </span>
+          </div>
+          <div class="form-group bmd-form-group">
+          <label for="libDept" class="bmd-label-floating">Departement_Name: *</label>
+          <input type="text" name="libDept" class="form-control" value="{{@$dep['0']->libDept}}" required>
+          </div>
+        </div>
+      </div>
+      <div class="form-group bmd-form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="material-icons">mail</i>
+                                            </span>
+          </div>
+          <div class="form-group bmd-form-group">
+          <label for="idDept" class="bmd-label-floating">Departement_Description:</label>
+          <textarea name="descDept" class="form-control" rows="2">{{@$dep['0']->descDept}}</textarea>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
         <div class="modal-footer justify-content-center">
-          <button type="submit" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
+          <button type="submit" class="btn btn-info btn-round" >Sounds good!</button>
         </div>
 
-      @else
-        <div class="modal-footer justify-content-center">
-          <button type="submit" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
-        </div>
-      <input type="submit" class="form-control" name="" value="add">
-      @endif
+
 
     </form>
 
   </body>
 </html>
+<script>
+  $(".tit").html('Departments');
+</script>
