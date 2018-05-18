@@ -83,7 +83,7 @@
                         </div>
                         <div class="form-group bmd-form-group">
                             <select class="form-control" name="idDept" id="">
-                                <option value="0" disabled selected>--Department--</option>
+                                <option value="0" disabled selected style="cursor: not-allowed">--Department--</option>
                                 @foreach($dep as $dep_data)
                                     <option value="{{$dep_data->idDept}}"
                                             @if(!empty(@$form['0']->idForm) || $dep_data->idDept==@$form['0']->idDept)
@@ -104,7 +104,7 @@
                         </div>
                         <div class="form-group bmd-form-group">
                             <select class="form-control" name="idSession" id="">
-                                <option value="0" disabled selected>--Session--</option>
+                                <option value="0" disabled selected style="cursor: not-allowed">--Session--</option>
                                 @foreach($sess as $sess_data)
                                     <option value="{{$sess_data->idSession}}"
                                             @if (!empty(@$form['0']->idForm) || ($sess_data->idSession==@$form['0']->idSession))

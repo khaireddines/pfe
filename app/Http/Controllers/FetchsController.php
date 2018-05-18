@@ -23,7 +23,8 @@ class FetchsController extends Controller
         $output='';
 
         $form_list=formation::where('idDept',request('idDept'))->get();
-        $output.='Formation:<select name="idForm">';
+        $output.='<select name="idForm" class="form-control">
+<option value="0" disabled style="cursor: not-allowed" selected>--Formation--</option>';
         foreach($form_list as $data )
         {$val=''. $data->idForm;
             $text=''. $data->libForm;
