@@ -12,7 +12,7 @@ class AffectMatController extends Controller
 {
     public function show()
     {
-        $class=classe::all();
+        $class=classe::orderBy('idClass')->get();
         return view('layouts.Users.Affected',compact('class'));
     }
     public function store(Request $request)
