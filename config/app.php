@@ -214,7 +214,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'PDF'=> Barryvdh\DomPDF\Facade::class,
+        'PDFF' => Barryvdh\DomPDF\Facade::class,
 
         //sweet-alert2
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,

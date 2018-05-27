@@ -389,6 +389,7 @@ class FetchsController extends Controller
 
         return $result;
     }
+
     public function affectedto(){
         $result='';
         $affcted=Affectedto::where('idMat',request('idMat'))->get();

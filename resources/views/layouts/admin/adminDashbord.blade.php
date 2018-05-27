@@ -150,7 +150,7 @@
                 <li class="nav-item RE">
                     <a class="nav-link" href="/repartition">
                         <i class="material-icons">grid_on</i>
-                        <p> Repartition </p>
+                        <p> Search & Go </p>
                     </a>
                 </li>
 

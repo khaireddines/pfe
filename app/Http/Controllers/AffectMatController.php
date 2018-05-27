@@ -6,6 +6,7 @@ use App\AffectedMats;
 use App\Affectedto;
 use App\classe;
 use App\enseignant;
+use App\session;
 use Illuminate\Http\Request;
 
 class AffectMatController extends Controller

@@ -55,8 +55,10 @@
                 </select>
 
             </div>
+
         </div>
         <div class="hide col-11 mx-auto mt-5">
+            <button type="button"   style="float: right;" class="pdf btn btn-outline-primary">PDF</button>
             <div class="card">
                 <div class="card-header"></div>
                 <div class="card-body" style="height: 500px">
@@ -99,12 +101,23 @@
                 $.ajax({
                     url:"/fetch_prof_hours",
                     method:"POST",
+                    async:true,
                     data:{toLookFor:text,filter:filter},
                     dataType:"text",
                     success:function(data)
                     {   $(".contents").html(" ");
                         $(".hide").show()
                         $(".contents").html(data);
+                        $(".pdf").click(function () {
+                            $.ajax({
+                                url:"/repartition_pdf",
+                                method:"GET",
+                                async:true,
+                                data:{datapdf:String($(".contents").html())},
+                                dataType:"text"
+                            });
+                        });
+
 
 
                     }

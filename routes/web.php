@@ -15,8 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/test', function () {
-    return view('layouts.admin.adminDashbord');
+    return view('testpdf');
 });
+Route::any('/repartition_pdf','PdfsController@repartition')->name('pdf');
+
 
 //////////////////////DepartementController////////////////////////
 Route::get('/departement','DepartementController@show');

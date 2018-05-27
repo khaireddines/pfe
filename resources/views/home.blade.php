@@ -13,12 +13,11 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                        {{--//session()->has('type')--}}
+                    @if(Auth::user()->role_id=='prof')
 
-                    @if(session()->has('type'))
-                        @if(session('type')=='prof')
                                 <a href="/Fich_voeux"><button class="btn btn-primary" >Ficher de Voeux</button></a>
-                        @else
-                        @endif
+
                     @endif
                     </div>
             </div>

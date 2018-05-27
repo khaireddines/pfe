@@ -29,7 +29,7 @@ class FichVoeuxController extends Controller
      */
 
     public function show()
-    {
+    {dd(session()->all());
         $sess=session::where('etat','v')->get();
         $prof=enseignant::where('email',session('email'))->get();
         $class=classe::where('idDept',$prof['0']->idDept)->get();
