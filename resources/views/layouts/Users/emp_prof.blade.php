@@ -35,7 +35,7 @@
 @section('content')
     <div class="container-fluid">
     <form action="/emp_insert" method="POST">
-        {{csrf_field()}}
+        @csrf
         <div class="row "style="width: 100%;">
             <div class="col-md-8 " style="margin-bottom:-40px">
             <div class="card card-calendar">
@@ -49,8 +49,9 @@
                                     <?php echo $classes ?>
                                 </select>
                             </div>
-
-
+                            <div class="fc-right">
+                                <button type="button" style="float: right; display: none;" class="pdfClass btn btn-outline-primary">PDF</button>
+                            </div>
                         </div>
                         <div class="fc-view-container mt-lg-5 pt-3" style="">
                             <div class="fc-view fc-month-view fc-basic-view" style="">
@@ -242,6 +243,9 @@
                                         <?php echo $result ?>
                                     </select>
                                 </div>
+                                <div class="fc-right">
+                                    <button type="button" style="float: right;display: none;" class="pdfEnse btn btn-outline-primary">PDF</button>
+                                </div>
                             </div>
                             <div class="fc-view-container mt-lg-5" style="">
                                 <div class="fc-view fc-month-view fc-basic-view" style="">
@@ -352,7 +356,9 @@
                                         <?php echo $Room ?>
                                     </select>
                                 </div>
-
+                                <div class="fc-right">
+                                    <button type="button" style="float: right;display:none;" class="pdfRoom btn btn-outline-primary">PDF</button>
+                                </div>
                             </div>
                             <div class="sallePdf">
                             <div class="fc-view-container mt-lg-5 pt-3" style="">
@@ -608,10 +614,22 @@
                 success:function(data)
                 {   $(".here").html("");
                     $(".here").html(data);
+                    $(".pdfClass").show();
+
                 }
             });
+            //classpdf
+            $(".pdfClass").click(function () {
+                $.ajax({
+                    url:"/Class_pdf",
+                    method:"GET",
+                    async:true,
+                    data:{classeid:idClasse},
+                    dataType:"text"
+                });
             });
 
+        });
         $("#prof").change(function () {
            var idprof=this.value;
             $("#mytable").find('')
@@ -623,7 +641,18 @@
                 success:function(data)
                 {   $(".mat").remove();
                     $(".mats").html(data);
+                    $(".pdfEnse").show();
                 }
+            });
+            //ens pdf
+            $(".pdfEnse").click(function () {
+                $.ajax({
+                    url:"/Ense_pdf",
+                    method:"GET",
+                    async:true,
+                    data:{profid:idprof},
+                    dataType:"text"
+                });
             });
             $.ajax({
                 url:"/fetch_prof_emp",
@@ -781,8 +810,18 @@
               success:function(data)
               {$(".heresalle").html("");
                $(".heresalle").html(data);
-
+               $(".pdfRoom").show();
               }
+            });
+            //Roompdf
+            $(".pdfRoom").click(function () {
+                $.ajax({
+                    url:"/ClassRoom_pdf",
+                    method:"GET",
+                    async:true,
+                    data:{Roomid:idRoom},
+                    dataType:"text"
+                });
             });
         });
         $("#jour").change(function () {

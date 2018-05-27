@@ -18,6 +18,9 @@ Route::get('/test', function () {
     return view('testpdf');
 });
 Route::any('/repartition_pdf','PdfsController@repartition')->name('pdf');
+Route::any('/Class_pdf','PdfsController@Classes');
+Route::any('/Ense_pdf','PdfsController@Ense');
+Route::any('/ClassRoom_pdf','PdfsController@ClassRoom');
 
 
 //////////////////////DepartementController////////////////////////
