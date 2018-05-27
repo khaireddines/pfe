@@ -121,7 +121,8 @@ th, td {
 
        
 </style>'.$result)->setPaper('a4', 'landscape');
-        return $pdf->download('ClassSchedule.pdf');
+        $date=date('l jS \of F Y h:i:s A');
+        return $pdf->download('ClassSchedule|'.$date.'.pdf');
 
     }
 
@@ -233,7 +234,8 @@ th, td {
 
        
 </style>'.$result)->setPaper('a4', 'landscape');
-        return $pdf->download('ProfessorSchedule.pdf');
+        $date=date('l jS \of F Y h:i:s A');
+        return $pdf->download('ProfessorSchedule|'.$date.'.pdf');
     }
 
     public function ClassRoom(Request $request)
@@ -317,6 +319,7 @@ th, td {
                           </tr> ';
         }
         $result.='</tbody></table>';
+
         $pdf= PDFF::loadHTML('<style>
 table {
 font-family: arial, sans-serif;
@@ -338,6 +341,7 @@ th, td {
 
        
 </style>'.$result)->setPaper('a4', 'landscape');
-        return $pdf->download('ClassRoomSchedule.pdf');
+        $date=date('l jS \of F Y h:i:s A');
+        return $pdf->download('ClassRoomSchedule|'.$date.'.pdf');
     }
 }
