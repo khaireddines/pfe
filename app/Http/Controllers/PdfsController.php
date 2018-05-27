@@ -36,7 +36,8 @@ class PdfsController extends Controller
             text-align: left;
             padding: 8px;
         }</style>'.$data)->setPaper('a4', 'portrait');
-        return $pdf->download('Search&Go.pdf');
+        $date=date('l jS \of F Y h:i:s A');
+        return $pdf->download('Search&Go|'.$date.'.pdf');
 
 
 
