@@ -111,9 +111,9 @@
                         $(".pdf").click(function () {
                             $.ajax({
                                 url:"/repartition_pdf",
-                                method:"GET",
+                                method:"POST",
                                 async:true,
-                                data:{datapdf:String($(".contents").html())},
+                                data:{datapdf:String($(".contents").html()),_token: '{!! csrf_token() !!}'},
                                 dataType:"text"
                             });
                         });

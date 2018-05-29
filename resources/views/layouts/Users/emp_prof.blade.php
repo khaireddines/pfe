@@ -3,6 +3,7 @@
 @section('custemImp')
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
         tr{height:10px; !important; max-width: 100px!important;}
         .card-calendar table td{text-align: center!important;
@@ -622,9 +623,9 @@
             $(".pdfClass").click(function () {
                 $.ajax({
                     url:"/Class_pdf",
-                    method:"GET",
+                    method:"POST",
                     async:true,
-                    data:{classeid:idClasse},
+                    data:{classeid:idClasse,_token: '{!! csrf_token() !!}'},
                     dataType:"text"
                 });
             });
@@ -648,9 +649,9 @@
             $(".pdfEnse").click(function () {
                 $.ajax({
                     url:"/Ense_pdf",
-                    method:"GET",
+                    method:"POST",
                     async:true,
-                    data:{profid:idprof},
+                    data:{profid:idprof,_token: '{!! csrf_token() !!}'},
                     dataType:"text"
                 });
             });
@@ -817,9 +818,9 @@
             $(".pdfRoom").click(function () {
                 $.ajax({
                     url:"/ClassRoom_pdf",
-                    method:"GET",
+                    method:"POST",
                     async:true,
-                    data:{Roomid:idRoom},
+                    data:{Roomid:idRoom,_token: '{!! csrf_token() !!}'},
                     dataType:"text"
                 });
             });

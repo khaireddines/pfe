@@ -12,30 +12,47 @@ use Barryvdh\DomPDF\PDF;
 use Barryvdh\DomPDF\Facade as PDFF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Auth;
 
 class PdfsController extends Controller
 {
+    private $footer='
+          <div style="float: right"></div>
+                <div style="float: right">
+                    © <script>document.write(new Date().getFullYear())</script>2018, made with care by <a href="#AceVel" target="_blank">AceVel Team</a> for a better web.
+                </div>
+        ';
 
     public function repartition(Request $request)
     {
+        $name=Auth::user()->name;
 
-    $data=$_GET['datapdf'];
 
 
 
         $pdf= PDFF::loadHTML('
-<link rel="stylesheet" href="css/material-dashboard.min790f.css">
-<style>table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
 
-        td, th {
-            border: none;
-            text-align: left;
-            padding: 8px;
-        }</style>'.$data)->setPaper('a4', 'portrait');
+<style>table {
+font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+.table-danger{background-color: #fccac7}
+.table-success{background-color: #cde9ce}
+.table-active{background-color: rgba(0,0,0,.075);}
+tr:nth-child(even) {background-color: #f2f2f2;}
+th{background-color: #f2f2f2;}
+th, td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ddd;
+    height: 40px;
+    width: 40px;
+    max-height: 50px;
+    max-width: 50px;
+}</style>
+' .\request('datapdf').'<footer style="padding: .9375rem 0;text-align: center;display: flex;">
+          <hr style="margin-top: 20px"><div style="margin-bottom: 20px"><div style="float: left;margin-top: 40px">Downloaded By: '.$name.'</div>'.$this->footer.'</div>')->setPaper('a4', 'landscape');
         $date=date('l jS \of F Y h:i:s A');
         return $pdf->download('Search&Go|'.$date.'.pdf');
 
@@ -45,7 +62,7 @@ class PdfsController extends Controller
 
     public function Classes(Request $request)
     {
-
+        $name=Auth::user()->name;
         $result='<table id="table" border="1">
 <thead><tr><th>\</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead>
                     <tbody>';
@@ -121,7 +138,8 @@ th, td {
 }
 
        
-</style>'.$result)->setPaper('a4', 'landscape');
+</style>'.$result.'<footer style="padding: .9375rem 0;text-align: center;display: flex;">
+          <hr style="margin-top: 20px"><div style="margin-bottom: 20px"><div style="float: left;margin-top: 40px">Downloaded By: '.$name.'</div>'.$this->footer.'</div>')->setPaper('a4', 'landscape');
         $date=date('l jS \of F Y h:i:s A');
         return $pdf->download('ClassSchedule|'.$date.'.pdf');
 
@@ -129,6 +147,7 @@ th, td {
 
     public function Ense(Request $request)
     {
+        $name=Auth::user()->name;
         $result='<table border="1">
 <thead><tr><th>\</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead>
 <tbody>';
@@ -213,7 +232,7 @@ th, td {
 
             $result.='</tr>';
         }
-        $request.='</tbody></table>';
+        $result.='</tbody></table>';
         $pdf= PDFF::loadHTML('<style>
 table {
 font-family: arial, sans-serif;
@@ -234,13 +253,15 @@ th, td {
 }
 
        
-</style>'.$result)->setPaper('a4', 'landscape');
+</style>'.$result.'<footer style="padding: .9375rem 0;text-align: center;display: flex;">
+          <hr style="margin-top: 20px"><div style="margin-bottom: 20px"><div style="float: left;margin-top: 40px">Downloaded By: '.$name.'</div>'.$this->footer.'</div>')->setPaper('a4', 'landscape');
         $date=date('l jS \of F Y h:i:s A');
         return $pdf->download('ProfessorSchedule|'.$date.'.pdf');
     }
 
     public function ClassRoom(Request $request)
-    {$result='<table id="table" border="1">
+    {$name=Auth::user()->name;
+        $result='<table id="table" border="1">
 <thead><tr><th>\</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead>
                           <tbody>';
         $room=emp_salle::where('idSalle',request('Roomid'))->get();
@@ -341,7 +362,8 @@ th, td {
 }
 
        
-</style>'.$result)->setPaper('a4', 'landscape');
+</style>'.$result.'<footer style="padding: .9375rem 0;text-align: center;display: flex;">
+          <hr style="margin-top: 20px"><div style="margin-bottom: 20px"><div style="float: left;margin-top: 40px">Downloaded By: '.$name.'</div>'.$this->footer.'</div>')->setPaper('a4', 'landscape');
         $date=date('l jS \of F Y h:i:s A');
         return $pdf->download('ClassRoomSchedule|'.$date.'.pdf');
     }

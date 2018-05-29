@@ -93,7 +93,7 @@ class FetchsController extends Controller
     }
     public function repartition(){
         $type=request('filter');
-        $result='';
+        $result='<table class=" table ">';
         $search=request('toLookFor');
         $list=explode(" ", $search);
 
@@ -135,8 +135,8 @@ class FetchsController extends Controller
 
 
           foreach ($profs as $data_prof)
-            {$result.='<table class=" table ">
-                <tr >
+            {$result.='
+                <tr>
                 <td class="table-success">'.$data_prof->nom .' '. $data_prof->prenom.'</td>
                 <td class="table-success">'.$data_prof->diplome .'</td>
                 <td class="table-success">'.$data_prof->grade .'</td>
@@ -158,8 +158,7 @@ class FetchsController extends Controller
                         $TCI+=$CI;$TC+=$data_hours->nbhC;
                         $TTP+=$data_hours->nbhTp;$TTD+=$data_hours->nbhTd;
                         $Total+=$TCI+$TTP+$TC+$TTD;
-                       $result.='<tr>
-                       
+                       $result.='                       
                        <tr>
                        <td style="border:none;"> </td>
                         <td>'.$data_hours->Class .'</td>
@@ -207,7 +206,7 @@ class FetchsController extends Controller
                 ->get();
 
             foreach ($req as $data )
-            {$result.='<table class=" table"><tr>
+            {$result.='<tr>
                 <td class="table-success">'.$data->libDept.'</td>
                 <td class="table-success">'.$data->libForm.'</td>
                 <td class="table-success">'.$data->nomClass.'</td>
@@ -306,7 +305,7 @@ class FetchsController extends Controller
 
 
 
-        $result.='</table>';
+        $result.='';
         return $result;
     }
     public function matiere_du_Classe()
