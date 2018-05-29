@@ -68,7 +68,7 @@ th, td {
                     <tbody>';
 
 
-        $classe=emp_class::where('idClass',$_GET['classeid'])->get();
+        $classe=emp_class::where('idClass',$request['classeid'])->get();
 
         for ($i=0;$i<6;$i++)
         {$matiere=matiere::all();$inL='';$inMA='';$inME='';$inJ='';$inV='';$inS='';
