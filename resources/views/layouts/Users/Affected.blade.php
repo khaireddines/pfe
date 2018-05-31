@@ -40,7 +40,7 @@
 
         <div class="input-group mb-3 col-md-6 row " style="width: 30%;">
             <div class="input-group-prepend">
-                <label class="input-group-text" for="inputGroupSelect02">Matiere</label>
+                <label class="input-group-text" for="inputGroupSelect02">Subject</label>
             </div>
             <select name="mat" class="Mat custom-select" id="Mat inputGroupSelect02" disabled="true">
                 <option value="">--pick Class First--</option>
@@ -61,7 +61,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header ">
-                        <h4 class="card-title">Liste De - <small class="description">  Professeur Demander </small></h4>
+                        <h4 class="card-title">Demanders - <small class="description">  Professors </small></h4>
                     </div>
                     <div class="ensDem card-body box" id="ensDem"></div>
                 </div>
@@ -69,7 +69,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header ">
-                        <h4 class="card-title">Liste De - <small class="description">Professeur Affectée a ce matiere</small></h4>
+                        <h4 class="card-title">Assigned - <small class="description"> Professors</small></h4>
                     </div>
                     <div class="affect card-body box "id="affect"  ></div></div>
 
@@ -80,7 +80,7 @@
 
                 <button type="button" class="btn btn-primary btn-round newproff" data-toggle="modal" data-target="#noticeModal">
                     <i class="material-icons">add</i>
-                    Teacher
+                    Professor
 
                 </button>
             </div>
@@ -101,10 +101,10 @@
                            <div class="">
                                <div class="input-group">
                                    <div class="input-group-prepend">
-                                       <label class="input-group-text" for="inputGroupSelect03">Teacher</label>
+                                       <label class="input-group-text" for="inputGroupSelect03">Professor</label>
                                    </div>
                                    <select class="list_prof custom-select" id="list_prof inputGroupSelect03">
-                                       <option disabled="" id="" selected>Pick Teacher</option>
+                                       <option disabled="" id="" selected>Pick Professor</option>
                                        <optgroup label="Teacher"></optgroup>
                                    </select>
                                </div>
@@ -251,7 +251,7 @@
             var nom=$(".list_prof option:selected").text();
             var id='div_'+count;
             $(".ensDem").append('<div class="ens" id="'+id+'" style="cursor:pointer;"><hr>'+
-                '<p style="float:left; ">'+nom+' &nbsp &nbsp &nbsp &nbsp   M:'+matcount+'&nbsp &nbsp &nbsp &nbsp   T.H:'+totalhours+'</p>' +
+                '<p style="float:left; ">'+nom+' &nbsp &nbsp &nbsp &nbsp   S:'+matcount+'&nbsp &nbsp &nbsp &nbsp   T.H:'+totalhours+'</p>' +
                 '<button id="'+count+'" value="" type="button" class="X btn btn-danger" style="float: right;padding-top: 5px;\n' +
                 'padding-right: 10px;\n' +
                 'padding-left: 10px;\n' +

@@ -48,7 +48,7 @@ class FetchsController extends Controller
         $id=request('id');
         $output.=
         '<select name="idMat" id="'.$id.'" class="C custom-select custom-select-lg mb-3" style="width:50%">';
-        $output.='<option>----faire un choix----</option>';
+        $output.='<option>----Make A Choice----</option>';
         foreach($mats as $data )
         {$val=''. $data->idMat;
             $text=''. $data->libMat;
@@ -76,7 +76,7 @@ class FetchsController extends Controller
         $id=request('id');
         $output.=
             '<select name="idMat" id="'.$id.'" class="AT custom-select custom-select-lg mb-3" style="width:50%">';
-        $output.='<option>----faire un choix----</option>';
+        $output.='<option>----Make A Choice----</option>';
         foreach($mats as $data )
         {$val=''. $data->idMat;
             $text=''. $data->libMat;
@@ -313,7 +313,7 @@ class FetchsController extends Controller
         // where f.idForm=u.idForm
         // and u.idUnite=m.idUnite
         // and f.idForm='DSI1';
-        $result='<option disabled="" id="del" selected>choisire une matiere</option>
+        $result='<option disabled="" id="del" selected>--Now Pick A Subject--</option>
 <optgroup label="COURS">';
         $idForm=classe::where('idClass',request('idClasse'))->get();
 
@@ -352,12 +352,12 @@ class FetchsController extends Controller
             $mat=matiere::where('idMat',$data->idMat)->get();
             $total=$mat[0]->nbhTp+$mat[0]->nbhTd+$mat[0]->nbhC;
             if($affected==0)
-            $result.='<div class="ens" value="'.$data->MatProf.'"><p>'.$data->nom.' '.$data->prenom.'   &nbsp &nbsp M:  '.$affected .'&nbsp &nbsp T:'.$total.'</p><input id="prof" class="form-control" name="" value="'.$data->MatProf.'" hidden></div>';
+            $result.='<div class="ens" value="'.$data->MatProf.'"><p>'.$data->nom.' '.$data->prenom.'   &nbsp &nbsp S:  '.$affected .'&nbsp &nbsp T.H:'.$total.'</p><input id="prof" class="form-control" name="" value="'.$data->MatProf.'" hidden></div>';
         }
         return $result;
     }
     public function profs(){
-        $result='<option disabled="" id="" selected>Pick Teacher</option>
+        $result='<option disabled="" id="" selected>Pick Professor</option>
 <optgroup label="Teacher">';
         $idDept=classe::where('idClass',request('idClasse'))->get();
         $mats=Mat::where('Mat',request('idMat'))->get();
@@ -398,7 +398,7 @@ class FetchsController extends Controller
             foreach ($affected as $data)
             {$mat=matiere::where('idMat',$data->idMat)->get();
                 $total+=$mat[0]->nbhTp+$mat[0]->nbhTd+$mat[0]->nbhC;}
-            $result.='<div class="notsortable affected" value="'.$data->MatProf.'"><p>'.$data->nomProf.' &nbsp  &nbsp &nbsp  &nbsp  M: '.count($affected) .' &nbsp  &nbsp &nbsp  &nbsp  T.H: '.$total .'</p></div>';
+            $result.='<div class="notsortable affected" value="'.$data->MatProf.'"><p>'.$data->nomProf.' &nbsp  &nbsp &nbsp  &nbsp  S: '.count($affected) .' &nbsp  &nbsp &nbsp  &nbsp  T.H: '.$total .'</p></div>';
         }
         return $result;
     }
@@ -747,7 +747,7 @@ class FetchsController extends Controller
         return $result;
     }
     public function salle_vide2()
-    {$result='<option disabled="" id="" selected>choisissez une salle</option>
+    {$result='<option disabled="" id="" selected>Choose A Classroom</option>
                                     <optgroup label="Salle"></optgroup>';
     $seance=request('seance')+1;
     switch (\request('jour'))
@@ -775,8 +775,8 @@ class FetchsController extends Controller
 
     $uni=uni_enseignement::where('idUnite',$mat[0]->idUnite)->get();
 
-    $result='<label > Unite: &nbsp &nbsp</label>'.$uni[0]->nomUnite.'.&nbsp &nbsp
-    <label > Matiere: &nbsp &nbsp</label>'.$mat[0]->libMat.'.<br>
+    $result='<label > Teaching Unit: &nbsp &nbsp</label>'.$uni[0]->nomUnite.'.&nbsp &nbsp<br>
+    <label > Subject: &nbsp &nbsp</label>'.$mat[0]->libMat.'.<br>
     <label > Coefficient: &nbsp &nbsp</label>'.$mat[0]->coef.'<br>
     <label > C: &nbsp &nbsp</label>'.$mat[0]->nbhC.'&nbsp
     <label > TD: &nbsp &nbsp</label>'.$mat[0]->nbhTd.'&nbsp

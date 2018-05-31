@@ -43,15 +43,15 @@
                     <div class="input-group-prepend">
                     <div class="input-group-text"><i id="progress" class=" material-icons md-dark">done_all</i></div>
                     </div>
-                <input type="text" class="searchbox form-control form-control-lg " id="inlineFormInputGroup" placeholder="Your Wish Is My Command">
+                <input type="text" class="searchbox form-control form-control-lg " id="inlineFormInputGroup" placeholder="Speak your Mind !!">
                 </div>
             <div style="float: right ; width: 20%">
                 <select class="filter form-control" id="inputGroupSelect01"  >
-                    <option disabled="" id="" selected value="0">filters</option>
-                    <option value="Matieres">Matieres</option>
+                    <option disabled="" id="" selected value="0">Filters</option>
+                    <option value="Matieres">Subject</option>
                     <option value="Class">Class</option>
-                    <option value="Departement">Departement</option>
-                    <option value="Profs">Proffseur</option>
+                    <option value="Departement">Department</option>
+                    <option value="Profs">Professor</option>
                 </select>
 
             </div>

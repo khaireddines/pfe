@@ -132,29 +132,30 @@
                 <div class="card card-calendar">
                     <div class="card-header ">
                         <h4 class="card-title">
-                            Salle
-                            <small class="description">-disponible</small>
-                            <div class="" style="float: right">
+                            Available
+                            <small class="description">-Classrooms</small>
+                            <br>
+                            <div class="" style="float: left;width: 30%">
+                                <select name="jour" id="jour" class="form-control" style="font-family:Roboto, Helvetica, Arial, sans-serif;font-style:oblique">
+                                    <option value="0" selected="selected" disabled="disabled">Pick A Day</option>
+                                    <option value="Lundi">Monday</option>
+                                    <option value="Mardi">Tuesday</option>
+                                    <option value="Mercredi">Wednesday</option>
+                                    <option value="Jeudi">Thursday</option>
+                                    <option value="Vendredi">Friday</option>
+                                    <option value="Samedi">Saturday</option>
+
+                                </select>
+                            </div>
+                            <div class="" style="float: left;width: 30%; margin-left: 2%">
                                 <select name="jour" id="lession" class="form-control" style="font-family:Roboto, Helvetica, Arial, sans-serif;font-style:oblique">
-                                    <option value="0" selected="selected" disabled="disabled">Pick A Lesson</option>
+                                    <option value="0" selected="selected" disabled="disabled">Pick A Lesson period</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
                                     <option value="5">5</option>
                                     <option value="6">6</option>
-
-                                </select>
-                            </div>
-                            <div class="" style="float: right">
-                                <select name="jour" id="jour" class="form-control" style="font-family:Roboto, Helvetica, Arial, sans-serif;font-style:oblique">
-                                    <option value="0" selected="selected" disabled="disabled">Pick A Day</option>
-                                    <option value="Lundi">Lundi</option>
-                                    <option value="Mardi">Mardi</option>
-                                    <option value="Mercredi">Mercredi</option>
-                                    <option value="Jeudi">Jeudi</option>
-                                    <option value="Vendredi">Vendredi</option>
-                                    <option value="Samedi">Samedi</option>
 
                                 </select>
                             </div>
@@ -177,7 +178,7 @@
                                                         <tr>
 
                                                             <th class="fc-day-header fc-widget-header" style="text-align: center!important;">
-                                                                <span>Salle</span>
+                                                                <span>Classroom</span>
                                                             </th>
 
 
@@ -235,7 +236,7 @@
                     <div class="card-body">
                         <div id="fullCalendar" class="fc fc-unthemed fc-ltr">
                             <div class="fc-toolbar fc-header-toolbar">
-                                <div class="fc-left"><h2>Enseignant</h2>
+                                <div class="fc-left"><h2>Professor</h2>
 
                                 </div>
                                 <div class="pl-4 pb-4" style="float: left;">
@@ -329,8 +330,8 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">
-                            Repartition non affectées
-                        <small class="description">-Enseignant</small>
+                            UnAffected Subjects
+                        <small class="description">-Professor</small>
                         </h4>
                     </div>
                     <div class="card-body">
@@ -350,10 +351,10 @@
                     <div class="card-body">
                         <div id="fullCalendar" class="fc fc-unthemed fc-ltr">
                             <div class="fc-toolbar fc-header-toolbar">
-                                <div class="fc-left"><h2>Salle</h2></div>
+                                <div class="fc-left"><h2>Classroom</h2></div>
                                 <div class="pl-4 " style="float: left;">
                                     <select name="Salle" id="salle" class="form-control" style="font-family:Roboto, Helvetica, Arial, sans-serif;font-style:oblique">
-                                        <option value="0" selected="selected" disabled="disabled">pick Room</option>
+                                        <option value="0" selected="selected" disabled="disabled">pick Classroom</option>
                                         <?php echo $Room ?>
                                     </select>
                                 </div>
@@ -445,7 +446,7 @@
         <div class="modal-dialog modal-notice">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel">Affectée une salle</h5>
+                    <h5 class="modal-title" id="myModalLabel">Affect Classroom</h5>
 
                 </div>
                 <div class="modal-body">
@@ -453,10 +454,10 @@
                         <div class="">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <label class="input-group-text" for="inputGroupSelect03">Salle</label>
+                                    <label class="input-group-text" for="inputGroupSelect03">Classroom</label>
                                 </div>
                                 <select class="list_salle custom-select" id="list_salle inputGroupSelect03">
-                                    <option disabled="" id="" selected>choisissez une salle</option>
+                                    <option disabled="" id="" selected>Choose A Classroom</option>
                                     <optgroup label="Salle"></optgroup>
 
                                 </select>

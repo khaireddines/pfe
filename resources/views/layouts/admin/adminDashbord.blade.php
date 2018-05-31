@@ -90,7 +90,7 @@
                 <li class="nav-item pages">
                     <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
                         <i class="material-icons">widgets</i>
-                        <p> CRUD
+                        <p> Resources
                             <b class="caret"></b>
                         </p>
                     </a>
@@ -105,14 +105,14 @@
                             </li>
                             <li class="nav-item F">
                                 <a class="nav-link" href="/formation">
-                                    <span class="sidebar-mini"> F </span>
-                                    <span class="sidebar-normal"> Formation </span>
+                                    <span class="sidebar-mini"> T </span>
+                                    <span class="sidebar-normal"> Training </span>
                                 </a>
                             </li>
                             <li class="nav-item U">
                                 <a class="nav-link" href="/Unite_ens">
-                                    <span class="sidebar-mini"> U </span>
-                                    <span class="sidebar-normal"> unite d'enseignement </span>
+                                    <span class="sidebar-mini"> TU </span>
+                                    <span class="sidebar-normal"> Teaching Unit </span>
                                 </a>
                             </li>
                             <li class="nav-item C">
@@ -123,14 +123,14 @@
                             </li>
                             <li class="nav-item E">
                                 <a class="nav-link" href="/Enseignant">
-                                    <span class="sidebar-mini"> E </span>
-                                    <span class="sidebar-normal"> Enseignant </span>
+                                    <span class="sidebar-mini"> P </span>
+                                    <span class="sidebar-normal"> Professor </span>
                                 </a>
                             </li>
                             <li class="nav-item M">
                                 <a class="nav-link" href="/Matiere">
-                                    <span class="sidebar-mini"> M </span>
-                                    <span class="sidebar-normal"> Matiere </span>
+                                    <span class="sidebar-mini"> S </span>
+                                    <span class="sidebar-normal"> Subject </span>
                                 </a>
                             </li>
 
@@ -143,7 +143,7 @@
                 <li class="nav-item AF">
                     <a class="nav-link" href="/affectMat">
                         <i class="material-icons">content_paste</i>
-                        <p> Affectation </p>
+                        <p> Assignment </p>
                     </a>
                 </li>
 
