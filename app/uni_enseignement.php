@@ -17,4 +17,9 @@ class uni_enseignement extends Model
         $form=formation::where('idForm',$id)->get();
         return $form;
     }
+
+    public function CountUnit()
+    {
+        return count(uni_enseignement::all());
+    }
 }

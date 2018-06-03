@@ -6,8 +6,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Favicons -->
-    <link rel="apple-touch-icon" href="">
-    <link rel="icon" href="">
+    <link rel="apple-touch-icon" href="{{asset('img/icons/AVFAV.svg')}}">
+    <link rel="icon" href="{{asset('img/icons/AVFAV.svg')}}">
 
     <title>
 
@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/font-awesome.min.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/material-dashboard.min790f.css?v=2.0.1')}}">
+
 
 
 
@@ -39,7 +40,7 @@
 
         <div class="logo">
             <a href="#AceVel" class="simple-text logo-mini">
-                AV
+                <img src="{{asset('img/icons/AV.svg')}}" alt="AV">
             </a>
 
             <a href="#AceVel" class="simple-text logo-normal">
@@ -60,13 +61,15 @@
                       <b class="caret"></b>
                     </span>
                     </a>
-                    <div class="collapse" id="collapseExample">
+                    <div class="collapse setting" id="collapseExample">
                         <ul class="nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
+                            <li class="nav-item profile">@php use App\User; $user=new User();
+                                @endphp
+                                <a class="nav-link" href="/create_Enseignant/{!! $user->AuthUserMat() !!}?type=profile">
                                     <span class="sidebar-mini"> MP </span>
                                     <span class="sidebar-normal"> My Profile </span>
                                 </a>
+
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
@@ -80,8 +83,8 @@
             </div>
             <ul class="nav">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="">
+                <li class="nav-item Dashboard">
+                    <a class="nav-link " href="/Dashboard">
                         <i class="material-icons">dashboard</i>
                         <p> Dashboard </p>
                     </a>
@@ -121,16 +124,17 @@
                                     <span class="sidebar-normal">  Class </span>
                                 </a>
                             </li>
-                            <li class="nav-item E">
-                                <a class="nav-link" href="/Enseignant">
-                                    <span class="sidebar-mini"> P </span>
-                                    <span class="sidebar-normal"> Professor </span>
-                                </a>
-                            </li>
+
                             <li class="nav-item M">
                                 <a class="nav-link" href="/Matiere">
                                     <span class="sidebar-mini"> S </span>
                                     <span class="sidebar-normal"> Subject </span>
+                                </a>
+                            </li>
+                            <li class="nav-item E">
+                                <a class="nav-link" href="/Enseignant">
+                                    <span class="sidebar-mini"> P </span>
+                                    <span class="sidebar-normal"> Professor </span>
                                 </a>
                             </li>
 
@@ -177,7 +181,7 @@
                             <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
                         </button>
                     </div>
-                    <a class="navbar-brand" href="#pablo">Dashboard</a>
+
                 </div>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -200,37 +204,48 @@
 
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#pablo">
+                            <a class="nav-link" href="/log-viewer">
+                                <i class="fa fa-dashboard"></i>
+                                <p>
+                                    <span class="d-lg-none d-md-block">logview</span>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Dashboard">
+                                <i class="material-icons">history</i>
+                                <p>
+                                    <span class="d-lg-none d-md-block">Stats</span>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Dashboard">
                                 <i class="material-icons">dashboard</i>
                                 <p>
                                     <span class="d-lg-none d-md-block">Stats</span>
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="https://creative-tim.com/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="material-icons">notifications</i>
-                                <span class="notification">5</span>
-                                <p>
-                                    <span class="d-lg-none d-md-block">Some Actions<b class="caret"></b></span>
-                                </p>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">Mike John responded to your email</a>
-                                <a class="dropdown-item" href="#">You have 5 new tasks</a>
-                                <a class="dropdown-item" href="#">You're now friend with Andrew</a>
-                                <a class="dropdown-item" href="#">Another Notification</a>
-                                <a class="dropdown-item" href="#">Another One</a>
-                            </div>
-                        </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="#pablo">
+
+
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer">
                                 <i class="material-icons">person</i>
                                 <p>
                                     <span class="d-lg-none d-md-block">Account</span>
                                 </p>
                             </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="/create_Enseignant/{!! $user->AuthUserMat() !!}?type=profile">Profile</a>
+
+                                <a class="dropdown-item" href="#">Setting</a>
+                                <hr>
+                                <a class="dropdown-item" href="#">Logout</a>
+
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -249,12 +264,19 @@
         </div>
 
         <footer class="footer ">
+            <div class="pull-left ml-3">
+                <img src="{{asset('img/icons/AV.png')}}" alt="AV" style="height: 100px">
+            </div>
 
-            <div class="container">
+
+            <div class="container" style="margin-top: 30px;">
+
                 <nav class="pull-left">
                     <ul>
+
                         <li>
                             <a href="#AceVel">
+
                                 AceVel Team
                             </a>
                         </li>
@@ -273,12 +295,16 @@
                                 Licenses
                             </a>
                         </li>
+
                     </ul>
                 </nav>
-                <div class="copyright pull-right">
+                <div class="copyright pull-right" >
                     &copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="material-icons">favorite</i> by <a href="#AceVel" target="_blank">AceVel Team</a> for a better web.
                 </div>
             </div>
+
+
+
 
 
 

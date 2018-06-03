@@ -13,4 +13,8 @@ protected $guarded=['etat'];
         $dep=departement::where('idDept',$id)->get();
         return $dep;
     }
+    public function CountProfessor()
+    {
+        return count(enseignant::all());
+    }
 }

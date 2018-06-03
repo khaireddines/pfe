@@ -22,6 +22,10 @@ Route::POST('/Class_pdf','PdfsController@Classes');
 Route::POST('/Ense_pdf','PdfsController@Ense');
 Route::POST('/ClassRoom_pdf','PdfsController@ClassRoom');
 
+Route::GET('/Dashboard',function(){
+    return view('layouts.admin.Dashboard');
+});
+
 
 //////////////////////DepartementController////////////////////////
 Route::get('/departement','DepartementController@show');

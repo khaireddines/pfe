@@ -50,7 +50,9 @@ th, td {
     width: 40px;
     max-height: 50px;
     max-width: 50px;
-}</style>
+}
+
+</style>
 ' .\request('datapdf').'<footer style="padding: .9375rem 0;text-align: center;display: flex;">
           <hr style="margin-top: 20px"><div style="margin-bottom: 20px"><div style="float: left;margin-top: 40px">Downloaded By: '.$name.'</div>'.$this->footer.'</div>')->setPaper('a4', 'landscape');
         $date=date('l jS \of F Y h:i:s A');

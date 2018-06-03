@@ -19,5 +19,8 @@ class departement extends Model
     return $this->hasMany(formation::class);
   }
 
-
+    public function CountDepartment()
+    {
+        return count(departement::all());
+    }
 }

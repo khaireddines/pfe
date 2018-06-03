@@ -20,5 +20,8 @@ class classe extends Model
         $form=formation::where('idForm',$id)->get();
         return $form;
     }
-
+    public function CountClasses()
+    {
+        return count(classe::all());
+    }
 }

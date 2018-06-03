@@ -3,8 +3,9 @@
 @endsection
 @section('content')
 
-            <div class="col-md-12 mr-auto ml-auto">
+            <div id="this" class="col-md-12 mr-auto ml-auto">
                 <!--      Wizard container        -->
+
                 <div class="wizard-container">
                     <div class="card card-wizard" data-color="rose" id="wizardProfile">
                         @if (!empty($ens['0']->matProf))
@@ -423,7 +424,9 @@
                     </div>
                 </div>
                 <!-- wizard container -->
+
             </div>
+
 
 
 
@@ -517,6 +520,11 @@
             demo.initCharts();
 
         });
+        @if(request('type')=='profile')
+
+        $(".profile").addClass('active');
+        $(".setting").addClass('show');
+        @endif
 
     </script>
     @endsection

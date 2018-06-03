@@ -14,4 +14,8 @@ class matiere extends Model
         $unite=uni_enseignement::where('idUnite',$id)->get();
         return $unite;
     }
+    public function CountSubject()
+    {
+        return count(matiere::all());
+    }
 }

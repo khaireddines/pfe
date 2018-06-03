@@ -16,6 +16,9 @@ class formation extends Model
     $dep=DB::table('departements')->select('libDept')->where('idDept','=',$idDept)->get();
     return $dep;
   }
-
+    public function CountTraining()
+    {
+        return count(formation::all());
+    }
 
 }
