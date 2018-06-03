@@ -622,13 +622,17 @@
             });
             //classpdf
             $(".pdfClass").click(function () {
+                var that=$(this);
+                that.off('click');
                 $.ajax({
                     url:"/Class_pdf",
                     method:"POST",
                     async:true,
                     data:{classeid:idClasse,_token: '{!! csrf_token() !!}'},
                     dataType:"text"
-                });
+                }).always(function() {
+                    that.on('click'); // add handler back after ajax
+                });;
             });
 
         });
@@ -647,14 +651,23 @@
                 }
             });
             //ens pdf
-            $(".pdfEnse").click(function () {
+            $(".pdfEnse").click(function (e) {
+                var that = $(this);
+                that.off('click');
+
+
                 $.ajax({
                     url:"/Ense_pdf",
                     method:"POST",
                     async:true,
                     data:{profid:idprof,_token: '{!! csrf_token() !!}'},
-                    dataType:"text"
-                });
+                    dataType:"text",
+                    complete: function() {
+                    me.data('requestRunning', false);
+                }
+                }).always(function() {
+                    that.on('click'); // add handler back after ajax
+                });;
             });
             $.ajax({
                 url:"/fetch_prof_emp",
@@ -817,13 +830,17 @@
             });
             //Roompdf
             $(".pdfRoom").click(function () {
+                var that=$(this);
+                that.off('click');
                 $.ajax({
                     url:"/ClassRoom_pdf",
                     method:"POST",
                     async:true,
                     data:{Roomid:idRoom,_token: '{!! csrf_token() !!}'},
                     dataType:"text"
-                });
+                }).always(function() {
+                    that.on('click'); // add handler back after ajax
+                });;
             });
         });
         $("#jour").change(function () {

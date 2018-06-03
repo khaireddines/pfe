@@ -109,12 +109,16 @@
                         $(".hide").show()
                         $(".contents").html(data);
                         $(".pdf").click(function () {
+                            var that=$(this);
+                            that.off('click');
                             $.ajax({
                                 url:"/repartition_pdf",
                                 method:"POST",
                                 async:true,
                                 data:{datapdf:String($(".contents").html()),_token: '{!! csrf_token() !!}'},
                                 dataType:"text"
+                            }).always(function() {
+                                that.on('click'); // add handler back after ajax
                             });
                         });
 

@@ -17,10 +17,10 @@ Route::get('/', function () {
 Route::get('/test', function () {
     return view('testpdf');
 });
-Route::any('/repartition_pdf','PdfsController@repartition')->name('pdf');
-Route::any('/Class_pdf','PdfsController@Classes');
-Route::any('/Ense_pdf','PdfsController@Ense');
-Route::any('/ClassRoom_pdf','PdfsController@ClassRoom');
+Route::POST('/repartition_pdf','PdfsController@repartition')->name('pdf');
+Route::POST('/Class_pdf','PdfsController@Classes');
+Route::POST('/Ense_pdf','PdfsController@Ense');
+Route::POST('/ClassRoom_pdf','PdfsController@ClassRoom');
 
 
 //////////////////////DepartementController////////////////////////
