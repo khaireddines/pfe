@@ -165,7 +165,9 @@ return [
         //sweet-alert2
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         // Log activity
-        Arcanedev\LogViewer\LogViewerServiceProvider::class
+        Arcanedev\LogViewer\LogViewerServiceProvider::class,
+        //fileUpload
+        Intervention\Image\ImageServiceProvider::class
     ],
 
     /*
@@ -218,6 +220,7 @@ return [
 
         //sweet-alert2
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'Image' => Intervention\Image\Facades\Image::class
 
     ],
 crocodicstudio\crudbooster\CRUDBoosterServiceProvider::class,

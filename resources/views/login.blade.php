@@ -7,11 +7,11 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 <!-- Favicons -->
-<link rel="apple-touch-icon" href="">
-<link rel="icon" href="">
+<link rel="apple-touch-icon" href="{{asset('img/icons/AVFAV.svg')}}">
+<link rel="icon" href="{{asset('img/icons/AVFAV.svg')}}">
 <title>
 
-Iset
+Entreprise Resource Planning
 
 </title>
 
@@ -38,7 +38,8 @@ Iset
 <nav class="navbar navbar-expand-lg bg-primary navbar-transparent navbar-absolute" color-on-scroll="500">
 	<div class="container">
     <div class="navbar-wrapper">
-          <a class="navbar-brand" href="#pablo">Laravel</a>
+        <img src="{{asset('img/icons/AV.svg')}}" alt="">
+          <a class="navbar-brand" href="#pablo">AceVel</a>
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
       <span class="sr-only">Toggle navigation</span>
@@ -48,18 +49,7 @@ Iset
     </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbar">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="{{route('home')}}" class="nav-link">
-                        <i class="material-icons">dashboard</i>
-                        Dashboard
-                    </a>
-                </li>
-                <li class= "nav-item ">
-                    <a href="#" class="nav-link register" data-toggle="modal" data-target="#signupModal">
-                        <i class="material-icons">person_add</i>
-                        Register
-                    </a>
-                </li>
+
                 <li class= "nav-item">
                     <a href="#" class="nav-link login" data-toggle="modal" data-target="#loginModal">
                         <i class="material-icons">fingerprint</i>
@@ -81,13 +71,16 @@ Iset
 
             </div>
             <footer class="footer ">
+                <div class="pull-left ml-3">
+                    <img src="{{asset('img/icons/AV.png')}}" alt="AV" style="height: 100px">
+                </div>
+        <div class="container" style="margin-top: 30px;">
 
-        <div class="container">
         <nav class="pull-left">
             <ul>
                 <li>
                     <a href="#">
-                        AceWings
+                        AceVel
                     </a>
                 </li>
                 <li>
@@ -119,114 +112,13 @@ Iset
 
 </div>
 
-    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-signup" role="document">
-            <div class="modal-content">
-                <div class="card card-signup card-plain">
-                    <div class="modal-header">
-                        <h5 class="modal-title card-title" style="font-family:Roboto Slab, Times New Roman, serif">Register</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <i class="material-icons">clear</i>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-5 ml-auto">
-                                <div class="info info-horizontal">
-                                    <div class="icon" style="color: rgb(233, 30, 99);" >
-                                        <i class="material-icons">timeline</i>
-                                    </div>
-                                    <div class="description">
-                                        <h4 class="info-title">Marketing</h4>
-                                        <p class="description">
-                                            We've created the marketing campaign of the website. It was a very interesting collaboration.
-                                        </p>
-                                    </div>
-                                </div>
 
-                                <div class="info info-horizontal">
-                                    <div class="icon icon-primary" style="color: rgb(156, 39, 176);">
-                                        <i class="material-icons" >code</i>
-                                    </div>
-                                    <div class="description">
-                                        <h4 class="info-title">Fully Coded in HTML5</h4>
-                                        <p class="description">
-                                            We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="info info-horizontal">
-                                    <div class="icon icon-info" style="color: rgb(0, 188, 212);">
-                                        <i class="material-icons">group</i>
-                                    </div>
-                                    <div class="description">
-                                        <h4 class="info-title">Built Audience</h4>
-                                        <p class="description">
-                                            There is also a Fully Customizable CMS Admin Dashboard for this product.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-5 mr-auto">
-
-
-                                <form class="form" method="" action="">
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                            <span class="input-group-addon" style="color: rgb(73, 80, 87);">
-                            <i class="material-icons">face</i>
-                        </span>
-                                                <input type="text" class="form-control" placeholder="First Name...">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="input-group">
-                      <span class="input-group-addon">
-                          <i class="material-icons">email</i>
-                      </span>
-                                                <input type="text" class="form-control" placeholder="Email...">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="input-group">
-                      <span class="input-group-addon">
-                          <i class="material-icons">lock_outline</i>
-                      </span>
-                                                <input type="password" placeholder="Password..." class="form-control" />
-                                            </div>
-                                        </div>
-
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" value="" checked>
-                                                <span class="form-check-sign">
-                          <span class="check"></span>
-                      </span>
-                                                I agree to the <a href="#something">terms and conditions</a>.
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer justify-content-center">
-                                        <a href="#pablo" class="btn btn-primary btn-round">Get Started</a>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-login" role="document">
             <div class="modal-content">
                 <div class="card card-signup">
                     <div class="card-header card-header-primary text-center">
+                        <i class="material-icons">fingerprint</i>
                         <h5 class="card-title" style="font-family:Roboto Slab, Times New Roman, serif">Log in</h5>
 
                     </div>
@@ -234,17 +126,10 @@ Iset
                         <form class="form" method="" action="#">
 
                             <div class="card-body">
+
                                 <div class="form-group bmd-form-group">
                                     <div class="input-group">
-                                                        <span class="input-group-addon">
-                                                            <i class="material-icons">face</i>
-                                                        </span>
-                                        <input class="form-control" placeholder="First Name..." type="text">
-                                    </div>
-                                </div>
-                                <div class="form-group bmd-form-group">
-                                    <div class="input-group">
-                                                        <span class="input-group-addon">
+                                                        <span class="input-group-addon" style="margin-right: 20px; margin-top: 10px">
                                                             <i class="material-icons">email</i>
                                                         </span>
                                         <input class="form-control" placeholder="Email..." type="text">
@@ -252,7 +137,7 @@ Iset
                                 </div>
                                 <div class="form-group bmd-form-group">
                                     <div class="input-group">
-                                                        <span class="input-group-addon">
+                                                        <span class="input-group-addon" style="margin-right: 20px; margin-top: 10px">
                                                             <i class="material-icons">lock_outline</i>
                                                         </span>
                                         <input placeholder="Password..." class="form-control" type="password">
@@ -294,18 +179,18 @@ Iset
 
 </html>
 <script type="text/javascript">
+    $(".document").ready(function() {
+        setTimeout(function() {
+            $(".login").trigger('click');
+        },10);
+    });
     $(".login").click(function () {
-        $(".bg").css('background-image','url({{asset("img/login.jpg")}})');
+
         $('li').removeClass(' active');
         $(this).closest('li').addClass(' active');
-        $('.card1').removeClass('card-hidden');
+
     });
-    $(".register").click(function () {
-        $(".bg").css('background-image','url({{asset("img/register.jpg")}})');
-        $('li').removeClass(' active');
-       $(this).closest('li').addClass(' active');
-       $(".card2").removeClass('card-hidden');
-    });
+
 
 
 

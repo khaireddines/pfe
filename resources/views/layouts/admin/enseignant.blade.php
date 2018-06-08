@@ -1,5 +1,15 @@
 @extends('layouts.admin.adminDashbord')
 @section('custemImp')
+    <style>
+
+
+
+        .is:not( .md-input-has-value ) input:not( :focus ) {color: transparent;}
+        .is .md-input-has-value {color: #ebebeb;}
+
+
+
+    </style>
 @endsection
 @section('content')
 
@@ -9,9 +19,9 @@
                 <div class="wizard-container">
                     <div class="card card-wizard" data-color="rose" id="wizardProfile">
                         @if (!empty($ens['0']->matProf))
-                    <form class="" action="/modify_Enseignant/{{$ens['0']->matProf}}" method="post">
+                    <form class="" action="/modify_Enseignant/{{$ens['0']->matProf}}" enctype="multipart/form-data" method="post">
                     @else
-                    <form class="" action="/create_Enseignant" method="post">
+                    <form class="" action="/create_Enseignant" enctype="multipart/form-data" method="post">
                     @endif
                     @csrf
                             <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
@@ -48,8 +58,12 @@
                                             <div class="col-sm-2">
                                                 <div class="picture-container">
                                                     <div class="picture">
-                                                        <img src="{{asset('img/profile_img/placeholder.jpg')}}" class="picture-src" id="wizardPicturePreview" title="" />
-                                                        <input type="file" id="wizard-picture">
+                                                        @if(request('type')=='profile')
+                                                            <img src="{{asset("img/profile_img/".\Illuminate\Support\Facades\Auth::user()->avatar)}}" alt="{{asset('img/profile_img/placeholder.jpg')}}" class="picture-src" id="wizardPicturePreview" title="" />
+                                                        @else
+                                                            <img src="{{asset('img/profile_img/placeholder.jpg')}}" class="picture-src" id="wizardPicturePreview" title="" />
+                                                        @endif
+                                                            <input type="file" name="file" id="wizard-picture">
                                                     </div>
                                                     <h6 class="description">Choose Picture</h6>
                                                 </div>
@@ -61,7 +75,7 @@
                             <i class="material-icons">perm_identity</i>
                           </span>
                                                     </div>
-                                                    <div style="width: 25%" class="form-group">
+                                                    <div style="width: 25%" class="form-group false">
                                                         <label for="mat" class="bmd-label-floating">matricule (required)</label>
                                                         @if (!empty($ens['0']->matProf))
 
@@ -69,31 +83,31 @@
                                                             <input type="text" name="matProf" class="form-control" value="{{@$ens['0']->matProf}}" hidden>
 
                                                         @else
-                                                            <input type="text" name="matProf" class="form-control" id="mat" value="{{@$ens['0']->matProf}}" required>
+                                                            <input type="text" name="matProf" class="form-control" id="mat" value="" required>
                                                         @endif
 
                                                     </div>
-                                                    <div class="input-group-prepend">
+                                                    <div class="input-group-prepend tohide">
                           <span class="input-group-text">
                             <i class="material-icons">face</i>
                           </span>
                                                     </div>
-                                                    <div style="width: 25%" class="form-group">
+                                                    <div style="width: 25%" class="form-group tohide">
                                                         <label for="pre" class="bmd-label-floating">First Name (required)</label>
                                                         <input type="text" class="form-control" id="pre" name="prenom" value="{{@$ens['0']->prenom}}" required>
                                                     </div>
-                                                    <div class="input-group-prepend">
+                                                    <div class="input-group-prepend tohide">
                           <span class="input-group-text">
                             <i class="material-icons">record_voice_over</i>
                           </span>
                                                     </div>
-                                                    <div style="width: 25%" class="form-group">
+                                                    <div style="width: 25%" class="form-group tohide">
                                                         <label for="nom" class="bmd-label-floating">Second Name</label>
 
                                                         <input type="text" class="form-control" id="nom" name="nom" style="text-transform:uppercase" value="{{@$ens['0']->nom}}" required>
                                                     </div>
                                                 </div>
-                                                <div class="input-group form-control-lg">
+                                                <div class="input-group form-control-lg tohide">
                                                     <div class="input-group-prepend">
                           <span class="input-group-text">
                             <i class="material-icons">aspect_ratio</i>
@@ -119,7 +133,7 @@
                             <i class="material-icons">date_range</i>
                           </span>
                                                     </div>
-                                                    <div style="width: 15%" class="form-group">
+                                                    <div style="width: 15%" class="form-group is">
                                                         <label for="datenai" class="bmd-label-floating">Birth Date </label>
                                                         <input type="date" class="form-control" id="datenai" name="date_nai" value="{{@$ens['0']->date_nai}}" required>
                                                     </div>
@@ -134,7 +148,7 @@
                                                         <input type="text" class="form-control" id="LN" name="lieu_nai" value="{{@$ens['0']->lieu_nai}}">
                                                     </div>
                                                 </div>
-                                                <div class="input-group form-control-lg">
+                                                <div class="input-group form-control-lg tohide">
                                                     <div class="input-group-prepend">
                           <span class="input-group-text">
                             <i class="material-icons">flag</i>
@@ -174,7 +188,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-10 mt-3">
+                                            <div class="col-lg-10 mt-3 tohide">
                                                 <div class="input-group form-control-lg">
                                                     <div class="input-group-prepend">
                           <span class="input-group-text">
@@ -294,7 +308,7 @@
                             <i class="material-icons">business_center</i>
                           </span>
                                                     </div>
-                                                    <div style="width: 25%" class="form-group mt-4">
+                                                    <div style="width: 25%" class="form-group mt-4 is">
                                                         <label for="dateA" class="bmd-label-floating">Administration Entry Date</label>
                                                         <input type="date" id="datenA" class="form-control" name="date_adm" value="{{@$ens['0']->date_adm}}">
                                                     </div>
@@ -304,7 +318,7 @@
                             <i class="material-icons">card_travel</i>
                           </span>
                                                     </div>
-                                                    <div style="width: 25%" class="form-group mt-4">
+                                                    <div style="width: 25%" class="form-group mt-4 is">
                                                         <label for="dateE" class="bmd-label-floating">Establishment Entry Date</label>
                                                         <input type="date" id="dateE" class="form-control" name="date_etbs" value="{{@$ens['0']->date_etbs}}">
 
@@ -315,7 +329,7 @@
                             <i class="material-icons">date_range</i>
                           </span>
                                                     </div>
-                                                    <div style="width: 25%" class="form-group mt-4">
+                                                    <div style="width: 25%" class="form-group mt-4 is">
                                                         <label for="nomi" class="bmd-label-floating">Nomination Date</label>
                                                         <input type="date" id="nomi" class="form-control" name="date_nai" value="{{@$ens['0']->date_nai}}">
 
@@ -326,7 +340,7 @@
                             <i class="material-icons">date_range</i>
                           </span>
                                                     </div>
-                                                    <div style="width: 25%" class="form-group mt-4">
+                                                    <div style="width: 25%" class="form-group mt-4 is">
                                                         <label for="PED" class="bmd-label-floating">Person Entitled Date</label>
                                                         <input type="date" id="PED" class="form-control" name="date_titulir" value="{{@$ens['0']->date_titulir}}">
                                                     </div>
@@ -336,7 +350,7 @@
                             <i class="material-icons">date_range</i>
                           </span>
                                                     </div>
-                                                    <div style="width: 25%" class="form-group mt-4">
+                                                    <div style="width: 25%" class="form-group mt-4 is">
                                                         <label for="CSD" class="bmd-label-floating">Contract Start Date</label>
                                                         <input type="date" id="CSD" class="form-control" name="debut_con" value="{{@$ens['0']->debut_con}}">
 
@@ -347,7 +361,7 @@
                             <i class="material-icons">date_range</i>
                           </span>
                                                     </div>
-                                                    <div style="width: 25%" class="form-group mt-4">
+                                                    <div style="width: 25%" class="form-group mt-4 is">
                                                         <label for="CED" class="bmd-label-floating">Contract End Date</label>
                                                         <input type="date" id="CED" class="form-control" name="fin_con" value="{{@$ens['0']->fin_con}}">
                                                     </div>
@@ -507,7 +521,52 @@
 
 @section('custemScript')
     <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+        if(dd<10){
+            dd='0'+dd
+        }
+        if(mm<10){
+            mm='0'+mm
+        }
 
+        today = yyyy+'-'+mm+'-'+dd;
+        $(':input[type="date"]').attr("max", today);
+        @if (empty($ens['0']->matProf))
+        $(".tohide").hide();
+            $("#mat").keyup(function () {
+                var me=$(this).val();
+                console.log(me);
+            $.ajax({
+                url:"/fetch_Mat",
+                method:"POST",
+                async:true,
+                data:{mat:me},
+                dataType:"text",
+                success:function(data)
+                {
+                    if(data=='true')
+                    {
+                        $(".tohide").show();
+                    }else {
+                        $(".tohide").hide();
+                        $('.false').addClass('has-danger');
+
+                    }
+
+                }
+
+
+            });
+        });
+        @endif
         $(document).ready(function(){
 
             //init wizard

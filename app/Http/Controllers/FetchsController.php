@@ -784,4 +784,13 @@ class FetchsController extends Controller
     return $result;
 
     }
+
+    public function Matricule(Request $request)
+    {$result='true';
+        $ens=enseignant::where('matProf',$request->mat)->get();
+
+        if(count($ens)!=0)
+        {$result='false';}
+        return $result;
+    }
 }

@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/test', function () {
-    return view('testpdf');
+    return view('login');
 });
 Route::POST('/repartition_pdf','PdfsController@repartition')->name('pdf');
 Route::POST('/Class_pdf','PdfsController@Classes');
@@ -24,7 +24,7 @@ Route::POST('/ClassRoom_pdf','PdfsController@ClassRoom');
 
 Route::GET('/Dashboard',function(){
     return view('layouts.admin.Dashboard');
-});
+})->name('Dashboard');
 
 
 //////////////////////DepartementController////////////////////////
@@ -84,6 +84,7 @@ Route::POST('/fetch_emp_salle','FetchsController@Emp_Salle');
 Route::POST('/fetch_salle_vide','FetchsController@salle_vide');
 Route::POST('/fetch_salle_vide2','FetchsController@salle_vide2');
 Route::POST('/fetch_prof_emp','FetchsController@profEmp');
+Route::POST('/fetch_Mat','FetchsController@Matricule');
 Route::POST('/MatInfo','FetchsController@MatInfo');
 /////////////////PDFS/////////////////////////
 //Route::POST('/Pdf_emp_salle','PdfsController@emp_salle');

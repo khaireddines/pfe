@@ -10,6 +10,7 @@ use App\lession;
 use App\Mat;
 use App\session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use PDF;
 
 class FichVoeuxController extends Controller
@@ -29,9 +30,9 @@ class FichVoeuxController extends Controller
      */
 
     public function show()
-    {dd(session()->all());
+    {
         $sess=session::where('etat','v')->get();
-        $prof=enseignant::where('email',session('email'))->get();
+        $prof=enseignant::where('email',Auth::user()->email)->get();
         $class=classe::where('idDept',$prof['0']->idDept)->get();
         $time=lession::all();
 
@@ -52,7 +53,7 @@ class FichVoeuxController extends Controller
     public function createPDF()
     {
         $sess=session::where('etat','v')->get();
-        $prof=enseignant::where('email',session('email'))->get();
+        $prof=enseignant::where('email',Auth::user()->email)->get();
         $pdf = PDF::loadView('layouts.Users.Fich_voeux',compact('sess','prof'));
         return $pdf->download('test.pdff');
     }
@@ -68,7 +69,7 @@ class FichVoeuxController extends Controller
         //do the validation
 
         //get the data info
-        @$prof=enseignant::where('email',session('email'))->get();
+        @$prof=enseignant::where('email',Auth::user()->email)->get();
         @$LR=sizeof($request->Lundi);
         @$MAR=sizeof($request->Mardi);
         @$MER=sizeof($request->Mercredi);
