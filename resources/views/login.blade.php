@@ -1,41 +1,22 @@
 <!doctype html>
 <html lang="en">
-
-
 <head>
-
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 <!-- Favicons -->
 <link rel="apple-touch-icon" href="{{asset('img/icons/AVFAV.svg')}}">
 <link rel="icon" href="{{asset('img/icons/AVFAV.svg')}}">
 <title>
-
 Entreprise Resource Planning
-
 </title>
-
-
-
-
-
 <!--     Fonts and icons     -->
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
 <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}" />
 <link rel="stylesheet" href="{{asset('css/material-dashboard.min790f.css?v=2.0.1')}}">
-
-
-
-
-
-
-
-
 </head>
-
 <body class="off-canvas-sidebar login-page">
     <!-- Navbar -->
-<nav class="navbar navbar-expand-lg bg-primary navbar-transparent navbar-absolute" color-on-scroll="500">
+    <nav class="navbar navbar-expand-lg bg-primary navbar-transparent navbar-absolute" color-on-scroll="500">
 	<div class="container">
     <div class="navbar-wrapper">
         <img src="{{asset('img/icons/AV.svg')}}" alt="">
@@ -63,7 +44,7 @@ Entreprise Resource Planning
 	</div>
 </nav>
 <!-- End Navbar -->
-<div class="wrapper" style="background-size: cover;">
+    <div class="wrapper" style="background-size: cover;">
             <div class="page-header   bg   header-filter" filter-color="black" style="background-image: url({{asset('img/login.jpg')}}); background-size: cover; background-position: top center;">
         <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
             <div class="container">
@@ -123,8 +104,8 @@ Entreprise Resource Planning
 
                     </div>
                     <div class="modal-body">
-                        <form class="form" method="" action="#">
-
+                        <form class="form" method="POST" action="{{ route('login') }}">
+                            @csrf
                             <div class="card-body">
 
                                 <div class="form-group bmd-form-group">
@@ -132,7 +113,12 @@ Entreprise Resource Planning
                                                         <span class="input-group-addon" style="margin-right: 20px; margin-top: 10px">
                                                             <i class="material-icons">email</i>
                                                         </span>
-                                        <input class="form-control" placeholder="Email..." type="text">
+                                        <input id="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" placeholder="Email..." type="text" required autofocus>
+                                        @if ($errors->has('email'))
+                                            <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="form-group bmd-form-group">
@@ -140,14 +126,21 @@ Entreprise Resource Planning
                                                         <span class="input-group-addon" style="margin-right: 20px; margin-top: 10px">
                                                             <i class="material-icons">lock_outline</i>
                                                         </span>
-                                        <input placeholder="Password..." class="form-control" type="password">
+                                        <input id="password" placeholder="Password..." name="password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" type="password" required>
+                                        @if ($errors->has('password'))
+                                            <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+
+
                     <div class="modal-footer justify-content-center">
-                        <a href="#pablo" class="btn btn-primary btn-link btn-wd btn-lg">Get Started</a>
+                        <button type="submit" class="btn btn-primary btn-link btn-wd btn-lg">Get Started</button>
+                    </div>
+                    </form>
                     </div>
                 </div>
             </div>

@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/test', function () {
+Route::get('/login', function () {
     return view('login');
 });
 Route::POST('/repartition_pdf','PdfsController@repartition')->name('pdf');
@@ -22,9 +22,11 @@ Route::POST('/Class_pdf','PdfsController@Classes');
 Route::POST('/Ense_pdf','PdfsController@Ense');
 Route::POST('/ClassRoom_pdf','PdfsController@ClassRoom');
 
-Route::GET('/Dashboard',function(){
-    return view('layouts.admin.Dashboard');
-})->name('Dashboard');
+Route::group(['middleware' => ['revalidate','auth','role:prof']], function () {
+    Route::GET('/Admin/Dashboard',function(){
+        return view('layouts.admin.Dashboard');
+    })->name('Dashboard');
+});
 
 
 //////////////////////DepartementController////////////////////////

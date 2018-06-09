@@ -40,7 +40,7 @@ class EnseignantController extends Controller
         //creating the newsItem will cause an activity being logged
         User::where('email',\request('email'))->update(['avatar'=>\request('file')]);
 
-        $img = Image::make(\request()->file('file'))->insert('public/img/icons/AV.svg')->save(public_path('img/profile_img'));
+        $img = Image::make(\request()->file('file'))->insert('public/img/icons/AV.svg')->save(public_path('img/profile_img'.\request('prenom').'.jpg'));
         $ens=enseignant::create(request()->except(['file']));
 //        activity()
 //            ->performedOn($ens)
