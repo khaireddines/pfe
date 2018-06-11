@@ -51,9 +51,9 @@ return [
         'enabled'    => true,
 
         'attributes' => [
-            'prefix'     => 'log-viewer',
+            'prefix'     => 'admin/log-viewer',
 
-            'middleware' => env('ARCANEDEV_LOGVIEWER_MIDDLEWARE') ? explode(',', env('ARCANEDEV_LOGVIEWER_MIDDLEWARE')) : null,
+            'middleware' => ['web','revalidate','auth','role:Admin'],
         ],
     ],
 

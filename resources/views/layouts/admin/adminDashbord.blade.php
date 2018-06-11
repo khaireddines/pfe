@@ -204,7 +204,7 @@
 
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="/log-viewer">
+                            <a class="nav-link" href="{{route('log-viewer::dashboard')}}">
                                 <i class="fa fa-dashboard"></i>
                                 <p>
                                     <span class="d-lg-none d-md-block">logview</span>
@@ -212,7 +212,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Dashboard">
+                            <a class="nav-link" href="{{route('Activitylog')}}">
                                 <i class="material-icons">history</i>
                                 <p>
                                     <span class="d-lg-none d-md-block">Stats</span>
@@ -220,7 +220,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Dashboard">
+                            <a class="nav-link" href="{{route('Dashboard')}}">
                                 <i class="material-icons">dashboard</i>
                                 <p>
                                     <span class="d-lg-none d-md-block">Stats</span>
