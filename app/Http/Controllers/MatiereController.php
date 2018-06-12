@@ -20,7 +20,7 @@ class MatiereController extends Controller
         if(!empty(request('id')))
         {
             $Uens=uni_enseignement::all();
-            $mat= (new \App\matiere)->where('idMat',request('id'))->get();
+            $mat= (new \App\matiere)->where('id',request('id'))->get();
 
             return view('layouts.admin.Matiere',compact('mat','Uens'));
         }
@@ -46,14 +46,14 @@ class MatiereController extends Controller
      */
     public function edit($id)
     {
-        matiere::where('idMat',$id)->update(request()->except(['_token','idMat']));
+        matiere::where('id',$id)->update(request()->except(['_token','id']));
 
         return redirect('/Matiere');
     }
 
     public function destroy($id)
     {
-        matiere::where('idMat',$id)->delete();
+        matiere::where('id',$id)->delete();
 
         return back();
     }

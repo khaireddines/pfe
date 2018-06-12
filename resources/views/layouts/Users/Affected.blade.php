@@ -32,7 +32,7 @@
             <select name="classe" class="Class custom-select" id="Class inputGroupSelect01">
                 <option disabled="" selected value="">--Pick Class--</option>
                 @foreach($class as $c)
-                <option value="{{$c->idClass}}">{{$c->nomClass}}</option>
+                <option value="{{$c->id}}">{{$c->nomClass}}</option>
 
                 @endforeach
             </select>

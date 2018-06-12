@@ -21,7 +21,7 @@ class ClasseController extends Controller
     {
         if(!empty(request('id')))
         {
-            $class= (new \App\classe())->where('idClass',request('id'))->get();
+            $class= (new \App\classe())->where('id',request('id'))->get();
             $dep=departement::all();
             $sess=session::all();
             return view('layouts.admin.class',compact('class','dep','sess'));
@@ -56,7 +56,7 @@ class ClasseController extends Controller
      */
     public function edit($id)
     {$nom=request('idForm').".".request('numclass');
-        classe::where('idClass',$id)->update([
+        classe::where('id',$id)->update([
             'idDept' =>request('idDept'),
             'idForm' =>request('idForm'),
             'idSession'=>request('idSession'),
@@ -69,7 +69,7 @@ class ClasseController extends Controller
 
     public function destroy($id)
     {
-        classe::where('idClass',$id)->delete();
+        classe::where('id',$id)->delete();
 
         return back();
     }

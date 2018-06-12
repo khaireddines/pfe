@@ -80,34 +80,34 @@ th, td {
                      ';
             if (count($classe)!=0)
                 foreach ($matiere as $data)
-                {   if ($data->idMat==@$classe[$i]->Lundi)
+                {   if ($data->id==@$classe[$i]->Lundi)
                 {$salla=emp_salle::where('Lundi',$classe[$i]->idClass)->where('Lession',$classe[$i]->Lession)->get();
-                    @$prof=Affectedto::where('idMat',$data->idMat)->get();
+                    @$prof=Affectedto::where('idMat',$data->id)->get();
                     if (count($prof)!=0)$profe=$prof['0']->nomProf; else $profe='';
                     $inL.=$salla[0]->idSalle.':'.$data->libMat.'<br>'.$profe;}
-                    if ($data->idMat==@$classe[$i]->Mardi)
+                    if ($data->id==@$classe[$i]->Mardi)
                     {$salla=emp_salle::where('Mardi',$classe[$i]->idClass)->where('Lession',$classe[$i]->Lession)->get();
-                        @$prof=Affectedto::where('idMat',$data->idMat)->get();
+                        @$prof=Affectedto::where('idMat',$data->id)->get();
                         if (count($prof)!=0)$profe=$prof['0']->nomProf; else $profe='';
                         $inMA.=$salla[0]->idSalle.':'.$data->libMat.'<br>'.$profe;}
-                    if ($data->idMat==@$classe[$i]->Mercredi)
+                    if ($data->id==@$classe[$i]->Mercredi)
                     {$salla=emp_salle::where('Mercredi',$classe[$i]->idClass)->where('Lession',$classe[$i]->Lession)->get();
-                        @$prof=Affectedto::where('idMat',$data->idMat)->get();
+                        @$prof=Affectedto::where('idMat',$data->id)->get();
                         if (count($prof)!=0)$profe=$prof['0']->nomProf; else $profe='';
                         $inME.=$salla[0]->idSalle.':'.$data->libMat.'<br>'.$profe;}
-                    if ($data->idMat==@$classe[$i]->Jeudi)
+                    if ($data->id==@$classe[$i]->Jeudi)
                     {$salla=emp_salle::where('Jeudi',$classe[$i]->idClass)->where('Lession',$classe[$i]->Lession)->get();
-                        @$prof=Affectedto::where('idMat',$data->idMat)->get();
+                        @$prof=Affectedto::where('idMat',$data->id)->get();
                         if (count($prof)!=0)$profe=$prof['0']->nomProf; else $profe='';
                         $inJ.=$salla[0]->idSalle.':'.$data->libMat.'<br>'.$profe;}
-                    if ($data->idMat==@$classe[$i]->Vendredi)
+                    if ($data->id==@$classe[$i]->Vendredi)
                     {$salla=emp_salle::where('Vendredi',$classe[$i]->idClass)->where('Lession',$classe[$i]->Lession)->get();
-                        @$prof=Affectedto::where('idMat',$data->idMat)->get();
+                        @$prof=Affectedto::where('idMat',$data->id)->get();
                         if (count($prof)!=0)$profe=$prof['0']->nomProf; else $profe='';
                         $inV.=$salla[0]->idSalle.':'.$data->libMat.'<br>'.$profe;}
-                    if ($data->idMat==@$classe[$i]->Samedi)
+                    if ($data->id==@$classe[$i]->Samedi)
                     {$salla=emp_salle::where('Samedi',$classe[$i]->idClass)->where('Lession',$classe[$i]->Lession)->get();
-                        @$prof=Affectedto::where('idMat',$data->idMat)->get();
+                        @$prof=Affectedto::where('idMat',$data->id)->get();
                         if (count($prof)!=0)$profe=$prof['0']->nomProf; else $profe='';
                         $inS.=$salla[0]->idSalle.':'.$data->libMat.'<br>'.$profe;}}
 
@@ -169,7 +169,7 @@ th, td {
             if (isset($emp_prof['0'])&&$emp_prof['0']->Lundi!='')
             {$salle=emp_salle::where('Lession',($i+1))->where('Lundi',$emp_prof['0']->Lundi)->get();
                 $classe=emp_class::where('idClass',$emp_prof['0']->Lundi)->where('Lession',($i+1))->get();
-                $mats=matiere::where('idMat',$classe['0']->Lundi)->get();
+                $mats=matiere::where('id',$classe['0']->Lundi)->get();
                 $result.=' <td>'.$emp_prof['0']->Lundi.' '.@$mats['0']->libMat.'</td>';
 
             }else
@@ -180,7 +180,7 @@ th, td {
             if (isset($emp_prof['0'])&&$emp_prof['0']->Mardi!='')
             {$salle=emp_salle::where('Lession',($i+1))->where('Mardi',$emp_prof['0']->Mardi)->get();
                 $classe=emp_class::where('idClass',$emp_prof['0']->Mardi)->where('Lession',($i+1))->get();
-                $mats=matiere::where('idMat',$classe['0']->Mardi)->get();
+                $mats=matiere::where('id',$classe['0']->Mardi)->get();
                 $result.=' <td>'.$emp_prof['0']->Mardi.' '.@$mats['0']->libMat.'</td>';
 
             }else
@@ -192,7 +192,7 @@ th, td {
             if (isset($emp_prof['0'])&&$emp_prof['0']->Mercredi!='')
             {$salle=emp_salle::where('Lession',($i+1))->where('Mercredi',$emp_prof['0']->Mercredi)->get();
                 $classe=emp_class::where('idClass',$emp_prof['0']->Mercredi)->where('Lession',($i+1))->get();
-                $mats=matiere::where('idMat',$classe['0']->Mercredi)->get();
+                $mats=matiere::where('id',$classe['0']->Mercredi)->get();
                 $result.=' <td>'.$emp_prof['0']->Mercredi.' '.@$mats['0']->libMat.'</td>';
 
             }else
@@ -202,7 +202,7 @@ th, td {
             if (isset($emp_prof['0'])&&$emp_prof['0']->Jeudi!='')
             {$salle=emp_salle::where('Lession',($i+1))->where('Jeudi',$emp_prof['0']->Jeudi)->get();
                 $classe=emp_class::where('idClass',$emp_prof['0']->Jeudi)->where('Lession',($i+1))->get();
-                $mats=matiere::where('idMat',$classe['0']->Jeudi)->get();
+                $mats=matiere::where('id',$classe['0']->Jeudi)->get();
                 $result.=' <td>'.$emp_prof['0']->Jeudi.' '.@$mats['0']->libMat.'</td>';
 
             }else
@@ -212,7 +212,7 @@ th, td {
             if (isset($emp_prof['0'])&&$emp_prof['0']->Vendredi!='')
             {$salle=emp_salle::where('Lession',($i+1))->where('Vendredi',$emp_prof['0']->Vendredi)->get();
                 $classe=emp_class::where('idClass',$emp_prof['0']->Vendredi)->where('Lession',($i+1))->get();
-                $mats=matiere::where('idMat',$classe['0']->Vendredi)->get();
+                $mats=matiere::where('id',$classe['0']->Vendredi)->get();
                 $result.=' <td>'.$emp_prof['0']->Vendredi.' '.@$mats['0']->libMat.' </td>';
 
             }else
@@ -222,7 +222,7 @@ th, td {
             if (isset($emp_prof['0'])&&$emp_prof['0']->Samedi!='')
             {$salle=emp_salle::where('Lession',($i+1))->where('Samedi',$emp_prof['0']->Samedi)->get();
                 $classe=emp_class::where('idClass',$emp_prof['0']->Samedi)->where('Lession',($i+1))->get();
-                $mats=matiere::where('idMat',$classe['0']->Samedi)->get();
+                $mats=matiere::where('id',$classe['0']->Samedi)->get();
                 $result.=' <td >'.$emp_prof['0']->Samedi.' '.@$mats['0']->libMat.'</td>';
 
             }else
@@ -279,8 +279,8 @@ th, td {
                 if (@$room[$i]->Lundi!=null)
                 {@$classe=emp_class::where('idClass',$room[$i]->Lundi)->where('Lession',($i+1))->get();
                     if ($classe[0]->Lundi!=null)
-                    {$matiere=matiere::where('idMat',$classe[0]->Lundi)->get();
-                        @$prof=Affectedto::where('idMat',$matiere[0]->idMat)->get();
+                    {$matiere=matiere::where('id',$classe[0]->Lundi)->get();
+                        @$prof=Affectedto::where('idMat',$matiere[0]->id)->get();
                         if (count($prof)!=0)$profe=$prof['0']->nomProf; else $profe='';
                         $inL.=$matiere[0]->libMat.'<br>'.$profe;
                     }
@@ -289,8 +289,8 @@ th, td {
                 {@$classe=emp_class::where('idClass',$room[$i]->Mardi)->where('Lession',($i+1))->get();
                     if ($classe[0]->Mardi!=null)
                     {
-                        $matiere=matiere::where('idMat',$classe[0]->Mardi)->get();
-                        @$prof=Affectedto::where('idMat',$matiere[0]->idMat)->get();
+                        $matiere=matiere::where('id',$classe[0]->Mardi)->get();
+                        @$prof=Affectedto::where('idMat',$matiere[0]->id)->get();
                         if (count($prof)!=0)$profe=$prof['0']->nomProf; else $profe='';
                         $inMA.=$matiere[0]->libMat.'<br>'.$profe;
                     }
@@ -300,8 +300,8 @@ th, td {
                 {@$classe=emp_class::where('idClass',$room[$i]->Mercredi)->where('Lession',($i+1))->get();
                     if ($classe[0]->Mercredi!=null)
                     {
-                        $matiere=matiere::where('idMat',$classe[0]->Mercredi)->get();
-                        @$prof=Affectedto::where('idMat',$matiere[0]->idMat)->get();
+                        $matiere=matiere::where('id',$classe[0]->Mercredi)->get();
+                        @$prof=Affectedto::where('idMat',$matiere[0]->id)->get();
                         if (count($prof)!=0)$profe=$prof['0']->nomProf; else $profe='';
                         $inME.=$matiere[0]->libMat.'<br>'.$profe;
                     }
@@ -310,8 +310,8 @@ th, td {
                 {@$classe=emp_class::where('idClass',$room[$i]->Jeudi)->where('Lession',($i+1))->get();
                     if ($classe[0]->Jeudi!=null)
                     {
-                        $matiere=matiere::where('idMat',$classe[0]->Jeudi)->get();
-                        @$prof=Affectedto::where('idMat',$matiere[0]->idMat)->get();
+                        $matiere=matiere::where('id',$classe[0]->Jeudi)->get();
+                        @$prof=Affectedto::where('idMat',$matiere[0]->id)->get();
                         if (count($prof)!=0)$profe=$prof['0']->nomProf; else $profe='';
                         $inJ.=$matiere[0]->libMat.'<br>'.$profe;
                     }
@@ -320,8 +320,8 @@ th, td {
                 {@$classe=emp_class::where('idClass',$room[$i]->Vendredi)->where('Lession',($i+1))->get();
                     if ($classe[0]->Vendredi!=null)
                     {
-                        $matiere=matiere::where('idMat',$classe[0]->Vendredi)->get();
-                        @$prof=Affectedto::where('idMat',$matiere[0]->idMat)->get();
+                        $matiere=matiere::where('id',$classe[0]->Vendredi)->get();
+                        @$prof=Affectedto::where('idMat',$matiere[0]->id)->get();
                         if (count($prof)!=0)$profe=$prof['0']->nomProf; else $profe='';
                         $inV.=$matiere[0]->libMat.'<br>'.$profe;
                     }
@@ -330,8 +330,8 @@ th, td {
                 {@$classe=emp_class::where('idClass',$room[$i]->Samedi)->where('Lession',($i+1))->get();
                     if ($classe[0]->Samedi!=null)
                     {
-                        $matiere=matiere::where('idMat',$classe[0]->Samedi)->get();
-                        @$prof=Affectedto::where('idMat',$matiere[0]->idMat)->get();
+                        $matiere=matiere::where('id',$classe[0]->Samedi)->get();
+                        @$prof=Affectedto::where('idMat',$matiere[0]->id)->get();
                         if (count($prof)!=0)$profe=$prof['0']->nomProf; else $profe='';
                         $inS.=$matiere[0]->libMat.'<br>'.$profe;
                     }

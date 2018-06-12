@@ -5,23 +5,23 @@
     <title></title>
 </head>
 <body>
-@if (!empty($mat['0']->idMat))
-    <form class="" action="/modify_Matiere/{{$mat['0']->idMat}}" method="post">
+@if (!empty($mat['0']->id))
+    <form class="" action="/modify_Matiere/{{$mat['0']->id}}" method="post">
         @else
             <form class="" action="/create_Matiere" method="post">
                 @endif
-                {{ csrf_field() }}
+                @csrf
 
-                @if (!empty($mat['0']->idMat))
+                @if (!empty($mat['0']->id))
                     Matiere_ID:
-                    <input type="text" name="idMat" value="{{@$mat['0']->idMat}}" disabled><br>
-                    <input type="hidden" name="idMat" id="" value="{{@$mat['0']->idMat}}">
+                    <input type="text" name="id" value="{{@$mat['0']->id}}" disabled><br>
+                    <input type="hidden" name="id" id="" value="{{@$mat['0']->id}}">
                 @endif
                 Matiere_Name<input type="text" name="libMat" value="{{@$mat['0']->libMat}}"><br>
                 Unite_enseignement: <select name="idUnite" id="">
                     @foreach($Uens as $Uens_data)
-                        <option value="{{$Uens_data->idUnite}}"
-                                @if(!empty(@$mat['0']->idMat) && $Uens_data->idUnite==@$mat['0']->idUnite)
+                        <option value="{{ $Uens_data->idUnite }}"
+                                @if(!empty(@$mat['0']->id) && $Uens_data->idUnite==@$mat['0']->idUnite)
                                 selected="selected"
                                 @endif
                         >{{$Uens_data->nomUnite}}</option>
@@ -32,7 +32,7 @@
                 Nombre d'heaure de Cour:<input type="number" step="any" min="0" name="nbhC" value="{{@$mat['0']->nbhC}}"><br>
                 Nombre d'heaure de TP:<input type="number" step="any" min="0" name="nbhTp" value="{{@$mat['0']->nbhTp}}"><br>
 
-                @if (!empty($mat['0']->idMat))
+                @if (!empty($mat['0']->id))
                     <input type="submit" name="" value="modify">
                 @else
                     <input type="submit" name="" value="add">

@@ -13,7 +13,7 @@ class AffectMatController extends Controller
 {
     public function show()
     {
-        $class=classe::orderBy('idClass')->get();
+        $class=classe::orderBy('id')->get();
         return view('layouts.Users.Affected',compact('class'));
     }
     public function store(Request $request)
@@ -23,7 +23,7 @@ class AffectMatController extends Controller
             foreach ($request->Prof as $key)
             {
                 $ens=enseignant::where('matProf',$key)->get();
-                $classname=classe::where('idClass',request('classe'))->get();
+                $classname=classe::where('id',request('classe'))->get();
 
                 $nom=$ens['0']->nom.' '.$ens['0']->prenom;
                 Affectedto::create([
