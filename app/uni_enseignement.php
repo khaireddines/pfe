@@ -9,8 +9,9 @@ class uni_enseignement extends Model
 {
     use LogsActivity;
     protected static $logAttributes = ['*'];
-
     protected $guarded=['etat'];
+    protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
     public function libform($id)
     {
         //$dep=DB::table('departements')->select('libDept')->where('idDept','=',$idDept)->get();

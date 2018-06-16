@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\formation;
 use App\uni_enseignement;
 use Illuminate\Http\Request;
+use Spatie\Activitylog\Models\Activity;
 
 class UniEnseignementController extends Controller
 {
@@ -35,7 +36,7 @@ class UniEnseignementController extends Controller
 
     public function store()
     {
-        uni_enseignement::create(request()->all());
+        $unite= uni_enseignement::create(request()->all());
 
         return redirect('/Unite_ens');
     }
@@ -46,14 +47,20 @@ class UniEnseignementController extends Controller
      */
     public function edit($id)
     {
-        uni_enseignement::where('idUnite',$id)->update(request()->except(['_token','idUnite']));
+        $unite= new uni_enseignement();
+        $old=$unite->where('idUnite',$id)->get();
+        $unite->where('idUnite',$id)->update(request()->except(['_token']));
+        activity()
+            ->performedOn($unite)
+            ->withProperties(["new"=>request()->except(['_token','matProf']),"old"=>$old[0]])
+            ->log('edited');
 
         return redirect('/Unite_ens');
     }
 
     public function destroy($id)
     {
-        uni_enseignement::where('idUnite',$id)->delete();
+        $unite=uni_enseignement::where('idUnite',$id)->delete();
 
         return back();
     }

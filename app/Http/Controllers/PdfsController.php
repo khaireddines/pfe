@@ -13,6 +13,7 @@ use Barryvdh\DomPDF\Facade as PDFF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Auth;
+use Spatie\Activitylog\Models\Activity;
 
 class PdfsController extends Controller
 {
@@ -29,7 +30,7 @@ class PdfsController extends Controller
 
 
 
-
+        $date=date('l jS \of F Y h:i:s A');
         $pdf= PDFF::loadHTML('
 
 <style>table {
@@ -54,8 +55,8 @@ th, td {
 
 </style>
 ' .\request('datapdf').'<footer style="padding: .9375rem 0;text-align: center;display: flex;">
-          <hr style="margin-top: 20px"><div style="margin-bottom: 20px"><div style="float: left;margin-top: 40px">Downloaded By: '.$name.'</div>'.$this->footer.'</div>')->setPaper('a4', 'landscape');
-        $date=date('l jS \of F Y h:i:s A');
+          <hr style="margin-top: 20px"><div style="margin-bottom: 20px"><div style="float: left;margin-top: 40px">Downloaded By: '.$name.'In:  '.$date.'</div>'.$this->footer.'</div>')->setPaper('a4', 'landscape');
+
         return $pdf->download('Search&Go|'.$date.'.pdf');
 
 
@@ -117,7 +118,7 @@ th, td {
         }
 
         $result.='</tbody></table>';
-
+        $date=date('l jS \of F Y h:i:s A');
         $pdf= PDFF::loadHTML('<style>
 table {
 font-family: arial, sans-serif;
@@ -141,8 +142,8 @@ th, td {
 
        
 </style>'.$result.'<footer style="padding: .9375rem 0;text-align: center;display: flex;">
-          <hr style="margin-top: 20px"><div style="margin-bottom: 20px"><div style="float: left;margin-top: 40px">Downloaded By: '.$name.'</div>'.$this->footer.'</div>')->setPaper('a4', 'landscape');
-        $date=date('l jS \of F Y h:i:s A');
+          <hr style="margin-top: 20px"><div style="margin-bottom: 20px"><div style="float: left;margin-top: 40px">Downloaded By: '.$name.' In:  '.$date.'</div>'.$this->footer.'</div>')->setPaper('a4', 'landscape');
+
         return $pdf->download('ClassSchedule|'.$date.'.pdf');
 
     }
@@ -235,6 +236,7 @@ th, td {
             $result.='</tr>';
         }
         $result.='</tbody></table>';
+        $date=date('l jS \of F Y h:i:s A');
         $pdf= PDFF::loadHTML('<style>
 table {
 font-family: arial, sans-serif;
@@ -256,8 +258,8 @@ th, td {
 
        
 </style>'.$result.'<footer style="padding: .9375rem 0;text-align: center;display: flex;">
-          <hr style="margin-top: 20px"><div style="margin-bottom: 20px"><div style="float: left;margin-top: 40px">Downloaded By: '.$name.'</div>'.$this->footer.'</div>')->setPaper('a4', 'landscape');
-        $date=date('l jS \of F Y h:i:s A');
+          <hr style="margin-top: 20px"><div style="margin-bottom: 20px"><div style="float: left;margin-top: 40px">Downloaded By: '.$name.' In:  '.$date.'</div>'.$this->footer.'</div>')->setPaper('a4', 'landscape');
+
         return $pdf->download('ProfessorSchedule|'.$date.'.pdf');
     }
 
@@ -343,7 +345,7 @@ th, td {
                           </tr> ';
         }
         $result.='</tbody></table>';
-
+        $date=date('l jS \of F Y h:i:s A');
         $pdf= PDFF::loadHTML('<style>
 table {
 font-family: arial, sans-serif;
@@ -365,8 +367,100 @@ th, td {
 
        
 </style>'.$result.'<footer style="padding: .9375rem 0;text-align: center;display: flex;">
-          <hr style="margin-top: 20px"><div style="margin-bottom: 20px"><div style="float: left;margin-top: 40px">Downloaded By: '.$name.'</div>'.$this->footer.'</div>')->setPaper('a4', 'landscape');
-        $date=date('l jS \of F Y h:i:s A');
+          <hr style="margin-top: 20px"><div style="margin-bottom: 20px"><div style="float: left;margin-top: 40px">Downloaded By: '.$name.' In:  '.$date.'</div>'.$this->footer.'</div>')->setPaper('a4', 'landscape');
+
         return $pdf->download('ClassRoomSchedule|'.$date.'.pdf');
+    }
+
+    public function Activity(Request $request)
+    {
+        $log=Activity::where('id',$request->id)->get();
+        $table=$log[0]->properties;
+
+
+        $result='<table  style="width: 100%;background-color: transparent;">
+                        <tbody>
+                        <tr>
+                        <td></td>';
+
+                                $text='New';
+
+                                foreach($table as $key => $v)
+                                {
+                                    $result.='<td style="width: 2%;vertical-align:top"><span class="badge badge-primary">'.$text.'</span></td><td style="vertical-align:top;">';
+
+                                    foreach($v as $key2 =>$value )
+                                    {
+                                        if($key2!='created_at')
+
+                                            $result.='<span class="badge " style="font-size: 14px;font-style: italic;color: grey; text-align: center">'.$key2.'</span> => <span class="badge "style="color: #999999;text-align: center" >"'.$value.'"</span>';
+
+                                        else
+                                            break;
+
+                                        $result.='<br>';
+
+                                    }
+                                    $text='Old';
+                                }
+
+        $result.='</td>
+                        </tr>
+                        <tr>
+                            <td>Log entries : </td>
+                            <td>
+                                <span class="badge badge-primary">'.$log[0]->subject_type.'</span>
+                            </td>
+
+                            <td>Created at :</td>
+                            <td>
+                                <span class="badge badge-primary">'.$log[0]->created_at.'</span>
+                            </td>
+                            <td>Updated at :</td>
+                            <td>
+                                <span class="badge badge-primary">'.$log[0]->updated_at.'</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>';
+        $name=Auth::user()->name;
+        $date=date('l jS \of F Y h:i:s A');
+        $pdf= PDFF::loadHTML('<style>
+.badge{display: inline-block;
+
+padding: .25em .4em;
+
+font-size: 75%;
+
+font-weight: 700;
+
+line-height: 1;
+
+text-align: center;
+
+white-space: nowrap;
+
+vertical-align: baseline;
+
+border-radius: .25rem;}
+.badge-primary{
+color: #fff;
+
+background-color: #007bff;
+}
+table {
+font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    
+}
+
+
+
+</style><p style="text-align: center"> Log Details</p><hr> '
+            .$result.'<footer style="padding: .9375rem 0;text-align: center;display: flex;">
+          <hr style="margin-top: 20px"><div style="margin-bottom: 20px"><div style="float: left;margin-top: 40px">Downloaded By: '.$name.' In:  '.$date.' </div>'.$this->footer.'</div>')->setPaper('a4', 'landscape');;
+
+        return $pdf->download('ActivityLog|'.$date.'.pdf');
     }
 }

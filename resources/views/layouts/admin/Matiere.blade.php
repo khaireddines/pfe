@@ -14,11 +14,11 @@
 
                 @if (!empty($mat['0']->id))
                     Matiere_ID:
-                    <input type="text" name="id" value="{{@$mat['0']->id}}" disabled><br>
-                    <input type="hidden" name="id" id="" value="{{@$mat['0']->id}}">
+                    <input class="form-control" type="text" name="id" value="{{@$mat['0']->id}}" disabled>
+                    <input class="form-control" type="hidden" name="id" id="" value="{{@$mat['0']->id}}">
                 @endif
-                Matiere_Name<input type="text" name="libMat" value="{{@$mat['0']->libMat}}"><br>
-                Unite_enseignement: <select name="idUnite" id="">
+                Matiere_Name<input class="form-control" type="text" name="libMat" value="{{@$mat['0']->libMat}}">
+                Unite_enseignement: <select class="form-control" name="idUnite" id="">
                     @foreach($Uens as $Uens_data)
                         <option value="{{ $Uens_data->idUnite }}"
                                 @if(!empty(@$mat['0']->id) && $Uens_data->idUnite==@$mat['0']->idUnite)
@@ -27,18 +27,19 @@
                         >{{$Uens_data->nomUnite}}</option>
                     @endforeach
                 </select><br>
-                Coefficient:<input type="number" min="1" step="any" name="coef" value="{{@$mat['0']->coef}}"><br>
-                Nombre d'heaure de TD:<input type="number" step="any" min="0" name="nbhTd" value="{{@$mat['0']->nbhTd}}"><br>
-                Nombre d'heaure de Cour:<input type="number" step="any" min="0" name="nbhC" value="{{@$mat['0']->nbhC}}"><br>
-                Nombre d'heaure de TP:<input type="number" step="any" min="0" name="nbhTp" value="{{@$mat['0']->nbhTp}}"><br>
+                Coefficient:<input class="form-control" type="number" min="1" step="any" name="coef" value="{{@$mat['0']->coef}}">
+                Nombre d'heaure de TD:<input class="form-control" type="number" step="any" min="0" name="nbhTd" value="{{@$mat['0']->nbhTd}}">
+                Nombre d'heaure de Cour:<input class="form-control" type="number" step="any" min="0" name="nbhC" value="{{@$mat['0']->nbhC}}">
+                Nombre d'heaure de TP:<input class="form-control" type="number" step="any" min="0" name="nbhTp" value="{{@$mat['0']->nbhTp}}">
 
-                @if (!empty($mat['0']->id))
-                    <input type="submit" name="" value="modify">
-                @else
-                    <input type="submit" name="" value="add">
-                @endif
+                <div class="modal-footer justify-content-center">
+                    <button type="submit" class="btn btn-info btn-round" >Sounds good!</button>
+                </div>
 
             </form>
 
 </body>
 </html>
+<script>
+    $(".tit").html('{!! __('EnTp.Subject') !!}');
+</script>

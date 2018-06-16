@@ -54,20 +54,33 @@ class EnseignantController extends Controller
      */
     public function edit($id, Request $request)
     {//creating the newsItem will cause an activity being logged
-        User::where('email',\request('email'))->update(['avatar'=>\request('prenom').'.jpg']);
-        $img = Image::make($request->file('file'))->save(public_path('img/profile_img/'.\request('prenom').'.jpg'));
+        if($request->file('file')!=null)
+        {
+            User::where('email',\request('email'))->update(['avatar'=>\request('prenom').'.jpg']);
+            $img = Image::make($request->file('file'))->save(public_path('img/profile_img/'.\request('prenom').'.jpg'));
+        }
+
         $ens=new enseignant();
+        $old=$ens->where('matProf',$id)->get();
+
         $ens->where('matProf',$id)->update(request()->except(['_token','matProf','file']));
         activity()
            ->performedOn($ens)
+            ->withProperties(["new"=>request()->except(['_token','matProf']),"old"=>$old[0]])
            ->log('edited');
         return redirect('/Enseignant');
     }
 
     public function destroy($id)
     {//creating the newsItem will cause an activity being logged
+        $ens=new enseignant();
+        $old=$ens->where('matProf',$id)->get();
+        $ens->where('matProf',$id)->delete();
 
-        $ens=enseignant::where('matProf',$id)->delete();
+        activity()
+            ->performedOn($ens)
+            ->withProperties(["old"=>$old[0]])
+            ->log('Deleted');
         $activity = Activity::all()->last();
         return back();
     }

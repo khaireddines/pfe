@@ -24,8 +24,11 @@ Route::group(['middleware' => ['revalidate','auth','role:Admin']], function () {
     Route::get('/admin/Activity','ActivityLogController@index')
         ->name('Activitylog');
     Route::get('/admin/Activity/{id}','ActivityLogController@show');
-    //////////////////////LogViewer////////////////////////////////////
-
+    //////////////////////Language////////////////////////////////////
+    Route::get('/language/{lang}',function ($lang){
+        Session::put('applocale', $lang);
+        return redirect()->back();
+    });
     //////////////////////DepartementController////////////////////////
     Route::get('/departement','DepartementController@show');
     Route::get('/create_dep','DepartementController@create');
@@ -90,6 +93,8 @@ Route::group(['middleware' => ['revalidate','auth','role:Admin']], function () {
     Route::POST('/Class_pdf','PdfsController@Classes');
     Route::POST('/Ense_pdf','PdfsController@Ense');
     Route::POST('/ClassRoom_pdf','PdfsController@ClassRoom');
+    Route::POST('/Activity_log','PdfsController@Activity');
+
     ////////////////Affected/////////////////////
     Route::get('/affectMat','AffectMatController@show');
     Route::POST('/insert','AffectMatController@store');

@@ -10,7 +10,7 @@
             $subjects=new \App\matiere();
             $professor=new \App\enseignant();
             @endphp
-    <h3>Resources</h3>
+    <h3>{{__('EnTp.Resources')}}</h3>
     <hr>
     <div class="row">
 
@@ -34,10 +34,10 @@
 
                     </div>
                     <h4 class="card-title">
-                        <a href="/formation">Training</a>
+                        <a href="/formation">{{__('EnTp.Training')}}</a>
                     </h4>
                     <div class="card-description">
-                        This Section show how much Training cources that exist currently in the Departments of the University.
+                        {{__('EnTp.TrainingDis')}}
                     </div>
                 </div>
                 <div class="card-footer">
@@ -46,7 +46,7 @@
 
                     </div>
                     <div class="price">
-                        <h4>{{$training->CountTraining()}}/Department</h4>
+                        <h4>{{$training->CountTraining()}}/{{__('EnTp.Department')}}</h4>
                     </div>
                 </div>
             </div>
@@ -70,10 +70,10 @@
 
                     </div>
                     <h4 class="card-title">
-                        <a href="/Unite_ens">TeachingUnits</a>
+                        <a href="/Unite_ens">{{__('EnTp.Teaching Unit')}}</a>
                     </h4>
                     <div class="card-description">
-                        This Section show how much Teaching Unit are being Teached for entier Year For Each Training
+                        {{__('EnTp.Teaching UnitDis')}}
                     </div>
                 </div>
                 <div class="card-footer">
@@ -82,7 +82,7 @@
 
                     </div>
                     <div class="price">
-                        <h4>{{$teachingUnit->CountUnit()}}/Training</h4>
+                        <h4>{{$teachingUnit->CountUnit()}}/{{__('EnTp.Training')}}</h4>
                     </div>
                 </div>
             </div>
@@ -105,10 +105,10 @@
 
                     </div>
                     <h4 class="card-title">
-                        <a href="/Matiere">Subjects</a>
+                        <a href="/Matiere">{{__('EnTp.Subject')}}</a>
                     </h4>
                     <div class="card-description">
-                        This Section show how much Subject are being Teached for Each Teaching Unit
+                        {{__('EnTp.SubjectDis')}}
                     </div>
                 </div>
                 <div class="card-footer">
@@ -117,7 +117,7 @@
 
                     </div>
                     <div class="price">
-                        <h4>{{$subjects->CountSubject()}}/TeachingUnit</h4>
+                        <h4>{{$subjects->CountSubject()}}/{{__('EnTp.Teaching Unit')}}</h4>
                     </div>
                 </div>
             </div>
@@ -140,10 +140,10 @@
 
                     </div>
                     <h4 class="card-title">
-                        <a href="/departement">Departments</a>
+                        <a href="/departement">{{__('EnTp.Department')}}</a>
                     </h4>
                     <div class="card-description">
-                        This section show the static about the department that exist currently in the University.
+                        {{__('EnTp.DepartmentDis')}}
                     </div>
                 </div>
                 <div class="card-footer">
@@ -152,7 +152,7 @@
                     </div>
 
                     <div class="price">
-                        <h4>{{$department->CountDepartment()}}/University</h4>
+                        <h4>{{$department->CountDepartment()}}/{{__('EnTp.University')}}</h4>
                     </div>
                 </div>
             </div>
@@ -175,10 +175,11 @@
 
                     </div>
                     <h4 class="card-title">
-                        <a href="/Class">Classes</a>
+                        <a href="/Class">{{__('EnTp.Class')}}</a>
                     </h4>
                     <div class="card-description">
-                        This Section show How much Classes they are in Each Training in Each Department. <br>
+                        {{__('EnTp.ClassDis')}}
+                        <br>
                     </div>
                 </div>
                 <div class="card-footer">
@@ -187,7 +188,7 @@
 
                     </div>
                     <div class="price">
-                        <h4>{{$classes->CountClasses()}}/Training</h4>
+                        <h4>{{$classes->CountClasses()}}/{{__('EnTp.Training')}}</h4>
                     </div>
                 </div>
             </div>
@@ -210,10 +211,10 @@
 
                     </div>
                     <h4 class="card-title">
-                        <a href="/Enseignant">Professors</a>
+                        <a href="/Enseignant">{{__('EnTp.Professor')}}</a>
                     </h4>
                     <div class="card-description">
-                        This Section show The Professors exist in the University.
+                        {{__('EnTp.ProfessorDis')}}
                     </div>
                 </div>
                 <div class="card-footer">
@@ -222,7 +223,7 @@
 
                     </div>
                     <div class="price">
-                        <h4>{{$professor->CountProfessor()}}/University</h4>
+                        <h4>{{$professor->CountProfessor()}}/{{__('EnTp.University')}}</h4>
                     </div>
                 </div>
             </div>

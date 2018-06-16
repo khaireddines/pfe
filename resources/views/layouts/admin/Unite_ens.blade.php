@@ -13,13 +13,13 @@
                 {{ csrf_field() }}
                 Unite_ens_ID:
                 @if (!empty($unite['0']->idUnite))
-                    <input type="text" name="idUnite" value="{{@$unite['0']->idUnite}}" disabled><br>
-                    <input type="hidden" name="idUnite" id="" value="{{@$unite['0']->idUnite}}">
+                    <input type="text" class="form-control" name="idUnite" value="{{@$unite['0']->idUnite}}" disabled>
+                    <input type="hidden" class="form-control" name="idUnite" id="" value="{{@$unite['0']->idUnite}}">
 
                 @else
-                    <input type="text" name="idUnite" value=""><br>
+                    <input type="text" class="form-control" name="idUnite" value="">
                 @endif
-                Formation: <select name="idForm" id="">
+                Formation: <select  class="form-control" name="idForm" id="">
                     @foreach($form as $form_data)
                         <option value="{{$form_data->idForm}}"
                                 @if(!empty(@$unite['0']->idUnite) || $form_data->idForm==@$unite['0']->idForm)
@@ -28,8 +28,8 @@
                         >{{$form_data->libForm}}</option>
                     @endforeach
                 </select><br>
-                Unite_ens_Name<input type="text" name="nomUnite" value="{{@$unite['0']->nomUnite}}"><br>
-                Nature: <select name="natureUnite" id="">
+                Unite_ens_Name<input type="text" class="form-control" name="nomUnite" value="{{@$unite['0']->nomUnite}}">
+                Nature: <select class="form-control" name="natureUnite" id="">
                     <option value="Principal"
                             @if(!empty(@$unite['0']->idUnite) || @$unite['0']->natureUnite=='Principal')
                             selected
@@ -40,18 +40,19 @@
                             selected
                             @endif
                     >Secondaire</option>
-                </select><br>
-                Total_Hours_Vol: <input type="number" name="totalVol_Horaire" value="{{@$unite['0']->totalVol_Horaire}}"><br>
-                CreditUe: <input type="number" name="creditUe" value="{{@$unite['0']->creditUe}}"><br>
-                CoefUe: <input type="number" name="coefUe" value="{{@$unite['0']->coefUe}}"><br>
+                </select>
+                Total_Hours_Vol: <input class="form-control" type="number" name="totalVol_Horaire" value="{{@$unite['0']->totalVol_Horaire}}">
+                CreditUe: <input class="form-control" type="number" name="creditUe" value="{{@$unite['0']->creditUe}}">
+                CoefUe: <input class="form-control" type="number" name="coefUe" value="{{@$unite['0']->coefUe}}">
 
-                @if (!empty($unite['0']->idUnite))
-                    <input type="submit" name="" value="modify">
-                @else
-                    <input type="submit" name="" value="add">
-                @endif
+                <div class="modal-footer justify-content-center">
+                    <button type="submit" class="btn btn-info btn-round" >Sounds good!</button>
+                </div>
 
             </form>
 
 </body>
 </html>
+<script>
+    $(".tit").html('{!! __('EnTp.Teaching Unit') !!}');
+</script>
