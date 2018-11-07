@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::group(['prefix' => 'home'],function (){
 Route::group(['middleware' => ['revalidate','auth','role:Admin']], function () {
     Route::GET('/Admin/Dashboard',function(){
         return view('layouts.admin.Dashboard');
@@ -119,3 +119,4 @@ Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+});
