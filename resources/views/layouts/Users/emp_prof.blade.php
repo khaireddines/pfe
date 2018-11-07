@@ -18,19 +18,7 @@
              scrollbar-y:left;
             max-height: fit-content}
 
-
-
-
-
-
-
-
-
-
-
-
-
-    </style>
+</style>
 @endsection
 
 @section('content')

@@ -1,0 +1,40 @@
+{
+    "name": "get-stream/stream-laravel",
+    "description": "Build newsfeeds and activity feeds on Laravel using getstream.io",
+    "homepage": "https://getstream.io/",
+    "keywords": ["getstream", "activity", "newsfeed", "activity feed", "notification feed", "aggregated feed"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tommaso Barbugli",
+            "email": "tbarbugli@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "illuminate/support": ">=4.2",
+        "illuminate/database": ">=4.2",
+        "get-stream/stream": "~2.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0",
+        "mockery/mockery": "~0.9"
+    },
+    "autoload": {
+        "psr-0": {
+            "GetStream\\StreamLaravel\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "GetStream\\StreamLaravel\\StreamLaravelServiceProvider"
+            ],
+            "aliases": {
+                "FeedManager": "GetStream\\StreamLaravel\\Facades\\FeedManager"
+            }
+        }
+    }
+}
+

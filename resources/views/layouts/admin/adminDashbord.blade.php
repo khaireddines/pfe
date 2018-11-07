@@ -502,9 +502,11 @@
 
 
 <script src="{{asset('js/arrive.min.js')}}"></script>
+<!--   Language   -->
+<script src="{{asset('js/Language.js')}}"></script>
 @yield('custemScript')
 
 
-<!--   Language   -->
-<script src="{{asset('js/Language.js')}}"></script>
+
+
 </html>
