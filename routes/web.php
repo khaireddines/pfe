@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'home'],function (){
+
 Route::group(['middleware' => ['revalidate','auth','role:Admin']], function () {
     Route::GET('/Admin/Dashboard',function(){
         return view('layouts.admin.Dashboard');
