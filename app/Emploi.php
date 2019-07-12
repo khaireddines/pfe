@@ -10,5 +10,5 @@ class Emploi extends Model
     use LogsActivity;
     protected static $logAttributes = ['*'];
 
-    protected static $logOnlyDirty = true;
+
 }

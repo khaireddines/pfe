@@ -8,5 +8,5 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class emp_salle extends Model
 {
     use LogsActivity;
-
+    protected static $logAttributes = ['*'];
 }

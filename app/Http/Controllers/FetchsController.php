@@ -47,10 +47,10 @@ class FetchsController extends Controller
 
         $id=request('id');
         $output.=
-        '<select name="idMat" id="'.$id.'" class="C custom-select custom-select-lg mb-3" style="width:50%">';
+        '<select name="id" id="'.$id.'" class="C custom-select custom-select-lg mb-3" style="width:50%">';
         $output.='<option>----Make A Choice----</option>';
         foreach($mats as $data )
-        {$val=''. $data->idMat;
+        {$val=''. $data->id;
             $text=''. $data->libMat;
             if($data->nbhTp==null)
             {
@@ -75,10 +75,10 @@ class FetchsController extends Controller
 
         $id=request('id');
         $output.=
-            '<select name="idMat" id="'.$id.'" class="AT custom-select custom-select-lg mb-3" style="width:50%">';
+            '<select name="id" id="'.$id.'" class="AT custom-select custom-select-lg mb-3" style="width:50%">';
         $output.='<option>----Make A Choice----</option>';
         foreach($mats as $data )
-        {$val=''. $data->idMat;
+        {$val=''. $data->id;
             $text=''. $data->libMat;
             if($data->nbhC==null)
             {
@@ -127,7 +127,7 @@ class FetchsController extends Controller
         // where (e.prenom LIKE 'khaireddine' or e.nom LIKE 'khaireddine' ) and r.idProf=e.matProf and r.idMat=m.idMat;
         $hours = DB::table('affectedtos')
             ->join( 'enseignants','enseignants.matProf', '=','affectedtos.MatProf' )
-            ->join( 'matieres','matieres.idMat', '=','affectedtos.idMat' )
+            ->join( 'matieres','matieres.id', '=','affectedtos.idMat' )
             ->select('*')
             ->where('affectedtos.nomProf','like','%'.$search.'%')
             ->distinct()
@@ -217,7 +217,7 @@ class FetchsController extends Controller
                 {$mat=matiere::where('idUnite',$data_uni->idUnite)->get();
                     $result.='<tr><td class="table-active">'.$data_uni->nomUnite.'</td></tr>';
                     foreach ($mat as $mat_data)
-                    {$pr=Affectedto::where('idMat',$mat_data->idMat)->get();
+                    {$pr=Affectedto::where('id',$mat_data->id)->get();
                         $result.='<tr><td style="border: none;"></td></td>
                         <td>'.$mat_data->libMat.'</td>';
                         if (count($pr)!=0){$pr['0']->nomProf;
@@ -256,7 +256,7 @@ class FetchsController extends Controller
              {
                  if ($un_data->idUnite==$mat_data->idUnite)
                  {
-                 $pr=Affectedto::where('idMat',$mat_data->idMat)->get();
+                 $pr=Affectedto::where('idMat',$mat_data->id)->get();
                  if (count($pr)!=0){
                          $result.='<td class="">'.$mat_data->libMat.'</td>
                     <td class="table-success">'.$pr['0']->nomProf.'</td>';
@@ -315,7 +315,7 @@ class FetchsController extends Controller
         // and f.idForm='DSI1';
         $result='<option disabled="" id="del" selected>--Now Pick A Subject--</option>
 <optgroup label="COURS">';
-        $idForm=classe::where('idClass',request('idClasse'))->get();
+        $idForm=classe::where('id',request('idClasse'))->get();
 
         $Mats=DB::table('matieres')
             ->join( 'uni_enseignements','uni_enseignements.idUnite', '=','matieres.idUnite' )
@@ -326,12 +326,12 @@ class FetchsController extends Controller
 
         foreach ($Mats as $data_mat)
         {if ($data_mat->nbhC!=0)
-            $result.='<option value="'.$data_mat->idMat.'">'.$data_mat->libMat.'</option>';
+            $result.='<option value="'.$data_mat->id.'">'.$data_mat->libMat.'</option>';
         }
         $result.='</optgroup><optgroup label="TP">';
         foreach ($Mats as $data_mat)
         {if ($data_mat->nbhC==0)
-            $result.='<option value="'.$data_mat->idMat.'">'.$data_mat->libMat.'</option>';
+            $result.='<option value="'.$data_mat->id.'">'.$data_mat->libMat.'</option>';
         }
         $result.='</optgroup>';
         return $result;
@@ -349,7 +349,7 @@ class FetchsController extends Controller
 
         foreach ($profs as $data)
         {   $affected=Affectedto::where('MatProf',$data->MatProf)->count();
-            $mat=matiere::where('idMat',$data->idMat)->get();
+            $mat=matiere::where('id',$data->Mat)->get();
             $total=$mat[0]->nbhTp+$mat[0]->nbhTd+$mat[0]->nbhC;
             if($affected==0)
             $result.='<div class="ens" value="'.$data->MatProf.'"><p>'.$data->nom.' '.$data->prenom.'   &nbsp &nbsp S:  '.$affected .'&nbsp &nbsp T.H:'.$total.'</p><input id="prof" class="form-control" name="" value="'.$data->MatProf.'" hidden></div>';
@@ -359,7 +359,7 @@ class FetchsController extends Controller
     public function profs(){
         $result='<option disabled="" id="" selected>Pick Professor</option>
 <optgroup label="Teacher">';
-        $idDept=classe::where('idClass',request('idClasse'))->get();
+        $idDept=classe::where('id',request('idClasse'))->get();
         $mats=Mat::where('Mat',request('idMat'))->get();
 
         $profs=enseignant::where('idDept',$idDept['0']->idDept)->get();
@@ -367,7 +367,7 @@ class FetchsController extends Controller
         {$affected=Affectedto::where('MatProf',$prof->matProf)->get();
             $total=0;
             foreach ($affected as $data)
-            {$mat=matiere::where('idMat',$data->idMat)->get();
+            {$mat=matiere::where('id',$data->idMat)->get();
                 $total+=$mat[0]->nbhTp+$mat[0]->nbhTd+$mat[0]->nbhC;}
 
             if(count($mats)!=0)
@@ -396,7 +396,7 @@ class FetchsController extends Controller
         {$affected=Affectedto::where('MatProf',$data->MatProf)->get();
             $total=0;
             foreach ($affected as $data)
-            {$mat=matiere::where('idMat',$data->idMat)->get();
+            {$mat=matiere::where('id',$data->idMat)->get();
                 $total+=$mat[0]->nbhTp+$mat[0]->nbhTd+$mat[0]->nbhC;}
             $result.='<div class="notsortable affected" value="'.$data->MatProf.'"><p>'.$data->nomProf.' &nbsp  &nbsp &nbsp  &nbsp  S: '.count($affected) .' &nbsp  &nbsp &nbsp  &nbsp  T.H: '.$total .'</p></div>';
         }
@@ -408,7 +408,7 @@ class FetchsController extends Controller
         $affcted=Affectedto::where('MatProf',request('MatProf'))->where('placed','no')->get();
         if (count($affcted)!=0)
         {foreach ($affcted as $data)
-        {$mats=matiere::where('idMat',$data->idMat)->get();
+        {$mats=matiere::where('id',$data->idMat)->get();
             if ($mats ['0']->nbhTp!=0)
             {$type='TP';$heure=$mats ['0']->nbhTp;
             }
@@ -420,7 +420,7 @@ class FetchsController extends Controller
                      <div class="fc-content">
                           <span class="fc-time">'.$data->Class.'</span>
                           <span class="fc-title">'.$mats['0']->libMat.'</span>
-                          <input class="matiere classe" type="hidden" value="'.$mats['0']->idMat.'_'.$data->Class.'" name=""> 
+                          <input class="matiere classe" type="hidden" value="'.$mats['0']->id.'_'.$data->Class.'" name=""> 
                           
                      </div>
                 </a>
@@ -444,34 +444,34 @@ class FetchsController extends Controller
                      ';
                     if (count($classe)!=0)
                       foreach ($matiere as $data)
-                      {   if ($data->idMat==@$classe[$i]->Lundi)
+                      {   if ($data->id==@$classe[$i]->Lundi)
                           {$salla=emp_salle::where('Lundi',$classe[$i]->idClass)->where('Lession',$classe[$i]->Lession)->get();
-                              @$prof=Affectedto::where('idMat',$data->idMat)->get();
+                              @$prof=Affectedto::where('idMat',$data->id)->get();
                               if (count($prof)!=0)$profe=$prof['0']->nomProf; else $profe='';
                              $inL.=$salla[0]->idSalle.':'.$data->libMat.'<br>'.$profe;}
-                             if ($data->idMat==@$classe[$i]->Mardi)
+                             if ($data->id==@$classe[$i]->Mardi)
                           {$salla=emp_salle::where('Mardi',$classe[$i]->idClass)->where('Lession',$classe[$i]->Lession)->get();
-                              @$prof=Affectedto::where('idMat',$data->idMat)->get();
+                              @$prof=Affectedto::where('idMat',$data->id)->get();
                               if (count($prof)!=0)$profe=$prof['0']->nomProf; else $profe='';
                               $inMA.=$salla[0]->idSalle.':'.$data->libMat.'<br>'.$profe;}
-                              if ($data->idMat==@$classe[$i]->Mercredi)
+                              if ($data->id==@$classe[$i]->Mercredi)
                           {$salla=emp_salle::where('Mercredi',$classe[$i]->idClass)->where('Lession',$classe[$i]->Lession)->get();
-                              @$prof=Affectedto::where('idMat',$data->idMat)->get();
+                              @$prof=Affectedto::where('idMat',$data->id)->get();
                               if (count($prof)!=0)$profe=$prof['0']->nomProf; else $profe='';
                               $inME.=$salla[0]->idSalle.':'.$data->libMat.'<br>'.$profe;}
-                              if ($data->idMat==@$classe[$i]->Jeudi)
+                              if ($data->id==@$classe[$i]->Jeudi)
                           {$salla=emp_salle::where('Jeudi',$classe[$i]->idClass)->where('Lession',$classe[$i]->Lession)->get();
-                              @$prof=Affectedto::where('idMat',$data->idMat)->get();
+                              @$prof=Affectedto::where('idMat',$data->id)->get();
                               if (count($prof)!=0)$profe=$prof['0']->nomProf; else $profe='';
                               $inJ.=$salla[0]->idSalle.':'.$data->libMat.'<br>'.$profe;}
-                              if ($data->idMat==@$classe[$i]->Vendredi)
+                              if ($data->id==@$classe[$i]->Vendredi)
                           {$salla=emp_salle::where('Vendredi',$classe[$i]->idClass)->where('Lession',$classe[$i]->Lession)->get();
-                              @$prof=Affectedto::where('idMat',$data->idMat)->get();
+                              @$prof=Affectedto::where('idMat',$data->id)->get();
                               if (count($prof)!=0)$profe=$prof['0']->nomProf; else $profe='';
                               $inV.=$salla[0]->idSalle.':'.$data->libMat.'<br>'.$profe;}
-                              if ($data->idMat==@$classe[$i]->Samedi)
+                              if ($data->id==@$classe[$i]->Samedi)
                           {$salla=emp_salle::where('Samedi',$classe[$i]->idClass)->where('Lession',$classe[$i]->Lession)->get();
-                              @$prof=Affectedto::where('idMat',$data->idMat)->get();
+                              @$prof=Affectedto::where('idMat',$data->id)->get();
                               if (count($prof)!=0)$profe=$prof['0']->nomProf; else $profe='';
                               $inS.=$salla[0]->idSalle.':'.$data->libMat.'<br>'.$profe;}}
 
@@ -505,14 +505,14 @@ class FetchsController extends Controller
             if (isset($emp_prof['0'])&&$emp_prof['0']->Lundi!='')
         {$salle=emp_salle::where('Lession',($i+1))->where('Lundi',$emp_prof['0']->Lundi)->get();
         $classe=emp_class::where('idClass',$emp_prof['0']->Lundi)->where('Lession',($i+1))->get();
-            $mats=matiere::where('idMat',$classe['0']->Lundi)->get();
+            $mats=matiere::where('id',$classe['0']->Lundi)->get();
             $result.=' <td class="sortable table-active" id="mon" num="'.$j++.'">
         <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end event-azure mat cla" style="cursor:pointer;">
                      <div class="fc-content">
                           <span class="fc-time">'.$emp_prof['0']->Lundi.'</span>
                           <span class="fc-title">'.@$mats['0']->libMat.'</span>
-                          <input class="matiere classe" type="hidden" value="'.@$mats['0']->idMat.'_'.$emp_prof['0']->Lundi.'_'.@$salle['0']->idSalle.'" name="mon['.$i.']"> 
-                          <input class="oldMat classe" type="hidden" value="'.@$mats['0']->idMat.'_'.$emp_prof['0']->Lundi.'_'.@$salle['0']->idSalle.'" name="oldmon['.$i.']">
+                          <input class="matiere classe" type="hidden" value="'.@$mats['0']->id.'_'.$emp_prof['0']->Lundi.'_'.@$salle['0']->idSalle.'" name="mon['.$i.']"> 
+                          <input class="oldMat classe" type="hidden" value="'.@$mats['0']->id.'_'.$emp_prof['0']->Lundi.'_'.@$salle['0']->idSalle.'" name="oldmon['.$i.']">
                      </div>
                 </a>
         </td>';
@@ -525,14 +525,14 @@ class FetchsController extends Controller
             if (isset($emp_prof['0'])&&$emp_prof['0']->Mardi!='')
             {$salle=emp_salle::where('Lession',($i+1))->where('Mardi',$emp_prof['0']->Mardi)->get();
                 $classe=emp_class::where('idClass',$emp_prof['0']->Mardi)->where('Lession',($i+1))->get();
-                $mats=matiere::where('idMat',$classe['0']->Mardi)->get();
+                $mats=matiere::where('id',$classe['0']->Mardi)->get();
                 $result.=' <td class="sortable table-active" id="tue" num="'.$j++.'">
         <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end event-azure mat cla" style="cursor:pointer;">
                      <div class="fc-content">
                           <span class="fc-time">'.$emp_prof['0']->Mardi.'</span>
                           <span class="fc-title">'.@$mats['0']->libMat.'</span>
-                          <input class="matiere classe" type="hidden" value="'.@$mats['0']->idMat.'_'.$emp_prof['0']->Mardi.'_'.@$salle['0']->idSalle.'" name="tue['.$i.']"> 
-                          <input class="oldMat classe" type="hidden" value="'.@$mats['0']->idMat.'_'.$emp_prof['0']->Mardi.'_'.@$salle['0']->idSalle.'" name="oldtue['.$i.']">
+                          <input class="matiere classe" type="hidden" value="'.@$mats['0']->id.'_'.$emp_prof['0']->Mardi.'_'.@$salle['0']->idSalle.'" name="tue['.$i.']"> 
+                          <input class="oldMat classe" type="hidden" value="'.@$mats['0']->id.'_'.$emp_prof['0']->Mardi.'_'.@$salle['0']->idSalle.'" name="oldtue['.$i.']">
                      </div>
                 </a>
         </td>';
@@ -546,14 +546,14 @@ class FetchsController extends Controller
             if (isset($emp_prof['0'])&&$emp_prof['0']->Mercredi!='')
             {$salle=emp_salle::where('Lession',($i+1))->where('Mercredi',$emp_prof['0']->Mercredi)->get();
                 $classe=emp_class::where('idClass',$emp_prof['0']->Mercredi)->where('Lession',($i+1))->get();
-                $mats=matiere::where('idMat',$classe['0']->Mercredi)->get();
+                $mats=matiere::where('id',$classe['0']->Mercredi)->get();
                 $result.=' <td class="sortable table-active" id="wed" num="'.$j++.'">
         <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end event-azure mat cla" style="cursor:pointer;">
                      <div class="fc-content">
                           <span class="fc-time">'.$emp_prof['0']->Mercredi.'</span>
                           <span class="fc-title">'.@$mats['0']->libMat.'</span>
-                          <input class="matiere classe" type="hidden" value="'.@$mats['0']->idMat.'_'.$emp_prof['0']->Mercredi.'_'.@$salle['0']->idSalle.'" name="wed['.$i.']"> 
-                          <input class="oldMat classe" type="hidden" value="'.@$mats['0']->idMat.'_'.$emp_prof['0']->Mercredi.'_'.@$salle['0']->idSalle.'" name="oldwed['.$i.']">
+                          <input class="matiere classe" type="hidden" value="'.@$mats['0']->id.'_'.$emp_prof['0']->Mercredi.'_'.@$salle['0']->idSalle.'" name="wed['.$i.']"> 
+                          <input class="oldMat classe" type="hidden" value="'.@$mats['0']->id.'_'.$emp_prof['0']->Mercredi.'_'.@$salle['0']->idSalle.'" name="oldwed['.$i.']">
                      </div>
                 </a>
         </td>';
@@ -565,14 +565,14 @@ class FetchsController extends Controller
             if (isset($emp_prof['0'])&&$emp_prof['0']->Jeudi!='')
             {$salle=emp_salle::where('Lession',($i+1))->where('Jeudi',$emp_prof['0']->Jeudi)->get();
                 $classe=emp_class::where('idClass',$emp_prof['0']->Jeudi)->where('Lession',($i+1))->get();
-                $mats=matiere::where('idMat',$classe['0']->Jeudi)->get();
+                $mats=matiere::where('id',$classe['0']->Jeudi)->get();
                 $result.=' <td class="sortable table-active" id="thu" num="'.$j++.'">
         <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end event-azure mat cla" style="cursor:pointer;">
                      <div class="fc-content">
                           <span class="fc-time">'.$emp_prof['0']->Jeudi.'</span>
                           <span class="fc-title">'.@$mats['0']->libMat.'</span>
-                          <input class="matiere classe" type="hidden" value="'.@$mats['0']->idMat.'_'.$emp_prof['0']->Jeudi.'_'.@$salle['0']->idSalle.'" name="thu['.$i.']"> 
-                          <input class="oldMat classe" type="hidden" value="'.@$mats['0']->idMat.'_'.$emp_prof['0']->Jeudi.'_'.@$salle['0']->idSalle.'" name="oldthu['.$i.']">
+                          <input class="matiere classe" type="hidden" value="'.@$mats['0']->id.'_'.$emp_prof['0']->Jeudi.'_'.@$salle['0']->idSalle.'" name="thu['.$i.']"> 
+                          <input class="oldMat classe" type="hidden" value="'.@$mats['0']->id.'_'.$emp_prof['0']->Jeudi.'_'.@$salle['0']->idSalle.'" name="oldthu['.$i.']">
                      </div>
                 </a>
         </td>';
@@ -584,14 +584,14 @@ class FetchsController extends Controller
             if (isset($emp_prof['0'])&&$emp_prof['0']->Vendredi!='')
             {$salle=emp_salle::where('Lession',($i+1))->where('Vendredi',$emp_prof['0']->Vendredi)->get();
                 $classe=emp_class::where('idClass',$emp_prof['0']->Vendredi)->where('Lession',($i+1))->get();
-                $mats=matiere::where('idMat',$classe['0']->Vendredi)->get();
+                $mats=matiere::where('id',$classe['0']->Vendredi)->get();
                 $result.=' <td class="sortable table-active" id="fri" num="'.$j++.'">
         <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end event-azure mat cla" style="cursor:pointer;">
                      <div class="fc-content">
                           <span class="fc-time">'.$emp_prof['0']->Vendredi.'</span>
                           <span class="fc-title">'.@$mats['0']->libMat.'</span>
-                          <input class="matiere classe" type="hidden" value="'.@$mats['0']->idMat.'_'.$emp_prof['0']->Vendredi.'_'.@$salle['0']->idSalle.'" name="fri['.$i.']"> 
-                          <input class="oldMat classe" type="hidden" value="'.@$mats['0']->idMat.'_'.$emp_prof['0']->Vendredi.'_'.@$salle['0']->idSalle.'" name="oldfri['.$i.']">
+                          <input class="matiere classe" type="hidden" value="'.@$mats['0']->id.'_'.$emp_prof['0']->Vendredi.'_'.@$salle['0']->idSalle.'" name="fri['.$i.']"> 
+                          <input class="oldMat classe" type="hidden" value="'.@$mats['0']->id.'_'.$emp_prof['0']->Vendredi.'_'.@$salle['0']->idSalle.'" name="oldfri['.$i.']">
                      </div>
                 </a>
         </td>';
@@ -603,14 +603,14 @@ class FetchsController extends Controller
             if (isset($emp_prof['0'])&&$emp_prof['0']->Samedi!='')
             {$salle=emp_salle::where('Lession',($i+1))->where('Samedi',$emp_prof['0']->Samedi)->get();
                 $classe=emp_class::where('idClass',$emp_prof['0']->Samedi)->where('Lession',($i+1))->get();
-                $mats=matiere::where('idMat',$classe['0']->Samedi)->get();
+                $mats=matiere::where('id',$classe['0']->Samedi)->get();
                 $result.=' <td class="sortable table-active" id="sat" num="'.$j++.'">
         <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end event-azure mat cla" style="cursor:pointer;">
                      <div class="fc-content">
                           <span class="fc-time">'.$emp_prof['0']->Samedi.'</span>
                           <span class="fc-title">'.@$mats['0']->libMat.'</span>
-                          <input class="matiere classe" type="hidden" value="'.@$mats['0']->idMat.'_'.$emp_prof['0']->Samedi.'_'.@$salle['0']->idSalle.'" name="sat['.$i.']"> 
-                          <input class="oldMat classe" type="hidden" value="'.@$mats['0']->idMat.'_'.$emp_prof['0']->Samedi.'_'.@$salle['0']->idSalle.'" name="oldsat['.$i.']">
+                          <input class="matiere classe" type="hidden" value="'.@$mats['0']->id.'_'.$emp_prof['0']->Samedi.'_'.@$salle['0']->idSalle.'" name="sat['.$i.']"> 
+                          <input class="oldMat classe" type="hidden" value="'.@$mats['0']->id.'_'.$emp_prof['0']->Samedi.'_'.@$salle['0']->idSalle.'" name="oldsat['.$i.']">
                      </div>
                 </a>
         </td>';
@@ -647,8 +647,8 @@ class FetchsController extends Controller
         if (@$room[$i]->Lundi!=null)
     {@$classe=emp_class::where('idClass',$room[$i]->Lundi)->where('Lession',($i+1))->get();
     if ($classe[0]->Lundi!=null)
-    {$matiere=matiere::where('idMat',$classe[0]->Lundi)->get();
-        @$prof=Affectedto::where('idMat',$matiere[0]->idMat)->get();
+    {$matiere=matiere::where('id',$classe[0]->Lundi)->get();
+        @$prof=Affectedto::where('idMat',$matiere[0]->id)->get();
         if (count($prof)!=0)$profe=$prof['0']->nomProf; else $profe='';
         $inL.=$matiere[0]->libMat.'<br>'.$profe;
     }
@@ -657,8 +657,8 @@ class FetchsController extends Controller
         {@$classe=emp_class::where('idClass',$room[$i]->Mardi)->where('Lession',($i+1))->get();
             if ($classe[0]->Mardi!=null)
             {
-            $matiere=matiere::where('idMat',$classe[0]->Mardi)->get();
-            @$prof=Affectedto::where('idMat',$matiere[0]->idMat)->get();
+            $matiere=matiere::where('id',$classe[0]->Mardi)->get();
+            @$prof=Affectedto::where('idMat',$matiere[0]->id)->get();
             if (count($prof)!=0)$profe=$prof['0']->nomProf; else $profe='';
             $inMA.=$matiere[0]->libMat.'<br>'.$profe;
             }
@@ -668,8 +668,8 @@ class FetchsController extends Controller
         {@$classe=emp_class::where('idClass',$room[$i]->Mercredi)->where('Lession',($i+1))->get();
         if ($classe[0]->Mercredi!=null)
     {
-            $matiere=matiere::where('idMat',$classe[0]->Mercredi)->get();
-            @$prof=Affectedto::where('idMat',$matiere[0]->idMat)->get();
+            $matiere=matiere::where('id',$classe[0]->Mercredi)->get();
+            @$prof=Affectedto::where('idMat',$matiere[0]->id)->get();
             if (count($prof)!=0)$profe=$prof['0']->nomProf; else $profe='';
             $inME.=$matiere[0]->libMat.'<br>'.$profe;
         }
@@ -678,8 +678,8 @@ class FetchsController extends Controller
         {@$classe=emp_class::where('idClass',$room[$i]->Jeudi)->where('Lession',($i+1))->get();
         if ($classe[0]->Jeudi!=null)
     {
-            $matiere=matiere::where('idMat',$classe[0]->Jeudi)->get();
-            @$prof=Affectedto::where('idMat',$matiere[0]->idMat)->get();
+            $matiere=matiere::where('id',$classe[0]->Jeudi)->get();
+            @$prof=Affectedto::where('idMat',$matiere[0]->id)->get();
             if (count($prof)!=0)$profe=$prof['0']->nomProf; else $profe='';
             $inJ.=$matiere[0]->libMat.'<br>'.$profe;
         }
@@ -688,8 +688,8 @@ class FetchsController extends Controller
         {@$classe=emp_class::where('idClass',$room[$i]->Vendredi)->where('Lession',($i+1))->get();
         if ($classe[0]->Vendredi!=null)
     {
-            $matiere=matiere::where('idMat',$classe[0]->Vendredi)->get();
-            @$prof=Affectedto::where('idMat',$matiere[0]->idMat)->get();
+            $matiere=matiere::where('id',$classe[0]->Vendredi)->get();
+            @$prof=Affectedto::where('idMat',$matiere[0]->id)->get();
             if (count($prof)!=0)$profe=$prof['0']->nomProf; else $profe='';
             $inV.=$matiere[0]->libMat.'<br>'.$profe;
         }
@@ -698,8 +698,8 @@ class FetchsController extends Controller
         {@$classe=emp_class::where('idClass',$room[$i]->Samedi)->where('Lession',($i+1))->get();
         if ($classe[0]->Samedi!=null)
     {
-            $matiere=matiere::where('idMat',$classe[0]->Samedi)->get();
-            @$prof=Affectedto::where('idMat',$matiere[0]->idMat)->get();
+            $matiere=matiere::where('id',$classe[0]->Samedi)->get();
+            @$prof=Affectedto::where('idMat',$matiere[0]->id)->get();
             if (count($prof)!=0)$profe=$prof['0']->nomProf; else $profe='';
             $inS.=$matiere[0]->libMat.'<br>'.$profe;
         }
@@ -771,7 +771,7 @@ class FetchsController extends Controller
 
     public function MatInfo()
     {
-    $mat=matiere::where("idMat",\request('idMat'))->get();
+    $mat=matiere::where("id",\request('idMat'))->get();
 
     $uni=uni_enseignement::where('idUnite',$mat[0]->idUnite)->get();
 

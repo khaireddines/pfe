@@ -7,13 +7,13 @@
 </head>
 <body>
 
-@if (!empty($class['0']->idClass))
-    <form class="form" action="/modify_Class/{{$class['0']->idClass}}" method="post">
+@if (!empty($class['0']->id))
+    <form class="form" action="/modify_Class/{{$class['0']->id}}" method="post">
         @else
             <form class="form" action="/create_Class" method="post">
                 @endif
                 @csrf
-                @if (!empty($class['0']->idClass))
+                @if (!empty($class['0']->id))
 
                     <div class="form-group bmd-form-group">
                         <div class="input-group">
@@ -28,7 +28,7 @@
                             </div>
                         </div>
                     </div>
-                    <input type="hidden" class="form-control" name="idClass" id="" value="{{@$class['0']->idClass}}">
+                    <input type="hidden" class="form-control" name="idClass" id="" value="{{@$class['0']->id}}">
 
                 @endif
                 <div class="form-group bmd-form-group">
@@ -82,7 +82,7 @@
                                 <option value="0" selected disabled style="cursor: not-allowed">--Session--</option>
                                 @foreach($sess as $sess_data)
                                     <option value="{{$sess_data->idSession}}"
-                                            @if (!empty(@$class['0']->idClass) || ($sess_data->idSession==@$class['0']->idSession))
+                                            @if (!empty(@$class['0']->id) || ($sess_data->idSession==@$class['0']->idSession))
                                             selected
                                             @endif
                                     >{{$sess_data->nomSession}}</option>
@@ -101,7 +101,7 @@
                         </div>
                         <div class="form-group bmd-form-group">
                             <label for="idForm" class="bmd-label-floating">Class Num:</label>
-                            <input type="number" class="form-control" name="numclass" value="{{@$class['0']->idClass}}" required>
+                            <input type="number" class="form-control" name="numclass" value="{{@$class['0']->id}}" required>
 
                         </div>
                     </div>

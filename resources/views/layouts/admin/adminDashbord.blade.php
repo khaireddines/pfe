@@ -19,7 +19,21 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/font-awesome.min.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/material-dashboard.min790f.css?v=2.0.1')}}">
+    <style>
+        .icon-small
+        {
+            height:18px!important;
+            margin:0!important;
+            padding:0!important;
+        }
 
+        .icon-medium
+        {
+            height:22px!important;
+            margin:0!important;
+            padding:0!important;
+        }
+    </style>
 
 
 
@@ -67,14 +81,14 @@
                                 @endphp
                                 <a class="nav-link" href="/create_Enseignant/{!! $user->AuthUserMat() !!}?type=profile">
                                     <span class="sidebar-mini"> MP </span>
-                                    <span class="sidebar-normal"> My Profile </span>
+                                    <span class="sidebar-normal"> {{__('EnTp.My Profile')}} </span>
                                 </a>
 
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <span class="sidebar-mini"> S </span>
-                                    <span class="sidebar-normal"> Settings </span>
+                                    <span class="sidebar-normal"> {{__('EnTp.Setting')}} </span>
                                 </a>
                             </li>
                         </ul>
@@ -84,16 +98,16 @@
             <ul class="nav">
 
                 <li class="nav-item Dashboard">
-                    <a class="nav-link " href="/Dashboard">
+                    <a class="nav-link " href="{{route('Dashboard')}}">
                         <i class="material-icons">dashboard</i>
-                        <p> Dashboard </p>
+                        <p> {{__('EnTp.Dashboard')}} </p>
                     </a>
                 </li>
 
                 <li class="nav-item pages">
                     <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
                         <i class="material-icons">widgets</i>
-                        <p> Resources
+                        <p> {{__('EnTp.Resources')}}
                             <b class="caret"></b>
                         </p>
                     </a>
@@ -103,38 +117,38 @@
                             <li class="nav-item D">
                                 <a class="nav-link dep" href="/departement">
                                     <span class="sidebar-mini"> D </span>
-                                    <span class="sidebar-normal"> Department </span>
+                                    <span class="sidebar-normal"> {{__('EnTp.Department')}} </span>
                                 </a>
                             </li>
                             <li class="nav-item F">
                                 <a class="nav-link" href="/formation">
                                     <span class="sidebar-mini"> T </span>
-                                    <span class="sidebar-normal"> Training </span>
+                                    <span class="sidebar-normal"> {{__('EnTp.Training')}} </span>
                                 </a>
                             </li>
                             <li class="nav-item U">
                                 <a class="nav-link" href="/Unite_ens">
                                     <span class="sidebar-mini"> TU </span>
-                                    <span class="sidebar-normal"> Teaching Unit </span>
+                                    <span class="sidebar-normal"> {{__('EnTp.Teaching Unit')}} </span>
                                 </a>
                             </li>
                             <li class="nav-item C">
                                 <a class="nav-link" href="/Class">
                                     <span class="sidebar-mini"> C </span>
-                                    <span class="sidebar-normal">  Class </span>
+                                    <span class="sidebar-normal">  {{__('EnTp.Class')}} </span>
                                 </a>
                             </li>
 
                             <li class="nav-item M">
                                 <a class="nav-link" href="/Matiere">
                                     <span class="sidebar-mini"> S </span>
-                                    <span class="sidebar-normal"> Subject </span>
+                                    <span class="sidebar-normal"> {{__('EnTp.Subject')}} </span>
                                 </a>
                             </li>
                             <li class="nav-item E">
                                 <a class="nav-link" href="/Enseignant">
                                     <span class="sidebar-mini"> P </span>
-                                    <span class="sidebar-normal"> Professor </span>
+                                    <span class="sidebar-normal"> {{__('EnTp.Professor')}} </span>
                                 </a>
                             </li>
 
@@ -147,21 +161,21 @@
                 <li class="nav-item AF">
                     <a class="nav-link" href="/affectMat">
                         <i class="material-icons">content_paste</i>
-                        <p> Assignment </p>
+                        <p> {{__('EnTp.Assignment')}} </p>
                     </a>
                 </li>
 
                 <li class="nav-item RE">
                     <a class="nav-link" href="/repartition">
                         <i class="material-icons">grid_on</i>
-                        <p> Search & Go </p>
+                        <p> {{__('EnTp.SeSearch & Go')}} </p>
                     </a>
                 </li>
 
                 <li class="nav-item EM">
                     <a class="nav-link" href="/emploi">
                         <i class="material-icons">date_range</i>
-                        <p> Schedule </p>
+                        <p> {{__('EnTp.Schedule')}} </p>
                     </a>
                 </li>
 
@@ -203,8 +217,29 @@
                     {{--</form>--}}
 
                     <ul class="navbar-nav">
+
+
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                            @if(session('applocale')=='fr')
+                                                <img id="imgNavEng" src="{{asset('img/Flag/Fr.gif')}}"  class="img-thumbnail icon-small">  <span id="lanNavEng">Franch</span>
+                                            @else
+                                                <img id="imgNavEng" src="{{asset('img/Flag/En.gif')}}"  class="img-thumbnail icon-small">  <span id="lanNavEng">English</span>
+
+
+                                            @endif
+                                            <span class="caret"></span></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a id="navEn" @if((session('applocale')=='fr')||(!session()->has('applocale'))) href="/language/en" @endif class="language" style="cursor: pointer"><img id="imgNavEng" src="{{asset('img/Flag/En.gif')}}"  class="img-thumbnail icon-small">  <span id="lanNavEng">English</span></a></li>
+                                            <li><a id="navFr" @if((session('applocale')=='en')||(!session()->has('applocale'))) href="/language/fr" @endif class="language" style="cursor: pointer"><img id="imgNavFra" src="{{asset('img/Flag/Fr.gif')}}"  class="img-thumbnail icon-small">  <span id="lanNavFra">Francais</span></a></li>
+
+                                        </ul>
+                                    </li>
+
+
                         <li class="nav-item">
-                            <a class="nav-link" href="/log-viewer">
+                            <a class="nav-link" href="{{route('log-viewer::dashboard')}}">
                                 <i class="fa fa-dashboard"></i>
                                 <p>
                                     <span class="d-lg-none d-md-block">logview</span>
@@ -212,7 +247,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Dashboard">
+                            <a class="nav-link" href="{{route('Activitylog')}}">
                                 <i class="material-icons">history</i>
                                 <p>
                                     <span class="d-lg-none d-md-block">Stats</span>
@@ -220,7 +255,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Dashboard">
+                            <a class="nav-link" href="{{route('Dashboard')}}">
                                 <i class="material-icons">dashboard</i>
                                 <p>
                                     <span class="d-lg-none d-md-block">Stats</span>
@@ -239,9 +274,9 @@
                                 </p>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="/create_Enseignant/{!! $user->AuthUserMat() !!}?type=profile">Profile</a>
+                                <a class="dropdown-item" href="/create_Enseignant/{!! $user->AuthUserMat() !!}?type=profile">{{__('EnTp.My Profile')}}</a>
 
-                                <a class="dropdown-item" href="#">Setting</a>
+                                <a class="dropdown-item" href="#">{{__('EnTp.Setting')}}</a>
                                 <hr>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
@@ -414,7 +449,9 @@
 
 
 </body>
+
 <!--   Core JS Files   -->
+
 <script src="{{asset('js/sweetalert2.js')}}"></script>
 
 <script src="{{asset('js/jquery.min.js')}}"></script>
@@ -465,8 +502,11 @@
 
 
 <script src="{{asset('js/arrive.min.js')}}"></script>
+<!--   Language   -->
+<script src="{{asset('js/Language.js')}}"></script>
 @yield('custemScript')
-<script>
 
-</script>
+
+
+
 </html>

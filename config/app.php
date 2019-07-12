@@ -167,7 +167,8 @@ return [
         // Log activity
         Arcanedev\LogViewer\LogViewerServiceProvider::class,
         //fileUpload
-        Intervention\Image\ImageServiceProvider::class
+        Intervention\Image\ImageServiceProvider::class,
+        Spatie\Activitylog\ActivitylogServiceProvider::class,
     ],
 
     /*

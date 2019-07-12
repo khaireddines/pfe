@@ -55,7 +55,7 @@
         @foreach ($mat_list as $mat)
             {{ csrf_field() }}
             <?php @$unite=$mat->libUnite($mat->idUnite); ?>
-            <td>{{$mat->idMat}}</td>
+            <td>{{$mat->id}}</td>
             <td>{{$mat->libMat}}</td>
             <td>{{$unite['0']->nomUnite}}</td>
             <td>{{$mat->coef}}</td>
@@ -70,10 +70,10 @@
             {{--</td>--}}
                 <td class="td-actions text-right">
 
-                    <button  type="button" rel="tooltip" value="{{$mat->idMat}}" class="btn btn-success btn-link edit" data-original-title="" title="">
+                    <button  type="button" rel="tooltip" value="{{$mat->id}}" class="btn btn-success btn-link edit" data-original-title="" title="">
                         <i class="material-icons">edit</i>
                     </button>
-                    <button onclick="location.href='/supp_Matiere/{{$mat->idMat}}';" type="button" rel="tooltip" class="btn btn-danger btn-link" data-original-title="" title="">
+                    <button onclick="location.href='/supp_Matiere/{{$mat->id}}';" type="button" rel="tooltip" class="btn btn-danger btn-link" data-original-title="" title="">
                         <i class="material-icons">close</i>
                     </button>
                 </td>

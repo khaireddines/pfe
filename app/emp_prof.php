@@ -8,6 +8,6 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class emp_prof extends Model
 {
     use LogsActivity;
-
+    protected static $logAttributes = ['*'];
     protected $guarded=['_token'];
 }

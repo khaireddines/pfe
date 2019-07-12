@@ -25,7 +25,7 @@
                             Add
                         </button>
                         <h4 class="card-title">Classes</h4>
-                        <
+
                     </div>
 
                     <div class="card-body ">
@@ -45,7 +45,7 @@
     <tr>
 
         @foreach ($class_list as $classe)
-            {{ csrf_field() }}
+            @csrf
             <?php $dep=$classe->libDept($classe->idDept); ?>
             <?php $form=$classe->libForm($classe->idForm); ?>
 
@@ -60,10 +60,10 @@
             {{--</td>--}}
             <td class="td-actions text-right">
 
-                <button  type="button" rel="tooltip" value="{{$classe->idClass}}" class="btn btn-success btn-link edit" data-original-title="" title="">
+                <button  type="button" rel="tooltip" value="{{$classe->id}}" class="btn btn-success btn-link edit" data-original-title="" title="">
                     <i class="material-icons">edit</i>
                 </button>
-                <button onclick="location.href='/supp_Class/{{$classe->idClass}}';" type="button" rel="tooltip" class="btn btn-danger btn-link" data-original-title="" title="">
+                <button onclick="location.href='/supp_Class/{{$classe->id}}';" type="button" rel="tooltip" class="btn btn-danger btn-link" data-original-title="" title="">
                     <i class="material-icons">close</i>
                 </button>
             </td>
